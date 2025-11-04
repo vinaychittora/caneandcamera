@@ -107,8 +107,8 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
 /* Tighter margins on small screens */
 @media (max-width: 640px) {
   .lgx__bar {
-    right: max(10px, env(safe-area-inset-right));
-    bottom: max(10px, env(safe-area-inset-bottom));
+    right: max(24px, env(safe-area-inset-right));
+    bottom: max(24px, env(safe-area-inset-bottom));
     gap: 8px;
   }
   .lgx__btn {
