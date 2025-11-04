@@ -975,43 +975,6 @@
     }
   },
   {
-    "slug": "paradise-flycatcher",
-    "title": "",
-    "description": "",
-    "gallery": "wildlife",
-    "camera": "",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-07-03 20:06:09",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/paradise-flycatcher.png",
-      "w": 2886,
-      "h": 3607
-    },
-    "variants": {
-      "3607": {
-        "src": "assets/img/gallery/generated/wildlife/paradise-flycatcher-3607.jpg",
-        "w": 2886,
-        "h": 3607
-      },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/paradise-flycatcher-2048.jpg",
-        "w": 1639,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/paradise-flycatcher-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/paradise-flycatcher-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
     "slug": "monitor-lizard",
     "title": "",
     "description": "",
