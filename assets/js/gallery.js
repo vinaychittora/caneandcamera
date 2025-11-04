@@ -8,11 +8,9 @@
   const BATCH_SIZE    = 20;
 
   const LABELS = {
-    wildlife:     { title: "Wildlife",    desc: "Moments from the wild." },
-    landscapes:   { title: "Landscapes",  desc: "Light, weather, terrain." },
-    panoramas:    { title: "Panoramas",   desc: "Wide stories in a single frame." },
-    documentaries:{ title: "Documentaries", desc: "Stills and BTS from films." },
-    all:          { title: "Gallery",     desc: "Curated works." }
+    wildlife:     { title: "Wildlife",    desc: "Birds, mammals and raptors from Rajasthan—Mukundara, Thar grasslands and beyond."},
+    landscapes:   { title: "Landscapes",  desc: "Monsoon light, desert horizons and fragile grasslands of Rajasthan."},
+    all:          { title: "404",     desc: "I am not sure what brought you here." }
   };
 
   function escapeHTML(s=""){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));}
