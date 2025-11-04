@@ -1,51 +1,37 @@
+:root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#9aa0a6;--card:#151515;--accent:#e6e6e6;--link:#f0f0f0}
 
-:root{
-  --bg:#0b0b0b; --fg:#f5f5f5; --muted:#9aa0a6; --card:#151515; --accent:#e6e6e6; --link:#f0f0f0;
-}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
 a{color:var(--link);text-decoration:none}
-a:hover{text-decoration:none; opacity: 0.8; transition: opacity 0.5s ease;}
+a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
+
 .wrap{max-width:1100px;margin:0 auto;padding:24px}
 .narrow{max-width:760px}
-.site-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid #1f1f1f;position:sticky;top:0;background:rgba(11,11,11,.9);backdrop-filter:saturate(180%) blur(10px);z-index:10}
-.logo {
-  display: flex;
-  align-items: center;     /* vertically center logo + text */
-  gap: 10px;               /* space between logo and text */
-  text-decoration: none;
-  color: var(--fg);        /* your site’s foreground text color */
-}
 
-.logo img {
-  height: 10vh;            /* adjust as needed */
-  width: auto;
-  filter: invert(1);       /* makes black logo visible on dark bg */
+/* Header */
+.site-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;border-bottom:1px solid #1f1f1f;
+  position:sticky;top:0;background:rgba(11,11,11,.9);
+  backdrop-filter:saturate(180%) blur(10px);z-index:10
 }
+.logo{display:flex;align-items:center;gap:10px;color:var(--fg);text-decoration:none}
+.logo img{height:48px;width:auto;filter:invert(1)}
+.logo span{font-weight:600;line-height:1.2;font-size:24px}
 
-.logo span {
-  font-weight: 600;
-  line-height: 1.2;
-  font-size: 24px;
-}
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid #1f1f1f;
-  position: sticky;
-  top: 0;
-  background: rgba(11, 11, 11, 0.9);
-  backdrop-filter: saturate(180%) blur(10px);
-  z-index: 10;
-}
+/* Footer */
 .site-footer{border-top:1px solid #1f1f1f;margin-top:48px;padding:24px}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+/* Hero */
 .hero{padding:40px 0 24px}
-.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px;line-height:1.2;letter-spacing:-.01em}
+
+/* Grids */
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* Cards & tiles */
 .card{background:var(--card);border-radius:14px;overflow:hidden;display:block}
 .card img{width:100%;height:220px;object-fit:cover;display:block;filter:contrast(1.05)}
 .card h3{margin:12px 12px 14px;font-size:18px}
@@ -53,139 +39,80 @@ a:hover{text-decoration:none; opacity: 0.8; transition: opacity 0.5s ease;}
 .tile{break-inside:avoid;display:block;margin:0 0 16px;background:#111;border-radius:12px;overflow:hidden;position:relative}
 .tile img{width:100%;height:auto;display:block}
 .tile-title{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:999px;font-size:12px}
+
+/* Article */
 .photo-article{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start}
 .photo-media img{width:100%;height:auto;border-radius:14px;display:block}
+
+/* Misc */
 .muted{color:var(--muted)}
 .meta{list-style:none;padding:0;margin:14px 0 24px}
 .meta li{padding:4px 0;border-bottom:1px dashed #222}
 .buy-block{background:#121212;border:1px solid #1e1e1e;border-radius:14px;padding:16px}
-.btn{display:inline-block;background:#eaeaea;color:#111;padding:10px 14px;border-radius:10px;margin-right:8px;margin-bottom:8px}
+.btn{display:inline-block;background:#eaeaea;color:#111;padding:10px 14px;border-radius:10px;margin:0 8px 8px 0}
 .btn:hover{text-decoration:none;filter:brightness(.9)}
 .divider{margin:12px 0;text-align:center;position:relative}
 .divider span{background:var(--bg);padding:0 10px;position:relative;z-index:1}
 .divider:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#222}
 .gallery-header h1{margin-bottom:4px}
+
+/* --- Responsive --- */
 @media (max-width:920px){
   .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
   .photo-article{grid-template-columns:1fr}
 }
 
-/* ---------- MOBILE/STABILITY FIXES (append after your CSS) ---------- */
+@media (max-width:640px){
+  .wrap{padding:16px}
+  .site-header{flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px;padding:16px}
+  .logo{justify-content:center;text-align:center}
+  .logo img{height:48px;margin:0 auto}
+  .logo span{font-size:18px;display:block}
+  .site-header nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:8px}
+  .site-header nav a{margin:0;font-size:15px}
 
-/* 1) Logo sizing: avoid 10vh on phones (too tall / bounces with URL bar) */
-.logo img {
-  height: 100px;           /* steady, tap-friendly size */
-  width: auto;
+  .grid-4,.grid-3{grid-template-columns:1fr}
+  .card img{height:200px}
+
+  .site-footer{text-align:center}
+  .footer-grid{grid-template-columns:1fr;justify-items:center;gap:20px}
+  .footer-grid>*{text-align:center}
 }
 
-/* 2) Keep brand text tidy; allow wrap on mobile */
-.logo span {
-  font-size: 20px;
-  line-height: 1.15;
-  word-break: normal;
-}
-
-/* 3) Headline scales better on small screens */
-.hero h1{
-  font-size: clamp(24px, 5.2vw, 44px);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-/* 4) Make grids adapt (the original only handled .grid-4 at 920px) */
-.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
-.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
-
-/* At tablet sizes: 2 columns */
-@media (max-width: 920px){
-  .grid-3{ grid-template-columns:repeat(2,1fr) }
-  .grid-4{ grid-template-columns:repeat(2,1fr) }
-  .footer-grid{ grid-template-columns:1fr }
-  .photo-article{ grid-template-columns:1fr }
-}
-
-/* At small phones: single column, tighter header */
-@media (max-width: 640px){
-  .site-header{
-    padding: 14px 16px;
-    gap: 12px;
-  }
-  .wrap{ padding: 16px }                /* a bit less side padding */
-  .logo img{ height: 40px }             /* slightly smaller on tiny screens */
-  .logo span{ font-size: 18px }
-  .grid-3, .grid-4{ grid-template-columns:1fr }   /* no overflow / squish */
-  .card img{ height: 200px }            /* avoid super-tall thumbs on phones */
-}
-
-/* 5) Optional: smooth horizontal scroll section (if you switch to a scroller) */
-/* Add class="scroll-row" to the cards wrapper if you prefer a swipeable row */
-.scroll-row{
+/* Lightbox core */
+.lgx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:9999}
+.lgx.show{display:flex}
+.lgx__img{max-width:96vw;max-height:92vh;object-fit:contain;user-select:none;box-shadow:0 12px 28px rgba(0,0,0,.6)}
+.lgx__ui{position:fixed;inset:0;pointer-events:none}
+.lgx__btn,.lgx__ctrl{pointer-events:auto;position:absolute;background:rgba(20,20,20,.65);border:1px solid rgba(255,255,255,.12);color:#eee;font:14px/1 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;padding:10px 12px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background .2s ease,opacity .2s ease;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.lgx__btn:hover,.lgx__ctrl:hover{background:rgba(36,36,36,.75)}
+.lgx__close{top:16px;right:16px}
+.lgx__prev{left:16px;top:50%;transform:translateY(-50%)}
+.lgx__next{right:16px;top:50%;transform:translateY(-50%)}
+.lgx__caption{left:16px;bottom:16px;max-width:60vw;background:rgba(12,12,12,.65);border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:10px;color:#bbb;font-size:13px;line-height:1.35}
+@media (max-width:640px){.lgx__btn,.lgx__ctrl{padding:8px 10px;border-radius:10px}.lgx__caption{max-width:80vw;font-size:12px}}
+/* Nice pointer on thumbs */
+#cc-masonry .cc-thumb{cursor:zoom-in}
+.lgx__bar {
+  position: fixed;
+  right: max(32px, env(safe-area-inset-right));
+  bottom: max(32px, env(safe-area-inset-bottom));
   display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 6px;
+  gap: 10px;
+  z-index: 10000; /* ensures above image */
 }
-.scroll-row .card{
-  flex: 0 0 78vw;        /* big, thumb-friendly width on phones */
-  max-width: 320px;
-  scroll-snap-align: start;
-}
-.scroll-row::-webkit-scrollbar{ display:none }
 
-/* Responsive layout below 640px width */
+/* Tighter margins on small screens */
 @media (max-width: 640px) {
-  .site-header {
-    flex-direction: column;       /* stack vertically */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-    padding: 16px;
+  .lgx__bar {
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
+    gap: 8px;
   }
-
-  .logo {
-    justify-content: center;      /* center logo and text */
-    text-align: center;
-  }
-
-  .logo img {
-    height: 80px;
-    margin: 0 auto;
-  }
-
-  .logo span {
-    font-size: 26px;
-    display: block;
-  }
-
-  .site-header nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;      /* center the nav links */
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .site-header nav a {
-    margin: 0;                    /* reset desktop margin-left */
-    font-size: 15px;
-  }
-
-  /* Footer centering */
-  .site-footer {
-    text-align: center;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;  /* single column layout */
-    justify-items: center;       /* center all grid content */
-    gap: 20px;
-  }
-
-  .footer-grid > * {
-    text-align: center;          /* ensure text blocks are centered */
+  .lgx__btn {
+    padding: 8px 10px;
+    border-radius: 10px;
   }
 }

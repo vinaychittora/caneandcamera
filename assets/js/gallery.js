@@ -142,3 +142,145 @@
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+
+
+(function(){
+  const grid = document.getElementById('cc-masonry');
+  const lgx  = document.getElementById('lgx');
+  if(!grid || !lgx) return;
+
+  const imgEl    = lgx.querySelector('.lgx__img');
+  const capEl    = lgx.querySelector('.lgx__caption');
+  const btnClose = lgx.querySelector('.lgx__close');
+  const btnPrev  = lgx.querySelector('.lgx__prev');
+  const btnNext  = lgx.querySelector('.lgx__next');
+  const btnPlay  = lgx.querySelector('.lgx__play');
+  const btnPause = lgx.querySelector('.lgx__pause');
+
+  let nodes = [];       // <img.cc-thumb> nodes
+  let idx = 0;
+  let playing = false;
+  let timer = null;
+  const DURATION = 3000;
+
+  // Parse srcset and return the largest candidate URL (fallback to src)
+  function largestSrc(img){
+    const ss = img.getAttribute('srcset');
+    if(!ss) return img.currentSrc || img.src;
+    let bestURL = img.src, bestW = 0;
+    ss.split(',').forEach(part=>{
+      const [url, wstr] = part.trim().split(/\s+/);
+      const w = parseInt(wstr,10) || 0;
+      if(w > bestW){ bestW = w; bestURL = url; }
+    });
+    return bestURL;
+  }
+
+  function captionFor(img){
+    // Prefer <strong> inside sibling .cc-meta; fallback to alt
+    const card = img.closest('.cc-card');
+    const strong = card?.querySelector('.cc-meta strong')?.textContent?.trim();
+    const extra  = card?.querySelector('.cc-meta .muted')?.textContent?.trim();
+    const alt    = img.getAttribute('alt') || '';
+    return strong ? (extra ? `${strong} · ${extra}` : strong) : alt;
+  }
+
+  function collect(){
+    nodes = Array.from(grid.querySelectorAll('img.cc-thumb'));
+  }
+  collect();
+
+  // Re-collect when JSON adds new cards
+  new MutationObserver(collect).observe(grid, {childList:true, subtree:true});
+
+  function show(i){
+    if(!nodes.length) return;
+    idx = (i + nodes.length) % nodes.length;
+    const img = nodes[idx];
+    imgEl.src = largestSrc(img);
+    imgEl.alt = img.alt || '';
+    capEl.textContent = captionFor(img);
+
+    // Preload neighbors
+    [-1,1].forEach(d=>{
+      const j = (idx + d + nodes.length) % nodes.length;
+      const nimg = nodes[j];
+      const pre = new Image(); pre.src = largestSrc(nimg);
+    });
+  }
+
+  function open(i){
+    show(i);
+    lgx.classList.add('show');
+    lgx.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function close(){
+    lgx.classList.remove('show');
+    lgx.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+    stop();
+  }
+  function next(){ show(idx+1); }
+  function prev(){ show(idx-1); }
+
+  function play(){
+    if(playing || !nodes.length) return;
+    playing = true;
+    btnPlay.style.display = 'none';
+    btnPause.style.display = '';
+    timer = setInterval(next, DURATION);
+  }
+  function stop(){
+    playing = false;
+    btnPlay.style.display = '';
+    btnPause.style.display = 'none';
+    if(timer){ clearInterval(timer); timer = null; }
+  }
+  function togglePlay(){ playing ? stop() : play(); }
+
+  // Delegate clicks (works for dynamically added items)
+  grid.addEventListener('click', e=>{
+    const img = e.target.closest('img.cc-thumb');
+    if(!img) return;
+    e.preventDefault();
+    collect();
+    const i = nodes.indexOf(img);
+    open(i >= 0 ? i : 0);
+  });
+
+  // Buttons
+  btnClose.addEventListener('click', close);
+  btnNext .addEventListener('click', next);
+  btnPrev .addEventListener('click', prev);
+  btnPlay .addEventListener('click', play);
+  btnPause.addEventListener('click', stop);
+
+  // Keyboard
+  document.addEventListener('keydown', e=>{
+    if(!lgx.classList.contains('show')) return;
+    if(e.key === 'Escape') close();
+    else if(e.key === 'ArrowRight') next();
+    else if(e.key === 'ArrowLeft')  prev();
+    else if(e.key === ' '){ e.preventDefault(); togglePlay(); }
+  });
+
+  // Swipe
+  let sx=0, sy=0;
+  lgx.addEventListener('touchstart', e=>{
+    const t = e.touches[0]; if(!t) return;
+    sx = t.clientX; sy = t.clientY;
+  }, {passive:true});
+  lgx.addEventListener('touchend', e=>{
+    const t = e.changedTouches[0]; if(!t) return;
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx<0 ? next() : prev());
+  });
+
+  // Close when clicking backdrop (not image/buttons)
+  lgx.addEventListener('click', e=>{
+    const isImg = e.target === imgEl;
+    const isBtn = e.target.closest && e.target.closest('.lgx__btn');
+    if(!isImg && !isBtn) close();
+  });
+})();
