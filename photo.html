@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cane & Camera — Fine Art Wildlife & Landscapes</title>
+  <meta name="description" content="Fine art wildlife and landscape photography from Rajasthan and beyond. Limited edition prints and licensed digital downloads by Cane & Camera.">
+  <meta name="author" content="Cane & Camera">
+  <link rel="preload" href="assets/css/style.css" as="style">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <script defer src="assets/js/main.js"></script>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="/" class="logo"><img src="assets/img/ico/logo.svg"/><span>Cane &<br>Camera</span></a>
+  <nav>
+    <a href="gallery.html?g=wildlife"><img src="assets/img/ico/icon-wildlife.png"/></a>
+    <a href="gallery.html?g=landscapes"><img src="assets/img/ico/icon-landscape.png"/></a>
+    <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank"><img src="assets/img/ico/icon-youtube.png"/></a>
+    <a href="https://instagram.com/caneandcamera" target="_blank"><img src="assets/img/ico/icon-ig.png" /></a>
+    <a href="about.html"><img src="assets/img/ico/icon-about.png" /></a>
+  </nav>
+</header>
+<main class="wrap">
+  <article id="photoArticle" class="photo-article">
+    <div class="photo-media" id="photoMedia"></div>
+    <div class="photo-info">
+      <h1 id="photoTitle">Title</h1>
+      <p id="photoStory" class="muted"></p>
+      <ul id="photoMeta" class="meta"></ul>
+
+      <section class="buy-block">
+        <h2>Purchase</h2>
+        <div class="buy-options">
+          <!-- Option A: Razorpay Payment Link buttons per variant -->
+          <!-- Replace hrefs with your live payment links -->
+          <a class="btn" id="buyA4" href="#" target="_blank" rel="noopener">Buy A4 Print</a>
+          <a class="btn" id="buyA3" href="#" target="_blank" rel="noopener">Buy A3 Print</a>
+          <a class="btn" id="buyA2" href="#" target="_blank" rel="noopener">Buy A2 Print</a>
+        </div>
+
+        <div class="divider"><span>or</span></div>
+
+        <!-- Option B: Shopify Buy Button embed (uncomment + configure if using Shopify) -->
+        <!--
+        <div id="shopify-buy-button"></div>
+        <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js" async></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            if (window.ShopifyBuy) {
+              if (ShopifyBuy.UI) initShopifyBuy();
+              else window.addEventListener('load', initShopifyBuy);
+            }
+            function initShopifyBuy(){
+              const client = ShopifyBuy.buildClient({
+                domain: 'YOUR_SHOP.myshopify.com',
+                storefrontAccessToken: 'YOUR_TOKEN'
+              });
+              ShopifyBuy.UI.onReady(client).then(function (ui) {
+                ui.createComponent('product', {
+                  id: 'PRODUCT_ID',
+                  node: document.getElementById('shopify-buy-button'),
+                  moneyFormat: '₹%7B%7Bamount%7D%7D',
+                  options: { product: { buttonDestination: 'modal' } }
+                });
+              });
+            }
+          });
+        </script>
+        -->
+      </section>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <h4>Cane &amp; Camera</h4>
+      <p>Stories of nature, light and silence.</p>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <p>
+        <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">Instagram</a> · 
+         <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">YouTube</a>
+       </p>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <p>© 2025 Cane &amp; Camera · All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const res = await fetch('/data/photos.json');
+  const list = await res.json();
+  const p = list.find(x => x.slug === slug) || list[0];
+
+  // Media
+  const media = document.getElementById('photoMedia');
+  media.innerHTML = `
+    <picture>
+      <source type="image/avif" srcset="${p.hero_avif}">
+      <source type="image/webp" srcset="${p.hero_webp}">
+      <img src="${p.hero_jpg}" alt="${p.alt}" loading="eager">
+    </picture>`;
+
+  // Info
+  document.getElementById('photoTitle').textContent = p.title;
+  document.getElementById('photoStory').textContent = p.story;
+
+  const meta = document.getElementById('photoMeta');
+  const items = [
+    ['Location', p.location],
+    ['Shot on', p.camera],
+    ['Lens', p.lens],
+    ['Settings', `${p.exif}`],
+    ['Date', p.date]
+  ];
+  items.forEach(([k,v]) => {
+    if (!v) return;
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${k}:</strong> ${v}`;
+    meta.appendChild(li);
+  });
+
+  // Razorpay links per variant (if provided)
+  if (p.buy && p.buy.razorpay) {
+    const { A4, A3, A2 } = p.buy.razorpay;
+    if (A4) document.getElementById('buyA4').href = A4;
+    if (A3) document.getElementById('buyA3').href = A3;
+    if (A2) document.getElementById('buyA2').href = A2;
+  }
+});
+</script>
+</body>
+</html>

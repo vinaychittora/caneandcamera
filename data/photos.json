@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "montagus-harrier-sorsan",
+    "gallery": "wildlife",
+    "title": "Montagu\u2019s Harrier, Sorsan",
+    "alt": "Female Montagu\u2019s Harrier scanning Sorsan grasslands",
+    "story": "She skims low over the grass, reading wind and rodent trails like a script.",
+    "location": "Sorsan Grasslands, Rajasthan",
+    "camera": "Fujifilm X\u2011H2S",
+    "lens": "Fujinon 150\u2013600mm",
+    "exif": "1/2000s \u00b7 f/8 \u00b7 ISO 800 \u00b7 600mm",
+    "date": "2025-11-02",
+    "thumb_avif": "assets/img/montagus-thumb.avif",
+    "thumb_webp": "assets/img/montagus-thumb.webp",
+    "thumb_jpg": "assets/img/montagus-thumb.jpg",
+    "hero_avif": "assets/img/montagus-hero.avif",
+    "hero_webp": "assets/img/montagus-hero.webp",
+    "hero_jpg": "assets/img/montagus-hero.jpg",
+    "buy": {
+      "razorpay": {
+        "A4": "https://rzp.io/l/yourA4Link",
+        "A3": "https://rzp.io/l/yourA3Link",
+        "A2": "https://rzp.io/l/yourA2Link"
+      }
+    }
+  },
+  {
+    "slug": "great-indian-bustard-monsoon-display",
+    "gallery": "wildlife",
+    "title": "Great Indian Bustard, Monsoon Display",
+    "alt": "Male Great Indian Bustard displaying on a low mound",
+    "story": "A drumbeat in the grasslands \u2014 the last dancers of the Thar.",
+    "location": "Dholiya Oran, Jaisalmer",
+    "camera": "Fujifilm X\u2011H2S",
+    "lens": "Fujinon 150\u2013600mm",
+    "exif": "1/1600s \u00b7 f/7.1 \u00b7 ISO 1000 \u00b7 600mm",
+    "date": "2025-08-01",
+    "thumb_avif": "assets/img/gib-thumb.avif",
+    "thumb_webp": "assets/img/gib-thumb.webp",
+    "thumb_jpg": "assets/img/gib-thumb.jpg",
+    "hero_avif": "assets/img/gib-hero.avif",
+    "hero_webp": "assets/img/gib-hero.webp",
+    "hero_jpg": "assets/img/gib-hero.jpg",
+    "buy": {
+      "razorpay": {
+        "A4": "#",
+        "A3": "#",
+        "A2": "#"
+      }
+    }
+  },
+  {
+    "slug": "monsoon-ridge-aravalli",
+    "gallery": "landscapes",
+    "title": "Monsoon Ridge, Aravalli",
+    "alt": "Monsoon clouds breaking over an Aravalli ridge",
+    "story": "When the first rain cools the stone, the hills breathe again.",
+    "location": "Rajasthan",
+    "camera": "Fujifilm X\u2011T2",
+    "lens": "16\u201355mm",
+    "exif": "1/320s \u00b7 f/5.6 \u00b7 ISO 200 \u00b7 24mm",
+    "date": "2023-07-15",
+    "thumb_avif": "assets/img/aravalli-thumb.avif",
+    "thumb_webp": "assets/img/aravalli-thumb.webp",
+    "thumb_jpg": "assets/img/aravalli-thumb.jpg",
+    "hero_avif": "assets/img/aravalli-hero.avif",
+    "hero_webp": "assets/img/aravalli-hero.webp",
+    "hero_jpg": "assets/img/aravalli-hero.jpg",
+    "buy": {
+      "razorpay": {
+        "A4": "#",
+        "A3": "#",
+        "A2": "#"
+      }
+    }
+  },
+  {
+    "slug": "thar-dunes-panorama",
+    "gallery": "panoramas",
+    "title": "Thar Dunes \u2014 Panorama",
+    "alt": "Wind-carved dunes under soft evening light",
+    "story": "A slow river of sand, frozen by evening breeze.",
+    "location": "Jaisalmer, Rajasthan",
+    "camera": "Fujifilm X\u2011H2S",
+    "lens": "33mm",
+    "exif": "1/250s \u00b7 f/8 \u00b7 ISO 160 \u00b7 33mm",
+    "date": "2024-02-10",
+    "thumb_avif": "assets/img/dunes-thumb.avif",
+    "thumb_webp": "assets/img/dunes-thumb.webp",
+    "thumb_jpg": "assets/img/dunes-thumb.jpg",
+    "hero_avif": "assets/img/dunes-hero.avif",
+    "hero_webp": "assets/img/dunes-hero.webp",
+    "hero_jpg": "assets/img/dunes-hero.jpg",
+    "buy": {
+      "razorpay": {
+        "A4": "#",
+        "A3": "#",
+        "A2": "#"
+      }
+    }
+  }
+]
