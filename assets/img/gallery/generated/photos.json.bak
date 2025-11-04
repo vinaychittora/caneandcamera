@@ -968,6 +968,47 @@
     "focal": ""
   },
   {
+    "slug": "crested-serpent-eagle",
+    "title": "Crested Serpent Eagle, Rainforest Edge",
+    "description": "Crested Serpent Eagle (Spilornis cheela) with bold barring—serene yet formidable, photographed ethically in natural habitat.",
+    "gallery": "wildlife",
+    "camera": "",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-07-09 16:58:05",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/crested-serpent-eagle.png",
+      "w": 2056,
+      "h": 2570
+    },
+    "variants": {
+      "2570": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2570.jpg",
+        "w": 2056,
+        "h": 2570
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.jpg",
+        "w": 1638,
+        "h": 2048
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1024.jpg",
+        "w": 819,
+        "h": 1024
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-512.jpg",
+        "w": 410,
+        "h": 512
+      }
+    },
+    "exposure": "",
+    "aperture": "",
+    "iso": "",
+    "focal": ""
+  },
+  {
     "slug": "woodswallow",
     "title": "Ashy Woodswallow on Wire",
     "description": "Ashy Woodswallow (Artamus fuscus) in minimalist frame—soft tones, clean lines, and an everyday perch made lyrical.",
@@ -1008,55 +1049,14 @@
     "iso": ""
   },
   {
-    "slug": "crested-serpent-eagle",
-    "title": "Crested Serpent Eagle, Rainforest Edge",
-    "description": "Crested Serpent Eagle (Spilornis cheela) with bold barring—serene yet formidable, photographed ethically in natural habitat.",
-    "gallery": "wildlife",
-    "camera": "FUJIFILM X-H2S",
-    "lens": "",
-    "exif": "1/500s · f/11.0 · 500mm",
-    "datetime": "2025-07-06T09:19:26+05:30",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/crested-serpent-eagle.png",
-      "w": 2056,
-      "h": 2570
-    },
-    "variants": {
-      "2570": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2570.jpg",
-        "w": 2056,
-        "h": 2570
-      },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    },
-    "exposure": "1/500s",
-    "aperture": "f/11.0",
-    "iso": "",
-    "focal": "500mm"
-  },
-  {
     "slug": "woodswallow",
     "title": "Ashy Woodswallow, Overcast Mood",
     "description": "A gentle portrait of Ashy Woodswallow—muted sky, smooth gradients, and a contemplative pose.",
     "gallery": "wildlife",
-    "camera": "FUJIFILM X-H2S",
+    "camera": "",
     "lens": "",
-    "exif": "1/400s · f/11.0 · 500mm",
-    "datetime": "2025-07-06T07:55:09+05:30",
+    "exif": "",
+    "datetime": "2025-07-07 14:51:04",
     "original": {
       "file": "assets/img/gallery/originals/wildlife/woodswallow.png",
       "w": 1732,
@@ -1084,10 +1084,10 @@
         "h": 512
       }
     },
-    "exposure": "1/400s",
-    "aperture": "f/11.0",
+    "exposure": "",
+    "aperture": "",
     "iso": "",
-    "focal": "500mm"
+    "focal": ""
   },
   {
     "slug": "monitor-lizard",
