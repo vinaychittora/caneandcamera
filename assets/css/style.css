@@ -28,7 +28,18 @@ a:hover{text-decoration:none; opacity: 0.8; transition: opacity 0.5s ease;}
   line-height: 1.2;
   font-size: 24px;
 }
-.site-header nav a{margin-left:16px;opacity:.9}
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #1f1f1f;
+  position: sticky;
+  top: 0;
+  background: rgba(11, 11, 11, 0.9);
+  backdrop-filter: saturate(180%) blur(10px);
+  z-index: 10;
+}
 .site-footer{border-top:1px solid #1f1f1f;margin-top:48px;padding:24px}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .hero{padding:40px 0 24px}
@@ -58,4 +69,123 @@ a:hover{text-decoration:none; opacity: 0.8; transition: opacity 0.5s ease;}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
   .photo-article{grid-template-columns:1fr}
+}
+
+/* ---------- MOBILE/STABILITY FIXES (append after your CSS) ---------- */
+
+/* 1) Logo sizing: avoid 10vh on phones (too tall / bounces with URL bar) */
+.logo img {
+  height: 100px;           /* steady, tap-friendly size */
+  width: auto;
+}
+
+/* 2) Keep brand text tidy; allow wrap on mobile */
+.logo span {
+  font-size: 20px;
+  line-height: 1.15;
+  word-break: normal;
+}
+
+/* 3) Headline scales better on small screens */
+.hero h1{
+  font-size: clamp(24px, 5.2vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* 4) Make grids adapt (the original only handled .grid-4 at 920px) */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+.grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
+
+/* At tablet sizes: 2 columns */
+@media (max-width: 920px){
+  .grid-3{ grid-template-columns:repeat(2,1fr) }
+  .grid-4{ grid-template-columns:repeat(2,1fr) }
+  .footer-grid{ grid-template-columns:1fr }
+  .photo-article{ grid-template-columns:1fr }
+}
+
+/* At small phones: single column, tighter header */
+@media (max-width: 640px){
+  .site-header{
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .wrap{ padding: 16px }                /* a bit less side padding */
+  .logo img{ height: 40px }             /* slightly smaller on tiny screens */
+  .logo span{ font-size: 18px }
+  .grid-3, .grid-4{ grid-template-columns:1fr }   /* no overflow / squish */
+  .card img{ height: 200px }            /* avoid super-tall thumbs on phones */
+}
+
+/* 5) Optional: smooth horizontal scroll section (if you switch to a scroller) */
+/* Add class="scroll-row" to the cards wrapper if you prefer a swipeable row */
+.scroll-row{
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+}
+.scroll-row .card{
+  flex: 0 0 78vw;        /* big, thumb-friendly width on phones */
+  max-width: 320px;
+  scroll-snap-align: start;
+}
+.scroll-row::-webkit-scrollbar{ display:none }
+
+/* Responsive layout below 640px width */
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;       /* stack vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .logo {
+    justify-content: center;      /* center logo and text */
+    text-align: center;
+  }
+
+  .logo img {
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  .logo span {
+    font-size: 26px;
+    display: block;
+  }
+
+  .site-header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;      /* center the nav links */
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .site-header nav a {
+    margin: 0;                    /* reset desktop margin-left */
+    font-size: 15px;
+  }
+
+  /* Footer centering */
+  .site-footer {
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;  /* single column layout */
+    justify-items: center;       /* center all grid content */
+    gap: 20px;
+  }
+
+  .footer-grid > * {
+    text-align: center;          /* ensure text blocks are centered */
+  }
 }
