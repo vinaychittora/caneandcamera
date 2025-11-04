@@ -259,38 +259,6 @@
     "slug": "white-breasted-kingfisher",
     "title": "",
     "description": "",
-    "gallery": "wildlife",
-    "camera": "FUJIFILM X-H2S",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-10-13 14:47:37",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/white-breasted-kingfisher.jpg",
-      "w": 1080,
-      "h": 1350
-    },
-    "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1350.jpg",
-        "w": 1080,
-        "h": 1350
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
-    "slug": "white-breasted-kingfisher",
-    "title": "",
-    "description": "",
     "gallery": "landscapes",
     "camera": "FUJIFILM X-H2S",
     "lens": "",
@@ -314,6 +282,38 @@
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-512.jpg",
+        "w": 410,
+        "h": 512
+      }
+    }
+  },
+  {
+    "slug": "white-breasted-kingfisher",
+    "title": "",
+    "description": "",
+    "gallery": "wildlife",
+    "camera": "FUJIFILM X-H2S",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-10-13 14:47:37",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/white-breasted-kingfisher.jpg",
+      "w": 1080,
+      "h": 1350
+    },
+    "variants": {
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1350.jpg",
+        "w": 1080,
+        "h": 1350
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.jpg",
+        "w": 819,
+        "h": 1024
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-512.jpg",
         "w": 410,
         "h": 512
       }
@@ -515,38 +515,6 @@
     "slug": "white-eyed-buzzard",
     "title": "",
     "description": "",
-    "gallery": "wildlife",
-    "camera": "FUJIFILM X-H2S",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-09-20 21:04:55",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/white-eyed -buzzard.jpg",
-      "w": 1080,
-      "h": 1350
-    },
-    "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1350.jpg",
-        "w": 1080,
-        "h": 1350
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
-    "slug": "white-eyed-buzzard",
-    "title": "",
-    "description": "",
     "gallery": "landscapes",
     "camera": "FUJIFILM X-H2S",
     "lens": "",
@@ -570,6 +538,38 @@
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-512.jpg",
+        "w": 410,
+        "h": 512
+      }
+    }
+  },
+  {
+    "slug": "white-eyed-buzzard",
+    "title": "",
+    "description": "",
+    "gallery": "wildlife",
+    "camera": "FUJIFILM X-H2S",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-09-20 21:04:55",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/white-eyed -buzzard.jpg",
+      "w": 1080,
+      "h": 1350
+    },
+    "variants": {
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1350.jpg",
+        "w": 1080,
+        "h": 1350
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.jpg",
+        "w": 819,
+        "h": 1024
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-512.jpg",
         "w": 410,
         "h": 512
       }
@@ -611,38 +611,6 @@
     "slug": "towny-lark",
     "title": "",
     "description": "",
-    "gallery": "wildlife",
-    "camera": "",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-09-16 11:43:13",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/towny-lark.jpg",
-      "w": 1080,
-      "h": 1350
-    },
-    "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-1350.jpg",
-        "w": 1080,
-        "h": 1350
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
-    "slug": "towny-lark",
-    "title": "",
-    "description": "",
     "gallery": "landscapes",
     "camera": "",
     "lens": "",
@@ -672,34 +640,34 @@
     }
   },
   {
-    "slug": "towny-lark-2",
+    "slug": "towny-lark",
     "title": "",
     "description": "",
     "gallery": "wildlife",
     "camera": "",
     "lens": "",
     "exif": "",
-    "datetime": "2025-09-15 12:46:20",
+    "datetime": "2025-09-16 11:43:13",
     "original": {
-      "file": "assets/img/gallery/originals/wildlife/towny-lark-2.jpg",
-      "w": 2048,
-      "h": 1536
+      "file": "assets/img/gallery/originals/wildlife/towny-lark.jpg",
+      "w": 1080,
+      "h": 1350
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-1350.jpg",
+        "w": 1080,
+        "h": 1350
       },
       "1024": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-1024.jpg",
-        "w": 1024,
-        "h": 768
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-1024.jpg",
+        "w": 819,
+        "h": 1024
       },
       "512": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-512.jpg",
-        "w": 512,
-        "h": 384
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-512.jpg",
+        "w": 410,
+        "h": 512
       }
     }
   },
@@ -730,6 +698,38 @@
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/towny-lark-2-512.jpg",
+        "w": 512,
+        "h": 384
+      }
+    }
+  },
+  {
+    "slug": "towny-lark-2",
+    "title": "",
+    "description": "",
+    "gallery": "wildlife",
+    "camera": "",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-09-15 12:46:20",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/towny-lark-2.jpg",
+      "w": 2048,
+      "h": 1536
+    },
+    "variants": {
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.jpg",
+        "w": 2048,
+        "h": 1536
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-1024.jpg",
+        "w": 1024,
+        "h": 768
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-512.jpg",
         "w": 512,
         "h": 384
       }
@@ -864,43 +864,6 @@
     }
   },
   {
-    "slug": "great-indian-bustard",
-    "title": "",
-    "description": "",
-    "gallery": "wildlife",
-    "camera": "",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-07-22 19:37:59",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/great-indian-bustard.png",
-      "w": 4687,
-      "h": 3125
-    },
-    "variants": {
-      "4687": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-4687.jpg",
-        "w": 4687,
-        "h": 3125
-      },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.jpg",
-        "w": 2048,
-        "h": 1365
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-1024.jpg",
-        "w": 1024,
-        "h": 683
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-512.jpg",
-        "w": 512,
-        "h": 341
-      }
-    }
-  },
-  {
     "slug": "crested-serpent-eagle",
     "title": "",
     "description": "",
@@ -941,43 +904,6 @@
     "slug": "woodswallow",
     "title": "",
     "description": "",
-    "gallery": "wildlife",
-    "camera": "",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-07-07 14:51:04",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/woodswallow.png",
-      "w": 1732,
-      "h": 2165
-    },
-    "variants": {
-      "2165": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-2165.jpg",
-        "w": 1732,
-        "h": 2165
-      },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
-    "slug": "woodswallow",
-    "title": "",
-    "description": "",
     "gallery": "landscapes",
     "camera": "",
     "lens": "",
@@ -1006,6 +932,43 @@
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/woodswallow-512.jpg",
+        "w": 410,
+        "h": 512
+      }
+    }
+  },
+  {
+    "slug": "woodswallow",
+    "title": "",
+    "description": "",
+    "gallery": "wildlife",
+    "camera": "",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-07-07 14:51:04",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/woodswallow.png",
+      "w": 1732,
+      "h": 2165
+    },
+    "variants": {
+      "2165": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-2165.jpg",
+        "w": 1732,
+        "h": 2165
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-2048.jpg",
+        "w": 1638,
+        "h": 2048
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-1024.jpg",
+        "w": 819,
+        "h": 1024
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-512.jpg",
         "w": 410,
         "h": 512
       }
@@ -1089,43 +1052,6 @@
     "slug": "spotted-owlet",
     "title": "",
     "description": "",
-    "gallery": "wildlife",
-    "camera": "FUJIFILM X-H2S",
-    "lens": "",
-    "exif": "",
-    "datetime": "2025-06-25 09:29:03",
-    "original": {
-      "file": "assets/img/gallery/originals/wildlife/spotted-owlet.jpg",
-      "w": 3328,
-      "h": 4160
-    },
-    "variants": {
-      "4160": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-4160.jpg",
-        "w": 3328,
-        "h": 4160
-      },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-1024.jpg",
-        "w": 819,
-        "h": 1024
-      },
-      "512": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-512.jpg",
-        "w": 410,
-        "h": 512
-      }
-    }
-  },
-  {
-    "slug": "spotted-owlet",
-    "title": "",
-    "description": "",
     "gallery": "landscapes",
     "camera": "FUJIFILM X-H2S",
     "lens": "",
@@ -1154,6 +1080,43 @@
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/spotted-owlet-512.jpg",
+        "w": 410,
+        "h": 512
+      }
+    }
+  },
+  {
+    "slug": "spotted-owlet",
+    "title": "",
+    "description": "",
+    "gallery": "wildlife",
+    "camera": "FUJIFILM X-H2S",
+    "lens": "",
+    "exif": "",
+    "datetime": "2025-06-25 09:29:03",
+    "original": {
+      "file": "assets/img/gallery/originals/wildlife/spotted-owlet.jpg",
+      "w": 3328,
+      "h": 4160
+    },
+    "variants": {
+      "4160": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-4160.jpg",
+        "w": 3328,
+        "h": 4160
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.jpg",
+        "w": 1638,
+        "h": 2048
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-1024.jpg",
+        "w": 819,
+        "h": 1024
+      },
+      "512": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-512.jpg",
         "w": 410,
         "h": 512
       }
