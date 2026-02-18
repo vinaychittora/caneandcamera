@@ -116,3 +116,79 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
     border-radius: 10px;
   }
 }
+
+/* --- Press cards (image on top, text below) --- */
+.press { margin-top: 40px; padding-top: 24px; border-top: 1px solid #1f1f1f; }
+.press__grid { display: grid; gap: 16px; }
+
+.press__card{
+  background: var(--card);
+  border: 1px solid #1f1f1f;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.press__imageLink{ display:block; }
+.press__img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.press__body{ padding: 12px; }
+.press__headline{ margin: 6px 0 8px; font-size: 16px; line-height: 1.35; }
+.press__meta{ margin: 0 0 10px; display:flex; gap:10px; flex-wrap:wrap; }
+.press__outlet{ font-weight: 600; }
+.press__excerpt{ margin: 0 0 12px; opacity: 0.92; }
+
+.press__btn{
+  display:inline-block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  background: #121212;
+  color: var(--text);
+  text-decoration:none;
+}
+.press__btn:hover{ opacity: .9; }
+
+/* --- CSS-only lightbox using :target --- */
+.press__lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0,0,0,0.82);
+  z-index: 9999;
+  padding: 20px;
+}
+.press__lightbox:target{ display: grid; }
+
+.press__lightboxImg{
+  max-width: min(1100px, 96vw);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid #2a2a2a;
+  background: #0b0b0b;
+}
+
+.press__lightboxClose{
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid #2a2a2a;
+  background: #0f0f0f;
+  color: #fff;
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+}
+.press__lightboxClose:hover{ opacity: 0.9; }
