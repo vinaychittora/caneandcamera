@@ -644,6 +644,27 @@ def patch_landscapes_legacy_page():
 
 
 
+
+def build_pretty_routes():
+    route_map = {
+        "gallery": "gallery.html",
+        "landscapes": "landscapes.html",
+        "documentaries": "documentaries.html",
+        "about": "about.html",
+        "contact": "contact.html",
+        "work-with-me": "contact.html",
+    }
+    for route, html_file in route_map.items():
+        src = ROOT / html_file
+        if not src.exists():
+            continue
+        dest_dir = ROOT / route
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        html = src.read_text(encoding="utf-8")
+        if '<base href="/">' not in html:
+            html = html.replace('<head>', '<head>\n  <base href="/">', 1)
+        (dest_dir / "index.html").write_text(html, encoding="utf-8")
+
 def build_sitemap():
     routes = [
         "index.html",
@@ -652,6 +673,12 @@ def build_sitemap():
         "documentaries.html",
         "about.html",
         "contact.html",
+        "gallery/",
+        "landscapes/",
+        "documentaries/",
+        "about/",
+        "contact/",
+        "work-with-me/",
     ]
     urls = "\n".join(
         f"  <url><loc>https://www.caneandcamera.com/{route}</loc></url>" for route in routes
@@ -690,9 +717,10 @@ def main():
     build_about_page()
     build_contact_page()
     patch_landscapes_legacy_page()
+    build_pretty_routes()
     build_sitemap()
     build_robots()
-    print("Built: index.html, gallery.html, landscapes.html, documentaries.html, about.html, contact.html + sitemap.xml + robots.txt")
+    print("Built: index/gallery/landscapes/documentaries/about/contact + pretty routes + sitemap.xml + robots.txt")
 
 
 if __name__ == "__main__":
