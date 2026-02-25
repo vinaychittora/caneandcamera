@@ -34,7 +34,7 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
 
 /* Cards & tiles */
 .card{background:var(--card);border-radius:14px;overflow:hidden;display:block}
-.card img{width:100%;height:220px;object-fit:cover;display:block;filter:contrast(1.05)}
+.card img{width:100%;height:290px;object-fit:cover;display:block;filter:contrast(1.05)}
 .card h3{margin:12px 12px 14px;font-size:18px}
 .masonry{columns:1 320px;column-gap:16px}
 .tile{break-inside:avoid;display:block;margin:0 0 16px;background:#111;border-radius:12px;overflow:hidden;position:relative}
@@ -76,7 +76,7 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
   .site-header nav a{margin:0;font-size:15px}
 
   .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
-  .card img{height:200px}
+  .card img{height:290px}
 
   .site-footer{text-align:center}
   .footer-grid{grid-template-columns:1fr;justify-items:center;gap:20px}
