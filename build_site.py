@@ -190,9 +190,7 @@ def build_gallery_page(gallery_keys: tuple[str, ...], title: str, description: s
     seen_sources = set()
     deduped = []
     for photo in photos:
-    bmc_widget = '<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="CaneAndCamera" data-description="Support me on Buy me a coffee!" data-message="If my work adds value... consider donating. It helps fund field days, travel, and documentary time." data-color="#26B0A1" data-position="Right" data-x_margin="18" data-y_margin="18"></script>'
 
-        extra_scripts=bmc_widget,
         variant = largest_variant(photo.get("variants", {}))
         if not variant:
             continue
