@@ -38,7 +38,7 @@ def render_header(active: str = "") -> str:
 
     return f"""<header class="site-header">
   <a href="index.html" class="logo" aria-label="Cane and Camera home">
-    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/>
+    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo" width="48" height="48"/>
     <span>Cane & Camera</span>
   </a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
@@ -127,12 +127,14 @@ def render_page(
   <link rel="preload" href="assets/css/style.css" as="style">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
   {extra_head}
   {extra_css}
   <script defer src="assets/js/main.js"></script>
   {extra_scripts}
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 {render_header(active_nav)}
 {body}
 {render_footer()}
@@ -179,7 +181,7 @@ def build_gallery_page(gallery_keys: tuple[str, ...], title: str, description: s
     photos.sort(key=lambda item: item.get("datetime", ""), reverse=True)
     gallery_markup = render_gallery_cards(photos)
 
-    body = f"""<main class="wrap">
+    body = f"""<main id="main-content" class="wrap">
   <section class="gallery-header">
     <h1>{escape(title)}</h1>
     <p>{escape(description)}</p>
@@ -235,7 +237,7 @@ def build_documentaries_page():
   </div>
 </article>""")
 
-    body = f"""<main class="wrap">
+    body = f"""<main id="main-content" class="wrap">
   <section class="gallery-header">
     <h1>Documentaries</h1>
     <p>Films and stories from the wild.</p>
@@ -294,7 +296,7 @@ def build_index_page():
     </article>"""
         )
 
-    body = f"""<main class="wrap">
+    body = f"""<main id="main-content" class="wrap">
   <section class="hero hero-clean">
     <h1>Cane &amp; Camera</h1>
     <p class="subhead">Wildlife photography and conservation films from Rajasthan—told on foot, often with a cane.</p>
@@ -434,7 +436,7 @@ def build_about_page():
   </div>
 </article>""")
 
-    body = f"""<main class="wrap narrow about-page">
+    body = f"""<main id="main-content" class="wrap narrow about-page">
   <h1>About</h1>
   <p class="about-intro">I’m Vinay Chittora — a disabled wildlife photographer and aspiring filmmaker based in Rajasthan.
   Through Cane &amp; Camera, I document birds, mammals, habitats, and conservation stories with patience, clarity, and low-impact field practice.</p>
@@ -536,7 +538,7 @@ def build_contact_page():
     import json
     ld_json = json.dumps([person_schema, contact_page_schema], ensure_ascii=False)
 
-    body = f"""<main class="wrap narrow work-page">
+    body = f"""<main id="main-content" class="wrap narrow work-page">
   <h1>Work With Me</h1>
   <p class="about-intro">I collaborate with conservation organizations, editorial teams, and values-aligned partners on wildlife storytelling projects from Rajasthan and across India.</p>
 
@@ -614,7 +616,7 @@ def patch_landscapes_legacy_page():
     html = landscapes_path.read_text(encoding="utf-8")
     header_html = """<header class="site-header">
   <a href="index.html" class="logo" aria-label="Cane and Camera home">
-    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/>
+    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo" width="48" height="48"/>
     <span>Cane & Camera</span>
   </a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">

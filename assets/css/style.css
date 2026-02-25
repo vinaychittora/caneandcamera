@@ -1,9 +1,19 @@
-:root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#9aa0a6;--card:#151515;--accent:#e6e6e6;--link:#f0f0f0}
+:root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#b5bac1;--card:#151515;--accent:#e6e6e6;--link:#f0f0f0}
 
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:none;opacity:.85;transition:opacity .25s ease}
+
+.skip-link{position:absolute;left:12px;top:-48px;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10001;border:2px solid #000}
+.skip-link:focus{top:12px}
+
+a:focus-visible,button:focus-visible,.btn:focus-visible,.nav-link:focus-visible,summary:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:2px;
+  box-shadow:0 0 0 4px rgba(255,255,255,.2)
+}
+
 
 .wrap{max-width:1100px;margin:0 auto;padding:24px}
 .narrow{max-width:760px}
@@ -14,7 +24,7 @@ a:hover{text-decoration:none;opacity:.85;transition:opacity .25s ease}
 .logo img{height:44px;width:auto;filter:invert(1)}
 .logo span{font-weight:600;line-height:1.2;font-size:22px}
 .site-nav{display:flex;align-items:center;gap:10px}
-.nav-link{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid #2a2a2a;border-radius:999px;font-size:14px;line-height:1.2;white-space:nowrap}
+.nav-link{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid #3a3a3a;border-radius:999px;font-size:14px;line-height:1.2;white-space:nowrap}
 .nav-link.is-active{background:#eee;color:#111;border-color:#eee}
 .nav-toggle{display:none;border:1px solid #2a2a2a;background:#111;color:#eee;border-radius:10px;padding:8px 10px;font-size:18px;line-height:1;cursor:pointer}
 
@@ -129,4 +139,8 @@ a:hover{text-decoration:none;opacity:.85;transition:opacity .25s ease}
   .lgx__bar{right:max(24px, env(safe-area-inset-right));bottom:max(24px, env(safe-area-inset-bottom));gap:8px}
   .lgx__btn{padding:8px 10px;border-radius:10px}
   .lgx__caption{max-width:80vw;font-size:12px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
