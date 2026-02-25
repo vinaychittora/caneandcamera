@@ -299,8 +299,8 @@ def build_index_page():
     body = f"""<main id="main-content" class="wrap">
   <section class="hero hero-clean">
     <h1>Cane &amp; Camera</h1>
-    <p class="subhead">Wildlife photography and conservation films from Rajasthan—told on foot, often with a cane.</p>
-    <p>Hi, I’m Vinay Chittora — a disabled wildlife photographer, aspiring filmmaker, and ethical field naturalist documenting species, habitats, and conservation stories across Rajasthan and the Indian subcontinent.</p>
+    <p class="subhead">Rajasthan wildlife photography and conservation films, built on patient fieldwork across grasslands, wetlands, the Thar, and Mukundara Hills.</p>
+    <p>I’m Vinay Chittora, a wildlife photographer and aspiring filmmaker. I live and work with a mobility disability, and my field process prioritizes patience, low-impact movement, and close observation.</p>
     <div class="hero-cta-row">
       <a class="btn" href="gallery.html">View Wildlife Portfolio</a>
       <a class="btn" href="documentaries.html">Watch Documentaries</a>
@@ -311,8 +311,8 @@ def build_index_page():
 
   <section class="why-cc" aria-labelledby="why-cc-title">
     <h2 id="why-cc-title">Why Cane &amp; Camera</h2>
-    <p>Cane &amp; Camera is rooted in patient fieldwork, ethical observation, and natural-light storytelling — balancing visual craft with conservation intent.</p>
-    <p>Every story is shaped by place, from Rajasthan’s grasslands to Mukundara Hills Tiger Reserve and beyond.</p>
+    <p>Cane &amp; Camera follows a clear approach: grounded reporting, ethical observation, and natural-light storytelling with practical conservation context.</p>
+    <p>Projects are shaped by place — from Mukundara Hills to Thar grasslands and seasonal wetlands across Rajasthan.</p>
     <p><a href="about.html">Learn more about the approach →</a></p>
   </section>
 
@@ -349,7 +349,7 @@ def build_index_page():
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Vinay Chittora",
-            "jobTitle": "Disabled Wildlife Photographer & Aspiring Filmmaker",
+            "jobTitle": "Wildlife Photographer & Aspiring Filmmaker",
             "url": "https://www.caneandcamera.com/about.html",
             "sameAs": [
                 "https://instagram.com/caneandcamera",
@@ -438,37 +438,37 @@ def build_about_page():
 
     body = f"""<main id="main-content" class="wrap narrow about-page">
   <h1>About</h1>
-  <p class="about-intro">I’m Vinay Chittora — a disabled wildlife photographer and aspiring filmmaker based in Rajasthan.
-  Through Cane &amp; Camera, I document birds, mammals, habitats, and conservation stories with patience, clarity, and low-impact field practice.</p>
+  <p class="about-intro">I’m Vinay Chittora, a Rajasthan wildlife photographer and aspiring filmmaker.
+  I work with a mobility disability, and that context has shaped a careful, low-impact field method built around patience and observation.</p>
 
   <section class="about-section" aria-labelledby="why-cane-camera">
     <h2 id="why-cane-camera">Why Cane &amp; Camera</h2>
-    <p>The cane is practical support for mobility in the field, and it also represents a slower way of working — attentive, grounded, and less intrusive.
-    The camera is my storytelling tool: a way to translate observation into photographs and films that invite care for wild places.</p>
+    <p>The cane is practical mobility support in the field, and a reminder to move slowly through habitat.
+    The camera is a reporting tool — used to document behavior, landscapes, and conservation realities with clarity.</p>
   </section>
 
   <section class="about-section" aria-labelledby="mukundara">
     <h2 id="mukundara">Rooted in Mukundara Hills</h2>
-    <p>I grew up around the Mukundara Hills Tiger Reserve landscape — a mosaic of scrub, forest edges, river systems, and grassland pockets.
-    That ecological diversity shaped how I see behavior, habitat, and seasonality, and continues to guide my work today.</p>
+    <p>I grew up around Mukundara Hills Tiger Reserve, where scrub, forest edges, wetlands, and grasslands meet.
+    That mosaic shaped how I read habitat, seasonality, and wildlife behavior, and it still informs every assignment.</p>
   </section>
 
   <section class="about-section" aria-labelledby="how-i-work">
     <h2 id="how-i-work">How I work</h2>
-    <p>I prioritize ethical field practice: patience, observation, natural light, and minimal disturbance.
-    I do not bait, crowd, or pressure wildlife for images. The goal is to document authentic moments with respect for species and habitat.</p>
+    <p>My field practice is simple: patience, natural light, and minimal disturbance.
+    I do not bait, crowd, or force interactions; I work for accurate, respectful documentation.</p>
   </section>
 
   <section class="about-section" aria-labelledby="what-im-building">
     <h2 id="what-im-building">What I’m building</h2>
-    <p>I’m building a long-term body of work across <a href="gallery.html">Wildlife</a>, <a href="documentaries.html">Documentaries</a>, and conservation storytelling projects.
-    The aim is a sustainable livelihood that stays aligned with nature, field ethics, and meaningful public awareness.</p>
+    <p>I’m building a long-term body of work across <a href="gallery.html">Wildlife</a>, <a href="documentaries.html">Documentaries</a>, and conservation storytelling.
+    The goal is a sustainable professional practice aligned with field ethics, scientific context, and public communication.</p>
   </section>
 
   <section class="about-section" aria-labelledby="work-with-me">
     <h2 id="work-with-me">Work with me</h2>
-    <p>I’m open to editorial assignments, NGO collaborations, licensing, screenings, and educational talks.
-    If you’re planning a project, please <a href="contact.html">get in touch here</a>.</p>
+    <p>I take on editorial assignments, NGO collaborations, licensing, screenings, and talks.
+    If your project needs grounded field storytelling, <a href="contact.html">get in touch here</a>.</p>
   </section>
 
   <section class="press" id="press" aria-labelledby="press-title">
@@ -484,7 +484,7 @@ def build_about_page():
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Vinay Chittora",
-        "jobTitle": "Disabled Wildlife Photographer & Aspiring Filmmaker",
+        "jobTitle": "Wildlife Photographer & Aspiring Filmmaker",
         "url": "https://www.caneandcamera.com/about.html",
         "homeLocation": {"@type": "Place", "name": "Rajasthan, India"},
         "sameAs": [
@@ -540,7 +540,7 @@ def build_contact_page():
 
     body = f"""<main id="main-content" class="wrap narrow work-page">
   <h1>Work With Me</h1>
-  <p class="about-intro">I collaborate with conservation organizations, editorial teams, and values-aligned partners on wildlife storytelling projects from Rajasthan and across India.</p>
+  <p class="about-intro">I collaborate with editorial teams, conservation organizations, and mission-led brands on Rajasthan wildlife photography and conservation films across India.</p>
 
   <section class="about-section" aria-labelledby="services-title">
     <h2 id="services-title">Services</h2>
@@ -572,7 +572,7 @@ def build_contact_page():
     <p><b>Email:</b> <a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></p>
     <p><b>Instagram:</b> <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">instagram.com/caneandcamera</a></p>
     <p><b>YouTube:</b> <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">youtube.com/@CaneAndCamera</a></p>
-    <p><b>How to reach out:</b> Send a short brief with goals, dates, location, and intended usage/licensing.</p>
+    <p><b>How to reach out:</b> Share your goals, dates, location, and usage needs. I respond with scope, timeline, and licensing options.</p>
     <p><a class="btn" href="mailto:hello@caneandcamera.com?subject=Work%20With%20Me%20Inquiry%20-%20Cane%20and%20Camera">Email project details</a></p>
   </section>
 
@@ -584,15 +584,15 @@ def build_contact_page():
     </details>
     <details>
       <summary>Where are you based?</summary>
-      <p>I am based in Rajasthan, India.</p>
+      <p>I am based in Rajasthan, with regular work across grasslands, wetlands, and Thar desert landscapes.</p>
     </details>
     <details>
       <summary>Can you travel for assignments?</summary>
-      <p>Yes. Travel is possible for projects that align with schedule, logistics, and conservation ethics.</p>
+      <p>Yes. Travel is possible across India for assignments that fit schedule, logistics, and low-impact field standards.</p>
     </details>
   </section>
 
-  <p class="muted">Also explore <a href="gallery.html">Wildlife</a> and <a href="documentaries.html">Documentaries</a> for recent work examples.</p>
+  <p class="muted">Explore <a href="gallery.html">Wildlife</a> and <a href="documentaries.html">Documentaries</a> for recent work from Mukundara Hills, wetlands, grasslands, and the Thar.</p>
 
   <script type="application/ld+json">{ld_json}</script>
 </main>"""
