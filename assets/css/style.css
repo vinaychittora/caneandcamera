@@ -30,6 +30,7 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
 /* Grids */
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 
 /* Cards & tiles */
 .card{background:var(--card);border-radius:14px;overflow:hidden;display:block}
@@ -60,6 +61,7 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
 @media (max-width:920px){
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:repeat(2,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr}
   .photo-article{grid-template-columns:1fr}
 }
@@ -73,7 +75,7 @@ a:hover{text-decoration:none;opacity:.8;transition:opacity .5s ease}
   .site-header nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:8px}
   .site-header nav a{margin:0;font-size:15px}
 
-  .grid-4,.grid-3{grid-template-columns:1fr}
+  .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
   .card img{height:200px}
 
   .site-footer{text-align:center}

@@ -46,7 +46,7 @@ def render_footer() -> str:
     return """<footer class=\"site-footer\">\n  <div class=\"footer-grid\">\n    <div>\n      <p><b><a href=\"mailto:hello@caneandcamera.com\">hello@caneandcamera.com</a></b></p>\n      <p><script type=\"text/javascript\" src=\"https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js\" data-name=\"bmc-button\" data-slug=\"CaneAndCamera\" data-color=\"#FFDD00\" data-emoji=\"☕\"  data-font=\"Cookie\" data-text=\"Buy me a coffee\" data-outline-color=\"#000000\" data-font-color=\"#000000\" data-coffee-color=\"#ffffff\" ></script></p>\n    </div>\n    <div>\n      <h4>Follow</h4>\n      <p>\n        <a href=\"https://www.patreon.com/cw/CaneAndCamera\" target=\"_blank\" rel=\"noopener\">Patreon</a> ·\n        <a href=\"https://instagram.com/caneandcamera\" target=\"_blank\" rel=\"noopener\">Instagram</a> · \n        <a href=\"https://www.youtube.com/@CaneAndCamera/videos\" target=\"_blank\" rel=\"noopener\">YouTube</a>\n       </p>\n    </div>\n    <div>\n      <h4>Legal</h4>\n      <p>© 2025 Cane &amp; Camera · All rights reserved.</p>\n    </div>\n  </div>\n</footer>"""
 
 
-def render_page(*, title: str, description: str, body: str, extra_css: str = "", extra_scripts: str = "") -> str:
+def render_page(*, title: str, description: str, body: str, canonical_path: str, extra_css: str = "", extra_scripts: str = "") -> str:
     return f"""<!doctype html>
 <html lang=\"en\">
 <head>
@@ -55,6 +55,11 @@ def render_page(*, title: str, description: str, body: str, extra_css: str = "",
   <title>{escape(title)}</title>
   <meta name=\"description\" content=\"{escape(description)}\">
   <meta name=\"author\" content=\"Cane & Camera\">
+  <meta name=\"keywords\" content=\"wildlife photography, nature photography, conservation storytelling, Rajasthan wildlife, India birds, Cane and Camera\">
+  <meta property=\"og:title\" content=\"{escape(title)}\">
+  <meta property=\"og:description\" content=\"{escape(description)}\">
+  <meta property=\"og:type\" content=\"website\">
+  <link rel=\"canonical\" href=\"https://www.caneandcamera.com/{escape(canonical_path)}\">
   <meta name=\"facebook-domain-verification\" content=\"9sb354a61i9s65n18ijqjp9av800ht\" />
   <link rel=\"icon\" type=\"image/png\" href=\"assets/img/ico/favicon.png\">
   <link rel=\"preload\" href=\"assets/css/style.css\" as=\"style\">
@@ -147,6 +152,7 @@ def build_gallery_page(gallery_keys: tuple[str, ...], title: str, description: s
         title=f"Cane & Camera — {title}",
         description=description,
         body=body,
+        canonical_path=out_file,
         extra_css=extra_css,
         extra_scripts='<script defer src="assets/js/gallery-lightbox.js"></script>',
     )
@@ -169,14 +175,16 @@ def build_documentaries_page():
   <section class=\"gallery-header\">
     <h1>Documentaries</h1>
     <p>Films and stories from the wild.</p>
+    <p class="muted">Watch conservation-focused wildlife documentaries from Rajasthan and across India, covering species behavior, habitat loss, and community-led protection efforts.</p>
   </section>
   <section class=\"docu-grid\">{' '.join(cards)}</section>
 </main>"""
 
     page = render_page(
-        title="Cane & Camera — Documentaries",
-        description="Wildlife and conservation documentaries by Cane & Camera — stories from Rajasthan’s landscapes and beyond.",
+        title="Cane & Camera — Wildlife Documentaries & Conservation Films",
+        description="Watch wildlife and conservation documentaries by Cane & Camera, featuring field stories, biodiversity, and habitat protection from Rajasthan and across India.",
         body=body,
+        canonical_path="documentaries.html",
         extra_css='<link rel="stylesheet" href="assets/css/docs.css">',
     )
     (ROOT / "documentaries.html").write_text(page, encoding="utf-8")
@@ -190,7 +198,12 @@ def build_index_page():
     <p>Explore a curated fine-art wildlife portfolio, field notes rooted in ethical wildlife observation, and documentaries that spotlight biodiversity, habitat loss, and community-led conservation.</p>
   </section>
 
-  <section class="grid-3">
+  <section class="narrow">
+    <h2>Wildlife Photography and Conservation Stories from Rajasthan</h2>
+    <p>From Mukundara Hills and the Thar grasslands to wetlands and forest edges, Cane & Camera documents India's biodiversity through responsible field practices and natural-light photography. This platform is built for wildlife enthusiasts, conservation partners, and editors seeking authentic visual storytelling rooted in place.</p>
+  </section>
+
+  <section class="grid-2">
     <a class="card" href="gallery.html">
       <img loading="lazy" src="assets/img/thumb/wildlife.jpg" alt="Wildlife portfolio cover">
       <h3>Wildlife</h3>
@@ -203,9 +216,10 @@ def build_index_page():
 </main>"""
 
     page = render_page(
-        title="Cane & Camera — Fine Art Wildlife Photography & Documentaries",
-        description="Fine art wildlife photography and conservation documentaries from Rajasthan and beyond. Explore birds, mammals, raptors, and ethical wildlife storytelling by Cane & Camera.",
+        title="Cane & Camera — Wildlife Photography in Rajasthan & India",
+        description="Cane & Camera is a wildlife photography and conservation storytelling platform featuring birds, mammals, raptors, and documentaries from Rajasthan and across India.",
         body=body,
+        canonical_path="index.html",
     )
     (ROOT / "index.html").write_text(page, encoding="utf-8")
 
@@ -225,7 +239,7 @@ def main():
     build_gallery_page(
         gallery_keys=("wildlife", "landscapes"),
         title="Wildlife",
-        description="A combined wildlife collection including birds, mammals, raptors, and habitat moments from Rajasthan and beyond.",
+        description="Browse a wildlife photography gallery featuring birds, mammals, raptors, and nature moments from Rajasthan and across India.",
         out_file="gallery.html",
     )
     build_documentaries_page()
