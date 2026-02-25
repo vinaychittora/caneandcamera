@@ -22,13 +22,18 @@
 </head>
 <body>
 <header class="site-header">
-  <a href="index.html" class="logo"><img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/><span>Cane & Camera</span></a>
-  <nav>
-    <a href="gallery.html"><img src="assets/img/ico/icon-wildlife.png" alt="Wildlife"/></a>
-    <a href="documentaries.html"><img src="assets/img/ico/icon-documentaries.png" style="filter: invert()" alt="Documentaries" /></a>
-    <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener"><img src="assets/img/ico/icon-youtube.png" alt="YouTube"/></a>
-    <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener"><img src="assets/img/ico/icon-ig.png" alt="Instagram" /></a>
-    <a href="about.html"><img src="assets/img/ico/icon-about.png" alt="About" /></a>
+  <a href="index.html" class="logo" aria-label="Cane and Camera home">
+    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/>
+    <span>Cane & Camera</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+    ☰
+  </button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary">
+    <a class="nav-link" href="gallery.html">Wildlife</a>
+    <a class="nav-link is-active" href="documentaries.html">Documentaries</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Work With Me</a>
   </nav>
 </header>
 <main class="wrap">
@@ -37,64 +42,57 @@
     <p>Films and stories from the wild.</p>
     <p class="muted">Watch conservation-focused wildlife documentaries from Rajasthan and across India, covering species behavior, habitat loss, and community-led protection efforts.</p>
   </section>
-  <section class="docu-grid">
-    <article class="docu-card">
-      <iframe src="https://www.youtube.com/embed/hjRtHOO40L4" title="Only 150 Left | Rare Great Indian Bustard Courtship Display (Radheyshyam’s Legacy)" loading="lazy" allowfullscreen></iframe>
-      <div class="docu-meta">
-        <h3>Only 150 Left | Rare Great Indian Bustard Courtship Display (Radheyshyam’s Legacy)</h3>
-        <p>Courtship displays of the Great Indian Bustard in Rajasthan’s Thar Desert.</p>
-      </div>
-    </article>
-    <article class="docu-card">
-      <iframe src="https://www.youtube.com/embed/wwb_qPS59wQ" title="10-Gram Traveller | Save Mukundara Hills | Save Aravalli" loading="lazy" allowfullscreen></iframe>
-      <div class="docu-meta">
-        <h3>10-Gram Traveller | Save Mukundara Hills | Save Aravalli</h3>
-        <p>The Red-breasted Flycatcher weighs barely 10 grams, lighter than a coin, yet it crosses continents to find a quiet corner where it can survive the season.</p>
-      </div>
-    </article>
-    <article class="docu-card">
-      <iframe src="https://www.youtube.com/embed/4uPAnSuYyb0" title="Struggles of Desert Fox Family | Wildlife Documentary | Desert national park (India) | 4K" loading="lazy" allowfullscreen></iframe>
-      <div class="docu-meta">
-        <h3>Struggles of Desert Fox Family | Wildlife Documentary | Desert national park (India) | 4K</h3>
-        <p>In this 15‑minute field documentary we follow a white‑footed desert fox (Vulpes vulpes pusilla) as she battles heat, predators, and hunger to raise three pups.</p>
-      </div>
-    </article>
-    <article class="docu-card">
-      <iframe src="https://www.youtube.com/embed/2vhOgVLACfk" title="Birding in Nalsarovar: Field guide's unethical practices | 4K | Rare Lifers" loading="lazy" allowfullscreen></iframe>
-      <div class="docu-meta">
-        <h3>Birding in Nalsarovar: Field guide's unethical practices | 4K | Rare Lifers</h3>
-        <p> In this video, I challenge us all to reflect on our ethical responsibilities toward nature. </p>
-      </div>
-    </article>
-    
-    <article class="docu-card">
-      <iframe src="https://www.youtube.com/embed/_UM3xL7yUSY" title="Flamingos, Raptors, Pelicans &amp; Hoopoe-Lark | Little Rann of Kutch, India | Wildlife in 4K" loading="lazy" allowfullscreen></iframe>
-      <div class="docu-meta">
-        <h3>Flamingos, Raptors, Pelicans &amp; Hoopoe-Lark | Little Rann of Kutch, India | Wildlife in 4K</h3>
-        <p>A short story on harriers and winter raptors of Little Runn of Kutch.</p>
-      </div>
-    </article>
-  </section>
+  <section class="docu-grid"><article class="docu-card">
+  <iframe src="https://www.youtube.com/embed/hjRtHOO40L4" title="Only 150 Left | Rare Great Indian Bustard Courtship Display (Radheyshyam’s Legacy)" loading="lazy" allowfullscreen></iframe>
+  <div class="docu-meta">
+    <h3>Only 150 Left | Rare Great Indian Bustard Courtship Display (Radheyshyam’s Legacy)</h3>
+    <p>Courtship displays of the Great Indian Bustard in Rajasthan’s Thar Desert.</p>
+  </div>
+</article> <article class="docu-card">
+  <iframe src="https://www.youtube.com/embed/4uPAnSuYyb0" title="Struggles of Desert Fox Family | Wildlife Documentary | Desert national park (India) | 4K" loading="lazy" allowfullscreen></iframe>
+  <div class="docu-meta">
+    <h3>Struggles of Desert Fox Family | Wildlife Documentary | Desert national park (India) | 4K</h3>
+    <p>Exploring the revival of Mukundara Hills Tiger Reserve and its local communities.</p>
+  </div>
+</article> <article class="docu-card">
+  <iframe src="https://www.youtube.com/embed/_UM3xL7yUSY" title="Flamingos, Raptors, Pelicans &amp; Hoopoe-Lark | Little Rann of Kutch, India | Wildlife in 4K" loading="lazy" allowfullscreen></iframe>
+  <div class="docu-meta">
+    <h3>Flamingos, Raptors, Pelicans &amp; Hoopoe-Lark | Little Rann of Kutch, India | Wildlife in 4K</h3>
+    <p>A short story on harriers and winter raptors of Sorsan Grasslands.</p>
+  </div>
+</article></section>
 </main>
 <footer class="site-footer">
   <div class="footer-grid">
-    <div>
-      <p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p>
-      <p><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="CaneAndCamera" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script></p>
-    </div>
-    <div>
-      <h4>Follow</h4>
+    <section>
+      <h4>Navigate</h4>
       <p>
-        <a href="https://www.patreon.com/cw/CaneAndCamera" target="_blank" rel="noopener">Patreon</a> ·
-        <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">Instagram</a> · 
-        <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">YouTube</a>
-       </p>
-    </div>
-    <div>
-      <h4>Legal</h4>
-      <p>© 2025 Cane &amp; Camera · All rights reserved.</p>
-    </div>
+        <a href="index.html">Home</a> ·
+        <a href="gallery.html">Wildlife</a> ·
+        <a href="documentaries.html">Documentaries</a> ·
+        <a href="about.html">About</a> ·
+        <a href="contact.html">Work With Me</a>
+      </p>
+    </section>
+
+    <section>
+      <h4>Connect</h4>
+      <p>
+        <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">YouTube</a> ·
+        <a href="https://www.patreon.com/cw/CaneAndCamera" target="_blank" rel="noopener">Patreon</a>
+      </p>
+      <p class="muted">X/Twitter · LinkedIn (coming soon)</p>
+    </section>
+
+    <section>
+      <h4>Contact</h4>
+      <p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p>
+      <p><a href="contact.html">Start a collaboration inquiry</a></p>
+    </section>
   </div>
+
+  <p class="site-footer__legal">© 2026 Cane &amp; Camera · All rights reserved.</p>
 </footer>
 </body>
 </html>
