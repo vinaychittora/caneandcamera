@@ -146,8 +146,8 @@ def render_page(
 {body}
 {render_footer()}
 </body>
-</html>
-"""
+    body = f"""<main class=\"wrap docs-page\">
+  <section class=\"docu-grid\">{'\n'.join(cards)}</section>
 
 
 def render_gallery_cards(items: list[dict]) -> str:
