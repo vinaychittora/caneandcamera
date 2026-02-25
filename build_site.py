@@ -210,6 +210,22 @@ def build_gallery_page(gallery_keys: tuple[str, ...], title: str, description: s
   </section>
 </main>
 <!-- Lightbox modal -->
+def build_pretty_routes() -> None:
+    """Emit directory index routes for hosts that map /page -> /page/index.html."""
+    routes = {
+        "gallery.html": "gallery",
+        "documentaries.html": "documentaries",
+        "about.html": "about",
+        "landscapes.html": "landscapes",
+    }
+    for source_file, route in routes.items():
+        source = ROOT / source_file
+        destination = ROOT / route / "index.html"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+
+
+    build_pretty_routes()
 <div class="lgx" id="lgx" aria-hidden="true">
   <img class="lgx__img" alt="">
   <div class="lgx__ui">
