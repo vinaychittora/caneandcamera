@@ -809,6 +809,336 @@ Sitemap: https://www.caneandcamera.com/sitemap.xml
 """
     (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
 
+
+def build_about_page():
+    press_items = [
+        {
+            "img": "assets/img/press/the-hindu.png",
+            "alt": "Screenshot of The Hindu BrandHub coverage about Durbar by Godawan in Khetri, Rajasthan",
+            "title": "Durbar by Godawan Estuary Water: Second Edition in Khetri, Rajasthan",
+            "outlet": "The Hindu — BrandHub",
+            "url": "https://www.thehindu.com/brandhub/pr-release/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan/article70541452.ece",
+            "excerpt": "A BrandHub feature on Godawan Durbar’s Khetri edition, bringing together craft, culture, and conservation in Rajasthan.",
+        },
+        {
+            "img": "assets/img/press/the-wire.png",
+            "alt": "Screenshot of The Wire coverage of Godawan Durbar in Khetri, Rajasthan",
+            "title": "Durbar by Godawan Estuary Water marked a powerful second edition in Khetri, Rajasthan",
+            "outlet": "The Wire",
+            "url": "https://thewire.in/brand-studio/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan",
+            "excerpt": "Coverage highlighting place-based programming and conservation dialogue in the Aravalli landscape.",
+        },
+        {
+            "img": "assets/img/press/travel-media.png",
+            "alt": "Screenshot of Travel and Tour World coverage of Godawan Durbar in Khetri",
+            "title": "Durbar by Godawan Estuary Water brings conservation-led storytelling to Khetri",
+            "outlet": "Travel and Tour World",
+            "url": "https://www.travelandtourworld.com/news/article/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan/",
+            "excerpt": "Travel trade coverage of heritage, ecology, and storytelling-led event programming in Rajasthan.",
+        },
+        {
+            "img": "assets/img/press/free-press-journal.png",
+            "alt": "Screenshot of Free Press Journal coverage: Durbar by Godawan Estuary Water sets a new benchmark in experiential events",
+            "title": "Durbar By Godawan Estuary Water Sets A New Benchmark In Experiential Events",
+            "outlet": "Free Press Journal",
+            "url": "https://www.freepressjournal.in/lifestyle/durbar-by-godawan-estuary-water-sets-a-new-benchmark-in-experiential-events",
+            "excerpt": "A feature on conservation-rooted experiential programming and documentary storytelling.",
+        },
+        {
+            "img": "assets/img/press/travel-leisure.png",
+            "alt": "Screenshot of Travel + Leisure Asia coverage of Durbar by Godawan Estuary Water at Abheygarh, Khetri",
+            "title": "Inside Durbar by Godawan Estuary Water At Rajasthan's Khetri Hills Abheygarh",
+            "outlet": "Travel + Leisure Asia",
+            "url": "https://www.travelandleisureasia.com/in/destinations/durbar-godawan-khetri-hills-abheygarh/",
+            "excerpt": "A story on place-rooted conservation and cultural programming across the Khetri hills.",
+        },
+        {
+            "img": "assets/img/press/pr-news-wire.png",
+            "alt": "Screenshot of PRNewswire coverage of Godawan Durbar second edition in Khetri",
+            "title": "Durbar by Godawan Estuary Water Marked a Powerful Second Edition in Khetri, Rajasthan",
+            "outlet": "PRNewswire (India)",
+            "url": "https://www.prnewswire.com/in/news-releases/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan-302666650.html",
+            "excerpt": "Official release outlining event goals around conservation awareness and local engagement.",
+        },
+    ]
+
+    press_cards = []
+    for item in press_items:
+        press_cards.append(f"""<article class="press__card">
+  <a class="press__imageLink" href="{escape(item['url'])}" target="_blank" rel="noopener noreferrer">
+    <img class="press__img" src="{escape(item['img'])}" width="1400" height="800" loading="lazy" alt="{escape(item['alt'])}" />
+  </a>
+  <div class="press__body">
+    <h3 class="press__headline">{escape(item['title'])}</h3>
+    <p class="press__meta"><span class="press__outlet">{escape(item['outlet'])}</span></p>
+    <p class="press__excerpt">{escape(item['excerpt'])}</p>
+    <p><a class="press__btn" href="{escape(item['url'])}" target="_blank" rel="noopener noreferrer">Read coverage →</a></p>
+  </div>
+</article>""")
+
+    body = f"""<main id="main-content" class="wrap narrow about-page">
+  <h1>About</h1>
+  <p class="about-intro">I’m Vinay Chittora, a Rajasthan wildlife photographer and aspiring filmmaker.
+  I work with a mobility disability, and that context has shaped a careful, low-impact field method built around patience and observation.</p>
+
+  <section class="about-section" aria-labelledby="why-cane-camera">
+    <h2 id="why-cane-camera">Why Cane &amp; Camera</h2>
+    <p>The cane is practical mobility support in the field, and a reminder to move slowly through habitat.
+    The camera is a reporting tool — used to document behavior, landscapes, and conservation realities with clarity.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="mukundara">
+    <h2 id="mukundara">Rooted in Mukundara Hills</h2>
+    <p>I grew up around Mukundara Hills Tiger Reserve, where scrub, forest edges, wetlands, and grasslands meet.
+    That mosaic shaped how I read habitat, seasonality, and wildlife behavior, and it still informs every assignment.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="how-i-work">
+    <h2 id="how-i-work">How I work</h2>
+    <p>My field practice is simple: patience, natural light, and minimal disturbance.
+    I do not bait, crowd, or force interactions; I work for accurate, respectful documentation.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="what-im-building">
+    <h2 id="what-im-building">What I’m building</h2>
+    <p>I’m building a long-term body of work across <a href="gallery.html">Wildlife</a>, <a href="documentaries.html">Documentaries</a>, and conservation storytelling.
+    The goal is a sustainable professional practice aligned with field ethics, scientific context, and public communication.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="work-with-me">
+    <h2 id="work-with-me">Work with me</h2>
+    <p>I take on editorial assignments, NGO collaborations, licensing, screenings, and talks.
+    If your project needs grounded field storytelling, <a href="contact.html">get in touch here</a>.</p>
+  </section>
+
+  <section class="press" id="press" aria-labelledby="press-title">
+    <header class="press__header">
+      <h2 id="press-title">Media Coverage</h2>
+      <p class="muted">Selected features, interviews, and mentions.</p>
+    </header>
+    <div class="press__grid press__grid--two">{''.join(press_cards)}</div>
+  </section>
+</main>"""
+
+    about_schema = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinay Chittora",
+        "jobTitle": "Wildlife Photographer & Aspiring Filmmaker",
+        "url": "https://www.caneandcamera.com/about.html",
+        "homeLocation": {"@type": "Place", "name": "Rajasthan, India"},
+        "sameAs": [
+            "https://instagram.com/caneandcamera",
+            "https://www.youtube.com/@CaneAndCamera/videos",
+        ],
+    }, ensure_ascii=False)
+
+    page = render_page(
+        title="About Vinay Chittora | Cane & Camera",
+        description="Read about Vinay Chittora, a disabled wildlife photographer and aspiring filmmaker from Rajasthan, and the ethical low-impact approach behind Cane & Camera.",
+        body=body,
+        canonical_path="about.html",
+        active_nav="about",
+        og_image="assets/img/thumb/wildlife.jpg",
+        extra_head=f'<script type="application/ld+json">{about_schema}</script>',
+    )
+    (ROOT / "about.html").write_text(page, encoding="utf-8")
+
+
+
+def build_contact_page():
+    person_schema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinay Chittora",
+        "jobTitle": "Wildlife Photographer & Aspiring Filmmaker",
+        "url": "https://www.caneandcamera.com/contact.html",
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Rajasthan, India"
+        },
+        "sameAs": [
+            "https://instagram.com/caneandcamera",
+            "https://www.youtube.com/@CaneAndCamera/videos"
+        ]
+    }
+
+    contact_page_schema = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Work With Me | Cane & Camera",
+        "url": "https://www.caneandcamera.com/contact.html",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Vinay Chittora",
+            "email": "mailto:hello@caneandcamera.com"
+        }
+    }
+
+    import json
+    ld_json = json.dumps([person_schema, contact_page_schema], ensure_ascii=False)
+
+    body = f"""<main id="main-content" class="wrap narrow work-page">
+  <h1>Work With Me</h1>
+  <p class="about-intro">I collaborate with editorial teams, conservation organizations, and mission-led brands on Rajasthan wildlife photography and conservation films across India.</p>
+
+  <section class="about-section" aria-labelledby="services-title">
+    <h2 id="services-title">Services</h2>
+    <ul>
+      <li>Wildlife photography assignments</li>
+      <li>Editorial image licensing</li>
+      <li>Conservation film collaborations</li>
+      <li>Screenings and talks</li>
+    </ul>
+  </section>
+
+  <section class="about-section" aria-labelledby="deliverables-title">
+    <h2 id="deliverables-title">Deliverables</h2>
+    <ul>
+      <li>Edited still image sets</li>
+      <li>Short documentary films</li>
+      <li>Social cutdowns and trailers</li>
+      <li>Field notes and story context (when relevant)</li>
+    </ul>
+  </section>
+
+  <section class="about-section" aria-labelledby="licensing-title">
+    <h2 id="licensing-title">Licensing</h2>
+    <p>Usage terms are discussed case-by-case depending on format, territory, duration, and distribution scope.</p>
+  </section>
+
+  <section class="contact-panel" aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <p><b>Email:</b> <a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></p>
+    <p><b>Instagram:</b> <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">instagram.com/caneandcamera</a></p>
+    <p><b>YouTube:</b> <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">youtube.com/@CaneAndCamera</a></p>
+    <p><b>How to reach out:</b> Share your goals, dates, location, and usage needs. I respond with scope, timeline, and licensing options.</p>
+    <p><a class="btn" href="mailto:hello@caneandcamera.com?subject=Work%20With%20Me%20Inquiry%20-%20Cane%20and%20Camera">Email project details</a></p>
+  </section>
+
+  <section class="about-section" aria-labelledby="faq-title">
+    <h2 id="faq-title">FAQ</h2>
+    <details>
+      <summary>What is your typical turnaround?</summary>
+      <p>Turnaround depends on project complexity, but I share realistic delivery windows at the start of each assignment.</p>
+    </details>
+    <details>
+      <summary>Where are you based?</summary>
+      <p>I am based in Rajasthan, with regular work across grasslands, wetlands, and Thar desert landscapes.</p>
+    </details>
+    <details>
+      <summary>Can you travel for assignments?</summary>
+      <p>Yes. Travel is possible across India for assignments that fit schedule, logistics, and low-impact field standards.</p>
+    </details>
+  </section>
+
+  <p class="muted">Explore <a href="gallery.html">Wildlife</a> and <a href="documentaries.html">Documentaries</a> for recent work from Mukundara Hills, wetlands, grasslands, and the Thar.</p>
+
+  <script type="application/ld+json">{ld_json}</script>
+</main>"""
+
+    page = render_page(
+        title="Work With Me | Wildlife Photography & Conservation Film Collaborations",
+        description="Work with Vinay Chittora for wildlife assignments, editorial licensing, conservation film collaborations, and talks, based in Rajasthan with travel possible.",
+        body=body,
+        canonical_path="contact.html",
+        active_nav="contact",
+        og_image="assets/img/thumb/documentaries.jpg",
+    )
+    (ROOT / "contact.html").write_text(page, encoding="utf-8")
+
+
+def patch_landscapes_legacy_page():
+    landscapes_path = ROOT / "landscapes.html"
+    if not landscapes_path.exists():
+        return
+
+    html = landscapes_path.read_text(encoding="utf-8")
+    header_html = """<header class="site-header">
+  <a href="index.html" class="logo" aria-label="Cane and Camera home">
+    <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo" width="48" height="48"/>
+    <span>Cane & Camera</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+    ☰
+  </button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary">
+    <a class="nav-link is-active" href="gallery.html">Wildlife</a>
+    <a class="nav-link" href="documentaries.html">Documentaries</a>
+    <a class="nav-link" href="about.html">About</a>
+    <a class="nav-link" href="contact.html">Work With Me</a>
+  </nav>
+</header>"""
+
+    start = html.find("<header class=\"site-header\">")
+    end = html.find("</header>", start)
+    if start != -1 and end != -1:
+        html = html[:start] + header_html + html[end + 9 :]
+
+    fstart = html.find("<footer class=\"site-footer\">")
+    fend = html.find("</footer>", fstart)
+    if fstart != -1 and fend != -1:
+        html = html[:fstart] + render_footer() + html[fend + 9 :]
+
+    landscapes_path.write_text(html, encoding="utf-8")
+
+
+
+
+def build_pretty_routes():
+    route_map = {
+        "gallery": "gallery.html",
+        "landscapes": "landscapes.html",
+        "documentaries": "documentaries.html",
+        "about": "about.html",
+        "contact": "contact.html",
+        "work-with-me": "contact.html",
+    }
+    for route, html_file in route_map.items():
+        src = ROOT / html_file
+        if not src.exists():
+            continue
+        dest_dir = ROOT / route
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        html = src.read_text(encoding="utf-8")
+        if '<base href="/">' not in html:
+            html = html.replace('<head>', '<head>\n  <base href="/">', 1)
+        (dest_dir / "index.html").write_text(html, encoding="utf-8")
+
+def build_sitemap():
+    routes = [
+        "index.html",
+        "gallery.html",
+        "landscapes.html",
+        "documentaries.html",
+        "about.html",
+        "contact.html",
+        "gallery/",
+        "landscapes/",
+        "documentaries/",
+        "about/",
+        "contact/",
+        "work-with-me/",
+    ]
+    urls = "\n".join(
+        f"  <url><loc>https://www.caneandcamera.com/{route}</loc></url>" for route in routes
+    )
+    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls}
+</urlset>
+"""
+    (ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+
+
+def build_robots():
+    robots = """User-agent: *
+Allow: /
+
+Sitemap: https://www.caneandcamera.com/sitemap.xml
+"""
+    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
+
 def main():
     build_index_page()
     build_gallery_page(
