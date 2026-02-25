@@ -229,7 +229,32 @@ def build_pretty_routes() -> None:
         destination.write_text(page_html, encoding="utf-8")
 
 
+def validate_generated_pages() -> None:
+    """Fail fast if generated pages lose structural wrappers or docs assets."""
+    checks = [
+        ROOT / "index.html",
+        ROOT / "gallery.html",
+        ROOT / "documentaries.html",
+        ROOT / "documentaries" / "index.html",
+    ]
+    for path in checks:
+        html = path.read_text(encoding="utf-8")
+        body_open = html.find("<body>")
+        header_open = html.find("<header class=\"site-header\">", body_open)
+        if body_open == -1 or header_open == -1:
+            raise RuntimeError(f"Missing body/header wrapper in {path}")
+
+        between = html[body_open + len("<body>"):header_open].strip()
+        if between:
+            raise RuntimeError(f"Unexpected content before header in {path}")
+
+    docs_html = (ROOT / "documentaries" / "index.html").read_text(encoding="utf-8")
+    if 'href="assets/css/docs.css"' not in docs_html or 'src="assets/js/main.js"' not in docs_html:
+        raise RuntimeError("Documentaries route is missing CSS/JS includes")
+
+
     build_pretty_routes()
+    validate_generated_pages()
 <div class="lgx" id="lgx" aria-hidden="true">
   <img class="lgx__img" alt="">
   <div class="lgx__ui">
