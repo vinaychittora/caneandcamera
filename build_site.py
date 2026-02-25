@@ -460,35 +460,105 @@ def build_about_page():
     (ROOT / "about.html").write_text(page, encoding="utf-8")
 
 
+
 def build_contact_page():
-    body = """<main class="wrap narrow">
+    person_schema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinay Chittora",
+        "jobTitle": "Wildlife Photographer & Aspiring Filmmaker",
+        "url": "https://www.caneandcamera.com/contact.html",
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Rajasthan, India"
+        },
+        "sameAs": [
+            "https://instagram.com/caneandcamera",
+            "https://www.youtube.com/@CaneAndCamera/videos"
+        ]
+    }
+
+    contact_page_schema = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Work With Me | Cane & Camera",
+        "url": "https://www.caneandcamera.com/contact.html",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Vinay Chittora",
+            "email": "mailto:hello@caneandcamera.com"
+        }
+    }
+
+    import json
+    ld_json = json.dumps([person_schema, contact_page_schema], ensure_ascii=False)
+
+    body = f"""<main class="wrap narrow work-page">
   <h1>Work With Me</h1>
-  <p>I collaborate with conservation organizations, editorial teams, and ethical travel/culture platforms on photography, documentary storytelling, campaigns, and field-led narratives.</p>
+  <p class="about-intro">I collaborate with conservation organizations, editorial teams, and values-aligned partners on wildlife storytelling projects from Rajasthan and across India.</p>
+
+  <section class="about-section" aria-labelledby="services-title">
+    <h2 id="services-title">Services</h2>
+    <ul>
+      <li>Wildlife photography assignments</li>
+      <li>Editorial image licensing</li>
+      <li>Conservation film collaborations</li>
+      <li>Screenings and talks</li>
+    </ul>
+  </section>
+
+  <section class="about-section" aria-labelledby="deliverables-title">
+    <h2 id="deliverables-title">Deliverables</h2>
+    <ul>
+      <li>Edited still image sets</li>
+      <li>Short documentary films</li>
+      <li>Social cutdowns and trailers</li>
+      <li>Field notes and story context (when relevant)</li>
+    </ul>
+  </section>
+
+  <section class="about-section" aria-labelledby="licensing-title">
+    <h2 id="licensing-title">Licensing</h2>
+    <p>Usage terms are discussed case-by-case depending on format, territory, duration, and distribution scope.</p>
+  </section>
 
   <section class="contact-panel" aria-labelledby="contact-title">
     <h2 id="contact-title">Contact</h2>
     <p><b>Email:</b> <a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></p>
-    <p><b>Please include:</b> project brief, timeline, location, and intended usage/licensing.</p>
-    <p><a class="btn" href="mailto:hello@caneandcamera.com?subject=Collaboration%20Inquiry%20-%20Cane%20and%20Camera">Send Collaboration Inquiry</a></p>
+    <p><b>Instagram:</b> <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">instagram.com/caneandcamera</a></p>
+    <p><b>YouTube:</b> <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">youtube.com/@CaneAndCamera</a></p>
+    <p><b>How to reach out:</b> Send a short brief with goals, dates, location, and intended usage/licensing.</p>
+    <p><a class="btn" href="mailto:hello@caneandcamera.com?subject=Work%20With%20Me%20Inquiry%20-%20Cane%20and%20Camera">Email project details</a></p>
   </section>
 
-  <section>
-    <h2>Common collaboration formats</h2>
-    <ul>
-      <li>Wildlife documentary shoots and field production</li>
-      <li>Editorial/photo essay assignments</li>
-      <li>Conservation campaign storytelling</li>
-      <li>Talks, screenings, and educational sessions</li>
-    </ul>
+  <section class="about-section" aria-labelledby="faq-title">
+    <h2 id="faq-title">FAQ</h2>
+    <details>
+      <summary>What is your typical turnaround?</summary>
+      <p>Turnaround depends on project complexity, but I share realistic delivery windows at the start of each assignment.</p>
+    </details>
+    <details>
+      <summary>Where are you based?</summary>
+      <p>I am based in Rajasthan, India.</p>
+    </details>
+    <details>
+      <summary>Can you travel for assignments?</summary>
+      <p>Yes. Travel is possible for projects that align with schedule, logistics, and conservation ethics.</p>
+    </details>
   </section>
+
+  <p class="muted">Also explore <a href="gallery.html">Wildlife</a> and <a href="documentaries.html">Documentaries</a> for recent work examples.</p>
+
+  <script type="application/ld+json">{ld_json}</script>
 </main>"""
 
     page = render_page(
-        title="Cane & Camera — Work With Me / Contact",
-        description="Get in touch with Cane & Camera for collaborations in wildlife photography, documentaries, conservation campaigns, and editorial storytelling.",
+        title="Work With Me | Wildlife Photography & Conservation Film Collaborations",
+        description="Hire Vinay Chittora for wildlife photography assignments, editorial licensing, conservation film collaborations, and talks. Based in Rajasthan; travel possible.",
         body=body,
         canonical_path="contact.html",
         active_nav="contact",
+        og_image="assets/img/thumb/documentaries.jpg",
     )
     (ROOT / "contact.html").write_text(page, encoding="utf-8")
 
