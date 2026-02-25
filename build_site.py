@@ -175,6 +175,7 @@ def build_documentaries_page():
   <section class=\"gallery-header\">
     <h1>Documentaries</h1>
     <p>Films and stories from the wild.</p>
+    <p class="muted">Watch conservation-focused wildlife documentaries from Rajasthan and across India, covering species behavior, habitat loss, and community-led protection efforts.</p>
   </section>
   <section class=\"docu-grid\">{' '.join(cards)}</section>
 </main>"""
