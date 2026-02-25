@@ -99,8 +99,10 @@ def render_page(
     extra_css: str = "",
     extra_scripts: str = "",
     og_image: str = "assets/img/thumb/wildlife.jpg",
+    extra_head: str = "",
 ) -> str:
     og_url = f"https://www.caneandcamera.com/{escape(canonical_path)}"
+    og_image_url = f"https://www.caneandcamera.com/{escape(og_image)}"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -114,13 +116,18 @@ def render_page(
   <meta property="og:description" content="{escape(description)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{og_url}">
-  <meta property="og:image" content="https://www.caneandcamera.com/{escape(og_image)}">
+  <meta property="og:image" content="{og_image_url}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escape(title)}">
+  <meta name="twitter:description" content="{escape(description)}">
+  <meta name="twitter:image" content="{og_image_url}">
   <link rel="canonical" href="{og_url}">
   <meta name="facebook-domain-verification" content="9sb354a61i9s65n18ijqjp9av800ht" />
   <link rel="icon" type="image/png" href="assets/img/ico/favicon.png">
   <link rel="preload" href="assets/css/style.css" as="style">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  {extra_head}
   {extra_css}
   <script defer src="assets/js/main.js"></script>
   {extra_scripts}
@@ -239,7 +246,7 @@ def build_documentaries_page():
 
     page = render_page(
         title="Cane & Camera — Wildlife Documentaries & Conservation Films",
-        description="Watch wildlife and conservation documentaries by Cane & Camera, featuring field stories, biodiversity, and habitat protection from Rajasthan and across India.",
+        description="Watch Cane & Camera documentaries on wildlife and conservation across Rajasthan and India, with stories on species behavior, habitats, and local care.",
         body=body,
         canonical_path="documentaries.html",
         active_nav="documentaries",
@@ -328,11 +335,33 @@ def build_index_page():
   </section>
 </main>"""
 
+    homepage_schema = json.dumps([
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Cane & Camera",
+            "url": "https://www.caneandcamera.com/",
+            "description": "Wildlife photography and conservation films from Rajasthan and India.",
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Vinay Chittora",
+            "jobTitle": "Disabled Wildlife Photographer & Aspiring Filmmaker",
+            "url": "https://www.caneandcamera.com/about.html",
+            "sameAs": [
+                "https://instagram.com/caneandcamera",
+                "https://www.youtube.com/@CaneAndCamera/videos",
+            ],
+        },
+    ], ensure_ascii=False)
+
     page = render_page(
         title="Cane & Camera — Wildlife Photography in Rajasthan & India",
-        description="Cane & Camera is a wildlife photography and conservation storytelling platform featuring birds, mammals, raptors, and documentaries from Rajasthan and across India.",
+        description="Explore Cane & Camera wildlife photography and conservation films from Rajasthan and India, featuring birds, mammals, habitats, and ethical storytelling.",
         body=body,
         canonical_path="index.html",
+        extra_head=f'<script type="application/ld+json">{homepage_schema}</script>',
     )
     (ROOT / "index.html").write_text(page, encoding="utf-8")
 
@@ -449,13 +478,27 @@ def build_about_page():
   </section>
 </main>"""
 
+    about_schema = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinay Chittora",
+        "jobTitle": "Disabled Wildlife Photographer & Aspiring Filmmaker",
+        "url": "https://www.caneandcamera.com/about.html",
+        "homeLocation": {"@type": "Place", "name": "Rajasthan, India"},
+        "sameAs": [
+            "https://instagram.com/caneandcamera",
+            "https://www.youtube.com/@CaneAndCamera/videos",
+        ],
+    }, ensure_ascii=False)
+
     page = render_page(
         title="About Vinay Chittora | Cane & Camera",
-        description="Learn about Vinay Chittora, a disabled wildlife photographer and aspiring filmmaker from Rajasthan, and the ethical field approach behind Cane & Camera.",
+        description="Read about Vinay Chittora, a disabled wildlife photographer and aspiring filmmaker from Rajasthan, and the ethical low-impact approach behind Cane & Camera.",
         body=body,
         canonical_path="about.html",
         active_nav="about",
         og_image="assets/img/thumb/wildlife.jpg",
+        extra_head=f'<script type="application/ld+json">{about_schema}</script>',
     )
     (ROOT / "about.html").write_text(page, encoding="utf-8")
 
@@ -554,7 +597,7 @@ def build_contact_page():
 
     page = render_page(
         title="Work With Me | Wildlife Photography & Conservation Film Collaborations",
-        description="Hire Vinay Chittora for wildlife photography assignments, editorial licensing, conservation film collaborations, and talks. Based in Rajasthan; travel possible.",
+        description="Work with Vinay Chittora for wildlife assignments, editorial licensing, conservation film collaborations, and talks, based in Rajasthan with travel possible.",
         body=body,
         canonical_path="contact.html",
         active_nav="contact",
@@ -598,19 +641,56 @@ def patch_landscapes_legacy_page():
     landscapes_path.write_text(html, encoding="utf-8")
 
 
+
+def build_sitemap():
+    routes = [
+        "index.html",
+        "gallery.html",
+        "landscapes.html",
+        "documentaries.html",
+        "about.html",
+        "contact.html",
+    ]
+    urls = "\n".join(
+        f"  <url><loc>https://www.caneandcamera.com/{route}</loc></url>" for route in routes
+    )
+    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls}
+</urlset>
+"""
+    (ROOT / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+
+
+def build_robots():
+    robots = """User-agent: *
+Allow: /
+
+Sitemap: https://www.caneandcamera.com/sitemap.xml
+"""
+    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
+
 def main():
     build_index_page()
     build_gallery_page(
         gallery_keys=("wildlife", "landscapes"),
         title="Wildlife",
-        description="Browse a wildlife photography gallery featuring birds, mammals, raptors, and nature moments from Rajasthan and across India.",
+        description="Browse wildlife photography from Rajasthan and India featuring birds, mammals, raptors, and habitat moments captured in natural light with ethical practice.",
         out_file="gallery.html",
+    )
+    build_gallery_page(
+        gallery_keys=("landscapes",),
+        title="Landscapes",
+        description="Explore Cane & Camera landscapes from Rajasthan and India, including desert horizons, grasslands, and natural-light habitat scenes shaped by seasons.",
+        out_file="landscapes.html",
     )
     build_documentaries_page()
     build_about_page()
     build_contact_page()
     patch_landscapes_legacy_page()
-    print("Built: index.html, gallery.html, documentaries.html, about.html, contact.html (+ legacy landscapes nav/footer)")
+    build_sitemap()
+    build_robots()
+    print("Built: index.html, gallery.html, landscapes.html, documentaries.html, about.html, contact.html + sitemap.xml + robots.txt")
 
 
 if __name__ == "__main__":
