@@ -64,6 +64,11 @@ a:hover{text-decoration:none;opacity:.85;transition:opacity .25s ease}
 .feature-card p{margin:0 10px 8px;color:#c8c8c8;font-size:14px;line-height:1.45}
 .trust-strip{margin-top:20px;padding:12px 14px;border:1px solid #272727;border-radius:10px;background:#101010;color:#dcdcdc}
 .footer-cta{margin:12px 0 0;font-weight:600}
+.about-page{max-width:860px}
+.about-intro{font-size:1.05rem;color:#e7e7e7}
+.about-section{margin:18px 0;padding:14px;border:1px solid #232323;border-radius:10px;background:#101010}
+.about-section h2{margin:0 0 8px;font-size:1.2rem}
+.press__grid--two{grid-template-columns:repeat(2,minmax(0,1fr))}
 
 /* Lightbox core */
 .lgx{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:9999}
@@ -106,7 +111,7 @@ a:hover{text-decoration:none;opacity:.85;transition:opacity .25s ease}
   .site-nav .nav-link{text-align:center;justify-content:center}
   .logo span{font-size:18px}
 
-  .grid-4,.grid-3,.grid-2,.feature-grid,.feature-grid--docs{grid-template-columns:1fr}
+  .grid-4,.grid-3,.grid-2,.feature-grid,.feature-grid--docs,.press__grid--two{grid-template-columns:1fr}
   .card img{height:260px}
   .feature-card img{height:220px}
   .section-head{flex-direction:column;align-items:flex-start}

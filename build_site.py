@@ -98,7 +98,9 @@ def render_page(
     active_nav: str = "",
     extra_css: str = "",
     extra_scripts: str = "",
+    og_image: str = "assets/img/thumb/wildlife.jpg",
 ) -> str:
+    og_url = f"https://www.caneandcamera.com/{escape(canonical_path)}"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -111,7 +113,9 @@ def render_page(
   <meta property="og:title" content="{escape(title)}">
   <meta property="og:description" content="{escape(description)}">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://www.caneandcamera.com/{escape(canonical_path)}">
+  <meta property="og:url" content="{og_url}">
+  <meta property="og:image" content="https://www.caneandcamera.com/{escape(og_image)}">
+  <link rel="canonical" href="{og_url}">
   <meta name="facebook-domain-verification" content="9sb354a61i9s65n18ijqjp9av800ht" />
   <link rel="icon" type="image/png" href="assets/img/ico/favicon.png">
   <link rel="preload" href="assets/css/style.css" as="style">
@@ -333,49 +337,125 @@ def build_index_page():
     (ROOT / "index.html").write_text(page, encoding="utf-8")
 
 
+
+
 def build_about_page():
-    body = """<main class="wrap narrow">
-  <h1>About Cane &amp; Camera</h1>
-  <p>Cane &amp; Camera is a Rajasthan-based wildlife and nature storytelling initiative blending documentary filmmaking, conservation narratives, and fine-art photography.</p>
-  <p>From Mukundara Hills to Thar grasslands, each project is built on ethical field practice and respect for species, habitats, and local communities.</p>
-  <p>For collaborations, exhibitions, commissioned stories, and print inquiries, please visit <a href="contact.html">Work With Me</a> or email <a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a>.</p>
+    press_items = [
+        {
+            "img": "assets/img/press/the-hindu.png",
+            "alt": "Screenshot of The Hindu BrandHub coverage about Durbar by Godawan in Khetri, Rajasthan",
+            "title": "Durbar by Godawan Estuary Water: Second Edition in Khetri, Rajasthan",
+            "outlet": "The Hindu — BrandHub",
+            "url": "https://www.thehindu.com/brandhub/pr-release/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan/article70541452.ece",
+            "excerpt": "A BrandHub feature on Godawan Durbar’s Khetri edition, bringing together craft, culture, and conservation in Rajasthan.",
+        },
+        {
+            "img": "assets/img/press/the-wire.png",
+            "alt": "Screenshot of The Wire coverage of Godawan Durbar in Khetri, Rajasthan",
+            "title": "Durbar by Godawan Estuary Water marked a powerful second edition in Khetri, Rajasthan",
+            "outlet": "The Wire",
+            "url": "https://thewire.in/brand-studio/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan",
+            "excerpt": "Coverage highlighting place-based programming and conservation dialogue in the Aravalli landscape.",
+        },
+        {
+            "img": "assets/img/press/travel-media.png",
+            "alt": "Screenshot of Travel and Tour World coverage of Godawan Durbar in Khetri",
+            "title": "Durbar by Godawan Estuary Water brings conservation-led storytelling to Khetri",
+            "outlet": "Travel and Tour World",
+            "url": "https://www.travelandtourworld.com/news/article/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan/",
+            "excerpt": "Travel trade coverage of heritage, ecology, and storytelling-led event programming in Rajasthan.",
+        },
+        {
+            "img": "assets/img/press/free-press-journal.png",
+            "alt": "Screenshot of Free Press Journal coverage: Durbar by Godawan Estuary Water sets a new benchmark in experiential events",
+            "title": "Durbar By Godawan Estuary Water Sets A New Benchmark In Experiential Events",
+            "outlet": "Free Press Journal",
+            "url": "https://www.freepressjournal.in/lifestyle/durbar-by-godawan-estuary-water-sets-a-new-benchmark-in-experiential-events",
+            "excerpt": "A feature on conservation-rooted experiential programming and documentary storytelling.",
+        },
+        {
+            "img": "assets/img/press/travel-leisure.png",
+            "alt": "Screenshot of Travel + Leisure Asia coverage of Durbar by Godawan Estuary Water at Abheygarh, Khetri",
+            "title": "Inside Durbar by Godawan Estuary Water At Rajasthan's Khetri Hills Abheygarh",
+            "outlet": "Travel + Leisure Asia",
+            "url": "https://www.travelandleisureasia.com/in/destinations/durbar-godawan-khetri-hills-abheygarh/",
+            "excerpt": "A story on place-rooted conservation and cultural programming across the Khetri hills.",
+        },
+        {
+            "img": "assets/img/press/pr-news-wire.png",
+            "alt": "Screenshot of PRNewswire coverage of Godawan Durbar second edition in Khetri",
+            "title": "Durbar by Godawan Estuary Water Marked a Powerful Second Edition in Khetri, Rajasthan",
+            "outlet": "PRNewswire (India)",
+            "url": "https://www.prnewswire.com/in/news-releases/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan-302666650.html",
+            "excerpt": "Official release outlining event goals around conservation awareness and local engagement.",
+        },
+    ]
+
+    press_cards = []
+    for item in press_items:
+        press_cards.append(f"""<article class="press__card">
+  <a class="press__imageLink" href="{escape(item['url'])}" target="_blank" rel="noopener noreferrer">
+    <img class="press__img" src="{escape(item['img'])}" width="1400" height="800" loading="lazy" alt="{escape(item['alt'])}" />
+  </a>
+  <div class="press__body">
+    <h3 class="press__headline">{escape(item['title'])}</h3>
+    <p class="press__meta"><span class="press__outlet">{escape(item['outlet'])}</span></p>
+    <p class="press__excerpt">{escape(item['excerpt'])}</p>
+    <p><a class="press__btn" href="{escape(item['url'])}" target="_blank" rel="noopener noreferrer">Read coverage →</a></p>
+  </div>
+</article>""")
+
+    body = f"""<main class="wrap narrow about-page">
+  <h1>About</h1>
+  <p class="about-intro">I’m Vinay Chittora — a disabled wildlife photographer and aspiring filmmaker based in Rajasthan.
+  Through Cane &amp; Camera, I document birds, mammals, habitats, and conservation stories with patience, clarity, and low-impact field practice.</p>
+
+  <section class="about-section" aria-labelledby="why-cane-camera">
+    <h2 id="why-cane-camera">Why Cane &amp; Camera</h2>
+    <p>The cane is practical support for mobility in the field, and it also represents a slower way of working — attentive, grounded, and less intrusive.
+    The camera is my storytelling tool: a way to translate observation into photographs and films that invite care for wild places.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="mukundara">
+    <h2 id="mukundara">Rooted in Mukundara Hills</h2>
+    <p>I grew up around the Mukundara Hills Tiger Reserve landscape — a mosaic of scrub, forest edges, river systems, and grassland pockets.
+    That ecological diversity shaped how I see behavior, habitat, and seasonality, and continues to guide my work today.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="how-i-work">
+    <h2 id="how-i-work">How I work</h2>
+    <p>I prioritize ethical field practice: patience, observation, natural light, and minimal disturbance.
+    I do not bait, crowd, or pressure wildlife for images. The goal is to document authentic moments with respect for species and habitat.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="what-im-building">
+    <h2 id="what-im-building">What I’m building</h2>
+    <p>I’m building a long-term body of work across <a href="gallery.html">Wildlife</a>, <a href="documentaries.html">Documentaries</a>, and conservation storytelling projects.
+    The aim is a sustainable livelihood that stays aligned with nature, field ethics, and meaningful public awareness.</p>
+  </section>
+
+  <section class="about-section" aria-labelledby="work-with-me">
+    <h2 id="work-with-me">Work with me</h2>
+    <p>I’m open to editorial assignments, NGO collaborations, licensing, screenings, and educational talks.
+    If you’re planning a project, please <a href="contact.html">get in touch here</a>.</p>
+  </section>
 
   <section class="press" id="press" aria-labelledby="press-title">
     <header class="press__header">
       <h2 id="press-title">Media Coverage</h2>
       <p class="muted">Selected features, interviews, and mentions.</p>
     </header>
-
-    <div class="press__grid">
-      <article class="press__card">
-        <a class="press__imageLink" href="https://www.thehindu.com/brandhub/pr-release/durbar-by-godawan-estuary-water-marked-a-powerful-second-edition-in-khetri-rajasthan/article70541452.ece" target="_blank" rel="noopener noreferrer">
-          <img class="press__img" src="assets/img/press/the-hindu.png" width="1400" height="800" loading="lazy" alt="Screenshot of The Hindu BrandHub coverage" />
-        </a>
-        <div class="press__body">
-          <h3 class="press__headline">Durbar by Godawan Estuary Water: Second Edition in Khetri, Rajasthan</h3>
-          <p class="press__meta"><span class="press__outlet">The Hindu — BrandHub</span></p>
-        </div>
-      </article>
-
-      <article class="press__card">
-        <a class="press__imageLink" href="https://www.travelandleisureasia.com/in/destinations/durbar-godawan-khetri-hills-abheygarh/" target="_blank" rel="noopener noreferrer">
-          <img class="press__img" src="assets/img/press/travel-leisure.png" width="1400" height="800" loading="lazy" alt="Screenshot of Travel + Leisure Asia coverage" />
-        </a>
-        <div class="press__body">
-          <h3 class="press__headline">Inside Durbar by Godawan Estuary Water At Rajasthan's Khetri Hills Abheygarh</h3>
-          <p class="press__meta"><span class="press__outlet">Travel + Leisure Asia</span></p>
-        </div>
-      </article>
-    </div>
+    <div class="press__grid press__grid--two">{''.join(press_cards)}</div>
   </section>
 </main>"""
 
     page = render_page(
-        title="Cane & Camera — About the Wildlife Storytelling Project",
-        description="Learn about Cane & Camera, a Rajasthan-based wildlife photography and conservation storytelling initiative focused on ethical fieldwork, documentaries, and biodiversity awareness.",
+        title="About Vinay Chittora | Cane & Camera",
+        description="Learn about Vinay Chittora, a disabled wildlife photographer and aspiring filmmaker from Rajasthan, and the ethical field approach behind Cane & Camera.",
         body=body,
         canonical_path="about.html",
         active_nav="about",
+        og_image="assets/img/thumb/wildlife.jpg",
     )
     (ROOT / "about.html").write_text(page, encoding="utf-8")
 
