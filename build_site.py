@@ -84,6 +84,7 @@ def render_footer() -> str:
     </section>
   </div>
 
+  <p class="footer-cta">Licensing, assignments, collaborations — <a href="contact.html">Get in touch</a>.</p>
   <p class="site-footer__legal">© 2026 Cane &amp; Camera · All rights reserved.</p>
 </footer>"""
 
@@ -243,40 +244,83 @@ def build_documentaries_page():
     (ROOT / "documentaries.html").write_text(page, encoding="utf-8")
 
 
+
+
+
 def build_index_page():
-    body = """<main class="wrap">
-  <section class="hero">
-    <h1>Wildlife stories from India’s wild spaces.</h1>
-    <p>Cane &amp; Camera documents birds, mammals, and threatened ecosystems through ethical photography and documentary storytelling from Rajasthan and across India.</p>
+    photos = [p for p in read_json(PHOTOS_JSON) if p.get("gallery", "").lower() == "wildlife"]
+    photos.sort(key=lambda item: item.get("datetime", ""), reverse=True)
+    featured_photos = photos[:6]
+
+    wildlife_cards = []
+    for photo in featured_photos:
+        variant = largest_variant(photo.get("variants", {}))
+        if not variant:
+            continue
+        title = (photo.get("title") or photo.get("slug") or "Wildlife moment").strip()
+        desc = (photo.get("description") or "Featured wildlife photograph from Rajasthan and the Indian subcontinent.").strip()
+        wildlife_cards.append(
+            f"""<article class="feature-card">
+      <img src="{escape(variant['src'])}" loading="lazy" decoding="async" width="{variant['w']}" height="{variant['h']}" alt="Featured wildlife photograph: {escape(title)}">
+      <h3>{escape(title)}</h3>
+      <p>{escape(desc)}</p>
+    </article>"""
+        )
+
+    docs = read_json(DOCS_JSON)[:3]
+    documentary_cards = []
+    for doc in docs:
+        doc_title = doc.get("title", "Featured documentary").strip()
+        doc_desc = doc.get("desc", "Watch this conservation story from Cane & Camera.").strip()
+        doc_id = escape(doc.get("id", ""))
+        documentary_cards.append(
+            f"""<article class="feature-card">
+      <a href="documentaries.html" aria-label="Watch documentary: {escape(doc_title)}">
+        <img src="https://i.ytimg.com/vi/{doc_id}/hqdefault.jpg" loading="lazy" decoding="async" width="480" height="360" alt="Documentary thumbnail: {escape(doc_title)}">
+      </a>
+      <h3>{escape(doc_title)}</h3>
+      <p>{escape(doc_desc)}</p>
+    </article>"""
+        )
+
+    body = f"""<main class="wrap">
+  <section class="hero hero-clean">
+    <h1>Cane &amp; Camera</h1>
+    <p class="subhead">Wildlife photography and conservation films from Rajasthan—told on foot, often with a cane.</p>
+    <p>Hi, I’m Vinay Chittora — a disabled wildlife photographer, aspiring filmmaker, and ethical field naturalist documenting species, habitats, and conservation stories across Rajasthan and the Indian subcontinent.</p>
     <div class="hero-cta-row">
       <a class="btn" href="gallery.html">View Wildlife Portfolio</a>
-      <a class="btn btn-outline" href="documentaries.html">Watch Documentaries</a>
-      <a class="btn btn-outline" href="contact.html">Work With Me</a>
+      <a class="btn" href="documentaries.html">Watch Documentaries</a>
+      <a class="btn btn-outline" href="about.html">About</a>
+      <a class="btn btn-outline" href="contact.html">Work with me</a>
     </div>
   </section>
 
-  <section class="grid-2">
-    <a class="card" href="gallery.html">
-      <img loading="lazy" src="assets/img/thumb/wildlife.jpg" alt="Wildlife portfolio cover">
-      <h3>Wildlife Portfolio</h3>
-    </a>
-    <a class="card" href="documentaries.html">
-      <img loading="lazy" src="assets/img/thumb/documentaries.jpg" alt="Documentaries portfolio cover">
-      <h3>Documentaries</h3>
-    </a>
+  <section class="why-cc" aria-labelledby="why-cc-title">
+    <h2 id="why-cc-title">Why Cane &amp; Camera</h2>
+    <p>Cane &amp; Camera is rooted in patient fieldwork, ethical observation, and natural-light storytelling — balancing visual craft with conservation intent.</p>
+    <p>Every story is shaped by place, from Rajasthan’s grasslands to Mukundara Hills Tiger Reserve and beyond.</p>
+    <p><a href="about.html">Learn more about the approach →</a></p>
   </section>
 
-  <section class="grid-2 info-grid">
-    <article class="card card-copy">
-      <h3>About</h3>
-      <p>Learn about the mission, field ethics, and conservation focus behind Cane &amp; Camera.</p>
-      <p><a href="about.html">Read About →</a></p>
-    </article>
-    <article class="card card-copy">
-      <h3>Work With Me</h3>
-      <p>Open to conservation campaigns, editorial assignments, screenings, and speaking collaborations.</p>
-      <p><a href="contact.html">Start a project →</a></p>
-    </article>
+  <section aria-labelledby="featured-wildlife-title">
+    <div class="section-head">
+      <h2 id="featured-wildlife-title">Featured Wildlife</h2>
+      <a href="gallery.html">View all wildlife →</a>
+    </div>
+    <div class="feature-grid">{''.join(wildlife_cards)}</div>
+  </section>
+
+  <section aria-labelledby="featured-docs-title">
+    <div class="section-head">
+      <h2 id="featured-docs-title">Featured Documentaries</h2>
+      <a href="documentaries.html">View all documentaries →</a>
+    </div>
+    <div class="feature-grid feature-grid--docs">{''.join(documentary_cards)}</div>
+  </section>
+
+  <section class="trust-strip" aria-label="Trust and field practice">
+    Ethical field practice • Natural light • Rajasthan + Indian subcontinent + Mukundara Hills Tiger Reserve
   </section>
 </main>"""
 
