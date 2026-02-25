@@ -1,0 +1,9 @@
+# Canonical HTML routes (kept working)
+/index /index.html 301
+/gallery /gallery.html 301
+/landscapes /landscapes.html 301
+/documentaries /documentaries.html 301
+/about /about.html 301
+/contact /contact.html 301
+/work-with-me /contact.html 301
+/work-with-me.html /contact.html 301
