@@ -30,16 +30,16 @@ def srcset(variants: dict) -> str:
     return ", ".join(pairs)
 
 
-  <a href="/index.html" class="logo"><img src="/assets/img/ico/logo.svg" alt="Cane & Camera logo"/><span>Cane & Camera</span></a>
-    <a href="/gallery.html"><img src="/assets/img/ico/icon-wildlife.png" alt="Wildlife"/></a>
-    <a href="/documentaries.html"><img src="/assets/img/ico/icon-documentaries.png" style="filter: invert()" alt="Documentaries" /></a>
-    <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener"><img src="/assets/img/ico/icon-youtube.png" alt="YouTube"/></a>
-    <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener"><img src="/assets/img/ico/icon-ig.png" alt="Instagram" /></a>
-    <a href="/about.html"><img src="/assets/img/ico/icon-about.png" alt="About" /></a>
-  <link rel=\"icon\" type=\"image/png\" href=\"/assets/img/ico/favicon.png\">
-  <link rel=\"preload\" href=\"/assets/css/style.css\" as=\"style\">
-  <link rel=\"stylesheet\" href=\"/assets/css/style.css\">
-  <script defer src=\"/assets/js/main.js\"></script>
+  <a href="index.html" class="logo"><img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/><span>Cane & Camera</span></a>
+    <a href="gallery.html"><img src="assets/img/ico/icon-wildlife.png" alt="Wildlife"/></a>
+    <a href="documentaries.html"><img src="assets/img/ico/icon-documentaries.png" style="filter: invert()" alt="Documentaries" /></a>
+    <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener"><img src="assets/img/ico/icon-youtube.png" alt="YouTube"/></a>
+    <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener"><img src="assets/img/ico/icon-ig.png" alt="Instagram" /></a>
+    <a href="about.html"><img src="assets/img/ico/icon-about.png" alt="About" /></a>
+  <link rel=\"icon\" type=\"image/png\" href=\"assets/img/ico/favicon.png\">
+  <link rel=\"preload\" href=\"assets/css/style.css\" as=\"style\">
+  <link rel=\"stylesheet\" href=\"assets/css/style.css\">
+  <script defer src=\"assets/js/main.js\"></script>
     film_icon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"></path></svg>'
     person_icon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5 19c1.5-3 4-4.5 7-4.5s5.5 1.5 7 4.5"></path></svg>'
     brief_icon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5h6v2M3 12h18"></path></svg>'
@@ -129,36 +129,16 @@ def render_page(
   <meta name="twitter:description" content="{escape(description)}">
   <meta name="twitter:image" content="{og_image_url}">
   <link rel="canonical" href="{og_url}">
-        extra_scripts='<script defer src="/assets/js/gallery-lightbox.js"></script>',
-        extra_css='<link rel="stylesheet" href="/assets/css/docs.css">',
-    <a class="card" href="/gallery.html">
-      <img loading="lazy" src="/assets/img/thumb/wildlife.jpg" alt="Wildlife portfolio cover">
-    <a class="card" href="/documentaries.html">
-      <img loading="lazy" src="/assets/img/thumb/documentaries.jpg" alt="Documentaries portfolio cover">
-    about = about.replace('href="/"', 'href="/index.html"')
-    about = about.replace('href="index.html"', 'href="/index.html"')
-    about = about.replace('href="gallery.html"', 'href="/gallery.html"')
-    about = about.replace('href="documentaries.html"', 'href="/documentaries.html"')
-    about = about.replace('href="about.html"', 'href="/about.html"')
-    about = about.replace('href="contact.html"', 'href="/contact.html"')
-    about = about.replace('gallery.html?g=wildlife', '/gallery.html')
-    about = about.replace('gallery.html?g=landscapes', '/gallery.html')
-    about = about.replace('documentaries.html?g=documentaries', '/documentaries.html')
-def build_pretty_routes() -> None:
-    routes = {
-        "gallery.html": "gallery",
-        "documentaries.html": "documentaries",
-        "about.html": "about",
-        "landscapes.html": "landscapes",
-    }
-    for source_file, route in routes.items():
-        source = ROOT / source_file
-        destination = ROOT / route / "index.html"
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
-
-
-    build_pretty_routes()
+        extra_scripts='<script defer src="assets/js/gallery-lightbox.js"></script>',
+        extra_css='<link rel="stylesheet" href="assets/css/docs.css">',
+    <a class="card" href="gallery.html">
+      <img loading="lazy" src="assets/img/thumb/wildlife.jpg" alt="Wildlife portfolio cover">
+    <a class="card" href="documentaries.html">
+      <img loading="lazy" src="assets/img/thumb/documentaries.jpg" alt="Documentaries portfolio cover">
+    about = about.replace('href="/"', 'href="index.html"')
+    about = about.replace('gallery.html?g=wildlife', 'gallery.html')
+    about = about.replace('gallery.html?g=landscapes', 'gallery.html')
+    about = about.replace('documentaries.html?g=documentaries', 'documentaries.html')
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
