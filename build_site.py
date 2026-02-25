@@ -222,7 +222,11 @@ def build_pretty_routes() -> None:
         source = ROOT / source_file
         destination = ROOT / route / "index.html"
         destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+        page_html = source.read_text(encoding="utf-8")
+        # Ensure directory routes resolve shared assets and page links correctly.
+        if "<base href=\"../\">" not in page_html:
+            page_html = page_html.replace("<head>", "<head>\n  <base href=\"../\">", 1)
+        destination.write_text(page_html, encoding="utf-8")
 
 
     build_pretty_routes()
