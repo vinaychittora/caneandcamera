@@ -31,8 +31,16 @@ def srcset(variants: dict) -> str:
 
 
 def render_header() -> str:
-    return """<header class=\"site-header\">\n  <a href=\"index.html\" class=\"logo\"><img src=\"assets/img/ico/logo.svg\" alt=\"Cane & Camera logo\"/><span>Cane &<br>Camera</span></a>\n  <nav>\n    <a href=\"gallery.html\"><img src=\"assets/img/ico/icon-wildlife.png\" alt=\"Wildlife\"/></a>\n    <a href=\"landscapes.html\"><img src=\"assets/img/ico/icon-landscape.png\" alt=\"Landscapes\"/></a>\n    <a href=\"documentaries.html\"><img src=\"assets/img/ico/icon-documentaries.png\" style=\"filter: invert()\" alt=\"Documentaries\" /></a>\n    <a href=\"https://www.youtube.com/@CaneAndCamera/videos\" target=\"_blank\" rel=\"noopener\"><img src=\"assets/img/ico/icon-youtube.png\" alt=\"YouTube\"/></a>\n    <a href=\"https://instagram.com/caneandcamera\" target=\"_blank\" rel=\"noopener\"><img src=\"assets/img/ico/icon-ig.png\" alt=\"Instagram\" /></a>\n    <a href=\"about.html\"><img src=\"assets/img/ico/icon-about.png\" alt=\"About\" /></a>\n  </nav>\n</header>"""
-
+    return """<header class="site-header">
+  <a href="index.html" class="logo"><img src="assets/img/ico/logo.svg" alt="Cane & Camera logo"/><span>Cane & Camera</span></a>
+  <nav>
+    <a href="gallery.html"><img src="assets/img/ico/icon-wildlife.png" alt="Wildlife"/></a>
+    <a href="documentaries.html"><img src="assets/img/ico/icon-documentaries.png" style="filter: invert()" alt="Documentaries" /></a>
+    <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener"><img src="assets/img/ico/icon-youtube.png" alt="YouTube"/></a>
+    <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener"><img src="assets/img/ico/icon-ig.png" alt="Instagram" /></a>
+    <a href="about.html"><img src="assets/img/ico/icon-about.png" alt="About" /></a>
+  </nav>
+</header>"""
 
 def render_footer() -> str:
     return """<footer class=\"site-footer\">\n  <div class=\"footer-grid\">\n    <div>\n      <p><b><a href=\"mailto:hello@caneandcamera.com\">hello@caneandcamera.com</a></b></p>\n      <p><script type=\"text/javascript\" src=\"https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js\" data-name=\"bmc-button\" data-slug=\"CaneAndCamera\" data-color=\"#FFDD00\" data-emoji=\"☕\"  data-font=\"Cookie\" data-text=\"Buy me a coffee\" data-outline-color=\"#000000\" data-font-color=\"#000000\" data-coffee-color=\"#ffffff\" ></script></p>\n    </div>\n    <div>\n      <h4>Follow</h4>\n      <p>\n        <a href=\"https://www.patreon.com/cw/CaneAndCamera\" target=\"_blank\" rel=\"noopener\">Patreon</a> ·\n        <a href=\"https://instagram.com/caneandcamera\" target=\"_blank\" rel=\"noopener\">Instagram</a> · \n        <a href=\"https://www.youtube.com/@CaneAndCamera/videos\" target=\"_blank\" rel=\"noopener\">YouTube</a>\n       </p>\n    </div>\n    <div>\n      <h4>Legal</h4>\n      <p>© 2025 Cane &amp; Camera · All rights reserved.</p>\n    </div>\n  </div>\n</footer>"""
@@ -97,8 +105,9 @@ def render_gallery_cards(items: list[dict]) -> str:
     return "\n".join(cards)
 
 
-def build_gallery_page(gallery_key: str, title: str, description: str, out_file: str):
-    photos = [p for p in read_json(PHOTOS_JSON) if p.get("gallery", "").lower() == gallery_key]
+def build_gallery_page(gallery_keys: tuple[str, ...], title: str, description: str, out_file: str):
+    normalized = {k.lower() for k in gallery_keys}
+    photos = [p for p in read_json(PHOTOS_JSON) if p.get("gallery", "").lower() in normalized]
     photos.sort(key=lambda item: item.get("datetime", ""), reverse=True)
     gallery_markup = render_gallery_cards(photos)
 
@@ -174,62 +183,54 @@ def build_documentaries_page():
 
 
 def build_index_page():
-    body = """<main class=\"wrap\">
-  <section class=\"hero\">
-    <h1>A Disabled Wildlife & Landscape photographer.</h1>
-    <p>Stories and moments from the wild — captured across the Indian subcontinent.</p>
+    body = """<main class="wrap">
+  <section class="hero">
+    <h1>A Disabled Wildlife Photographer documenting India's wild spaces.</h1>
+    <p>Cane & Camera shares wildlife photography and conservation storytelling from Rajasthan and across the Indian subcontinent, including raptors, grassland species, mammals, and fragile desert ecosystems.</p>
+    <p>Explore a curated fine-art wildlife portfolio, field notes rooted in ethical wildlife observation, and documentaries that spotlight biodiversity, habitat loss, and community-led conservation.</p>
   </section>
 
-  <section class=\"grid-3\">
-    <a class=\"card\" href=\"gallery.html\">
-      <img loading=\"lazy\" src=\"assets/img/thumb/wildlife.jpg\" alt=\"Wildlife portfolio cover\">
+  <section class="grid-3">
+    <a class="card" href="gallery.html">
+      <img loading="lazy" src="assets/img/thumb/wildlife.jpg" alt="Wildlife portfolio cover">
       <h3>Wildlife</h3>
     </a>
-    <a class=\"card\" href=\"landscapes.html\">
-      <img loading=\"lazy\" src=\"assets/img/thumb/landscapes.jpg\" alt=\"Landscapes portfolio cover\">
-      <h3>Landscapes</h3>
-    </a>
-    <a class=\"card\" href=\"documentaries.html\">
-      <img loading=\"lazy\" src=\"assets/img/thumb/documentaries.jpg\" alt=\"Documentaries portfolio cover\">
+    <a class="card" href="documentaries.html">
+      <img loading="lazy" src="assets/img/thumb/documentaries.jpg" alt="Documentaries portfolio cover">
       <h3>Documentaries</h3>
     </a>
   </section>
 </main>"""
 
     page = render_page(
-        title="Cane & Camera — Fine Art Wildlife & Landscapes",
-        description="Fine art wildlife and landscape photography from Rajasthan and beyond. Limited edition prints and licensed digital downloads by Cane & Camera.",
+        title="Cane & Camera — Fine Art Wildlife Photography & Documentaries",
+        description="Fine art wildlife photography and conservation documentaries from Rajasthan and beyond. Explore birds, mammals, raptors, and ethical wildlife storytelling by Cane & Camera.",
         body=body,
     )
     (ROOT / "index.html").write_text(page, encoding="utf-8")
-
 
 def patch_about_links():
     about = (ROOT / "about.html").read_text(encoding="utf-8")
     about = about.replace('href="/"', 'href="index.html"')
     about = about.replace('gallery.html?g=wildlife', 'gallery.html')
-    about = about.replace('gallery.html?g=landscapes', 'landscapes.html')
+    about = about.replace('gallery.html?g=landscapes', 'gallery.html')
     about = about.replace('documentaries.html?g=documentaries', 'documentaries.html')
+    about = about.replace('Cane &<br>Camera', 'Cane & Camera')
+    about = about.replace('<a href="landscapes.html"><img src="assets/img/ico/icon-landscape.png"/></a>\n', '')
     (ROOT / "about.html").write_text(about, encoding="utf-8")
 
 
 def main():
     build_index_page()
     build_gallery_page(
-        gallery_key="wildlife",
+        gallery_keys=("wildlife", "landscapes"),
         title="Wildlife",
-        description="Birds, mammals and raptors from Rajasthan—Mukundara, Thar grasslands and beyond.",
+        description="A combined wildlife collection including birds, mammals, raptors, and habitat moments from Rajasthan and beyond.",
         out_file="gallery.html",
-    )
-    build_gallery_page(
-        gallery_key="landscapes",
-        title="Landscapes",
-        description="Monsoon light, desert horizons and fragile grasslands of Rajasthan.",
-        out_file="landscapes.html",
     )
     build_documentaries_page()
     patch_about_links()
-    print("Built: index.html, gallery.html, landscapes.html, documentaries.html (+ about nav links)")
+    print("Built: index.html, gallery.html, documentaries.html (+ about nav links)")
 
 
 if __name__ == "__main__":
