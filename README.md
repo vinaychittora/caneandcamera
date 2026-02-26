@@ -1,6 +1,6 @@
 # Cane & Camera — Static Website
 
-A clean, fast, SEO-friendly static website for Cane & Camera.
+A lightweight static website for Cane & Camera.
 
 ## Run locally
 
@@ -8,18 +8,24 @@ A clean, fast, SEO-friendly static website for Cane & Camera.
 ./run.sh
 ```
 
-Then open `http://localhost:8000`.
+Open `http://localhost:8000`.
 
-## Site structure
+## Project structure
 
-- Core pages are static HTML (`index.html`, `about.html`, `gallery.html`, `documentaries.html`, `landscapes.html`, `contact.html`).
-- Pretty URL directories (`about/`, `gallery/`, `documentaries/`, etc.) mirror the same page output for route compatibility.
-- Shared design system lives in:
-  - `assets/css/style.css` (global layout, spacing, header/footer, buttons)
-  - `assets/css/docs.css` (documentaries grid/cards)
+- Public pages:
+  - Top-level routes: `index.html`, `gallery.html`, `documentaries.html`, `about.html`, `contact.html`, `landscapes.html`
+  - Pretty-route mirrors: `about/`, `gallery/`, `documentaries/`, `contact/`, `landscapes/`, `work-with-me/`
+- Styles:
+  - `assets/css/style.css` (global layout, nav/footer, gallery, lightbox)
+  - `assets/css/docs.css` (documentaries layout)
+- Scripts:
+  - `assets/js/main.js` (navigation + small UI behavior)
+  - `assets/js/gallery-lightbox.js` (gallery overlay behavior)
 
-## Maintenance notes
+## Cleanup notes
 
-- Header and footer markup are kept consistent across all page variants.
-- SEO metadata (title, description, canonical, OpenGraph, Twitter) is set per page with consistent defaults.
-- `robots.txt` and `sitemap.xml` are versioned in repo and should be updated when new public pages are added.
+Legacy build artifacts/scripts are removed. The site is now maintained directly as static HTML/CSS/JS.
+
+## Maintenance checklist
+
+When editing pages, keep both top-level and pretty-route variants synchronized.
