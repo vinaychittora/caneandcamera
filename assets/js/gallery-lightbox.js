@@ -18,6 +18,8 @@
   const DURATION = 3000;
 
   function largestSrc(img){
+    const full = img.getAttribute('data-full');
+    if(full) return full;
     const ss = img.getAttribute('srcset');
     if(!ss) return img.currentSrc || img.src;
     let bestURL = img.src, bestW = 0;
