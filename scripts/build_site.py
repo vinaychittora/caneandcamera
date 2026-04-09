@@ -35,6 +35,8 @@ SOCIAL = {
     'mhtr': 'https://mhtr.in'
 }
 
+BMC_WIDGET = '<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="CaneAndCamera" data-description="Support me on Buy me a coffee!" data-message="If this made you smile, fuel the next shot: Buy me a coffee!" data-color="#26B0A1" data-position="Right" data-x_margin="18" data-y_margin="18"></script>'
+
 FEATURED_PHOTO_SLUGS = ['laggar-falcon', 'great-indian-bustard', 'saker-falcon', 'monitor-lizard']
 photo_map = {p['slug']: p for p in photos}
 featured_photos = [photo_map[s] for s in FEATURED_PHOTO_SLUGS if s in photo_map]
@@ -127,7 +129,18 @@ def json_ld_common(page_url):
         'url': 'https://www.caneandcamera.com/',
         'description': 'Natural history filmmaking, wildlife cinematography, and field-led conservation storytelling from Rajasthan and Mukundara landscapes.'
     }
-    return [person, website]
+    organization = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        'name': 'Cane & Camera',
+        'url': 'https://www.caneandcamera.com/',
+        'founder': {
+            '@type': 'Person',
+            'name': 'Vinay Chittora'
+        },
+        'sameAs': [SOCIAL['instagram'], SOCIAL['youtube'], SOCIAL['mhtr']]
+    }
+    return [person, website, organization]
 
 
 def page(title, description, canonical, active, body, extra_head='', extra_jsonld=None, body_class=''):
@@ -183,6 +196,7 @@ def page(title, description, canonical, active, body, extra_head='', extra_jsonl
     <section><h4>Contact</h4><p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p><p><a href="contact.html">Start a collaboration inquiry</a></p></section>
   </div>
   <p class="site-footer__legal">© 2026 Cane & Camera · All rights reserved.</p>
+  {BMC_WIDGET}
 </footer>
 </body>
 </html>'''
@@ -190,8 +204,8 @@ def page(title, description, canonical, active, body, extra_head='', extra_jsonl
 home_body = f'''
 <section class="hero hero-editorial">
   <p class="eyebrow">Naturalist • Wildlife Filmmaker • Field Storyteller</p>
-  <h1>Field-based natural history storytelling from Mukundara Hills and Rajasthan.</h1>
-  <p class="lead">I am Vinay Chittora of Cane & Camera. My work combines wildlife cinematography, ecological observation, and on-ground storytelling across Mukundara Hills Tiger Reserve (MHTR), surrounding forest edges, grasslands, wetlands, and desert landscapes.</p>
+  <h1>Natural history storytelling from Rajasthan, built in the field.</h1>
+  <p class="lead">I am Vinay Chittora of Cane & Camera — a naturalist and wildlife filmmaker working across Mukundara Hills Tiger Reserve (MHTR), Rajasthan, and connected grassland, wetland, scrub, and forest-edge landscapes.</p>
   <div class="hero-cta-row">
     <a class="btn" href="contact.html">Collaborate on a project</a>
     <a class="btn btn-outline" href="documentaries.html">Watch films</a>
@@ -207,12 +221,21 @@ home_body = f'''
   </div>
 </section>
 <section class="editorial-section" id="mukundara">
-  <h2>Mukundara knowledge, beyond one-species narratives</h2>
-  <p>This work is grounded in long-term observation of how grasslands, wetlands, scrub, forest edges, insects, reptiles, birds, raptors, and mammals interact. Conservation is strongest when biodiversity is treated as a system—not a trophy list.</p>
+  <h2>Field knowledge from Mukundara Hills Tiger Reserve (MHTR), Rajasthan — beyond one-species narratives</h2>
+  <p>Through long-term field observation in and around Mukundara, I document how grasslands, wetlands, scrub, forest edges, insects, reptiles, birds, raptors, and mammals function as one ecological system. Additional field context and place-based reporting is published at <a href="https://mhtr.in" target="_blank" rel="noopener">mhtr.in</a>.</p>
   <ul>
     <li>Support for grassland and wetland revival with native ecological context.</li>
-    <li>Advocacy for habitat protection and native restoration over ornamental/exotic planting trends.</li>
-    <li>A biodiversity-first approach that includes overlooked life forms, not only flagship megafauna.</li>
+    <li>Advocacy for habitat protection, native restoration, and against careless exotic planting.</li>
+    <li>A biodiversity-first approach that values overlooked life forms, not only flagship megafauna.</li>
+  </ul>
+</section>
+<section class="editorial-section" id="value-proposition">
+  <h2>Why this perspective matters for film and field collaborations</h2>
+  <ul>
+    <li>It improves habitat reading and behavior prediction for stronger, more accurate story development.</li>
+    <li>It helps identify overlooked but meaningful ecological narratives across species and habitats.</li>
+    <li>It supports patient, ethical field execution with minimal disturbance.</li>
+    <li>It brings landscape-level conservation understanding, not just image-making.</li>
   </ul>
 </section>
 <section class="editorial-section">
@@ -292,11 +315,12 @@ docsp = page('Wildlife Documentaries & Conservation Films | Cane & Camera','Watc
 about_body = '''
 <section class="about-page">
   <h1>About Cane &amp; Camera</h1>
-  <p class="about-intro">I am Vinay Chittora, a Rajasthan-based naturalist and field storyteller working through stills and films. My fieldwork is deeply connected to Mukundara Hills Tiger Reserve (MHTR) and adjacent ecosystems.</p>
+  <p class="about-intro">I am Vinay Chittora, a Rajasthan-based naturalist, wildlife filmmaker, and field storyteller. My fieldwork is deeply connected to Mukundara Hills Tiger Reserve (MHTR), Rajasthan, and adjacent ecosystems.</p>
   <section class="about-section"><h2>Field orientation</h2><p>The work is habitat-first: documenting ecological relationships, seasonality, and behavior with low disturbance and careful observation.</p></section>
-  <section class="about-section"><h2>Conservation position</h2><p>I advocate biodiversity-led conservation. Forests, wetlands, and grasslands function as networks; meaningful protection cannot focus on one species while neglecting native plants, insects, reptiles, birds, and habitat processes.</p></section>
+  <section class="about-section"><h2>Conservation position</h2><p>I advocate biodiversity-led conservation. Forests, wetlands, and grasslands function as networks; meaningful protection cannot focus on one species while neglecting native plants, algae, shrubs, insects, butterflies, reptiles, birds, and habitat processes.</p></section>
   <section class="about-section"><h2>Ethics in practice</h2><ul><li>No baiting, call playback, handling, or forced proximity.</li><li>Low-impact movement and strict respect for site protocols.</li><li>Field outputs designed for awareness, accountability, and long-term documentation.</li></ul></section>
-  <section class="about-section"><h2>Where this can help</h2><p>Useful for editorial teams, NGOs, educators, mission-led brands, and film crews that need grounded natural history storytelling from Rajasthan and Mukundara landscapes.</p><p><a href="contact.html">See collaboration options →</a></p></section>
+  <section class="about-section"><h2>Mukundara context</h2><p>My Mukundara landscape context includes habitat change, movement routes, seasonal patterns, and species interactions across wetlands, grasslands, and forest edges. Ongoing field notes are available at <a href="https://mhtr.in" target="_blank" rel="noopener">mhtr.in</a>.</p></section>
+  <section class="about-section"><h2>Where this can help</h2><p>Useful for editorial teams, NGOs, educators, mission-led brands, and film crews that need grounded natural history storytelling, field scouting support, and conservation communication from Rajasthan and Mukundara landscapes.</p><p><a href="contact.html">See collaboration options →</a></p></section>
 </section>
 '''
 about = page('About Vinay Chittora | Naturalist & Wildlife Filmmaker | Cane & Camera','Learn about Vinay Chittora’s field-based natural history practice in Mukundara Hills and Rajasthan, and his biodiversity-first conservation storytelling approach.','about.html','about',about_body)
@@ -304,8 +328,9 @@ about = page('About Vinay Chittora | Naturalist & Wildlife Filmmaker | Cane & Ca
 contact_body = '''
 <section class="work-page">
   <h1>Collaborate / Work With Me</h1>
-  <p class="about-intro">For wildlife filmmaking, cinematography support, field scouting, natural history documentation, and conservation storytelling collaborations.</p>
+  <p class="about-intro">For wildlife filmmaking, cinematography support, field scouting, natural history documentation, and conservation storytelling collaborations in Rajasthan, including Mukundara-linked landscapes.</p>
   <section class="about-section"><h2>Project types</h2><ul><li>Wildlife documentary production and cinematography</li><li>Field scouting and story research support (MHTR / Mukundara / Rajasthan)</li><li>Natural history documentation for awareness and education</li><li>Conservation campaign visuals and communication assets</li><li>Editorial licensing and assignment work</li></ul></section>
+  <section class="about-section"><h2>How this adds value</h2><ul><li>Location and habitat reading that improves story decisions before and during shoots.</li><li>Stronger scene planning through behavior-aware field observation.</li><li>Low-disturbance, ethics-first execution for sensitive habitats and species.</li><li>Landscape-level context for awareness and conservation communication projects.</li></ul></section>
   <section class="about-section"><h2>What to include in your inquiry</h2><ul><li>Project goal and format (film, campaign, editorial, research support)</li><li>Location, timeline, and expected field days</li><li>Deliverables and usage scope</li></ul></section>
   <section class="contact-panel"><h2>Contact</h2><p><b>Email:</b> <a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></p><p><b>Instagram:</b> <a href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">instagram.com/caneandcamera</a></p><p><b>YouTube:</b> <a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">youtube.com/@CaneAndCamera</a></p><p><b>MHTR field notes:</b> <a href="https://mhtr.in" target="_blank" rel="noopener">mhtr.in</a></p><p><a class="btn" href="mailto:hello@caneandcamera.com?subject=Collaboration%20Inquiry%20-%20Cane%20and%20Camera">Email project details</a></p></section>
 </section>

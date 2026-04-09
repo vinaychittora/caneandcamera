@@ -50,3 +50,47 @@ Source originals should live in:
 - `assets/img/gallery/originals/landscapes/`
 
 The script writes optimized variants and updates `assets/img/gallery/generated/photos.json`.
+
+## How to add a new photo
+
+1. Copy the original high-resolution file into one of these folders:
+   - `assets/img/gallery/originals/wildlife/`
+   - `assets/img/gallery/originals/landscapes/`
+2. Use a clear filename slug (example: `desert-fox-family.jpg`).
+3. Run:
+
+```bash
+python3 scripts/generate_responsive_images.py
+```
+
+4. This generates responsive variants at widths `512`, `1024`, `1350`, and `2048` (when source size allows) and rewrites:
+   - `assets/img/gallery/generated/photos.json`
+5. Open `assets/img/gallery/generated/photos.json` and fill/edit metadata for the new entry:
+   - `title`
+   - `description`
+   - `datetime`
+   - `camera` (if available)
+6. Rebuild the site pages:
+
+```bash
+python3 scripts/build_site.py
+```
+
+### Concrete example
+
+If you add:
+
+- `assets/img/gallery/originals/wildlife/desert-fox-family.jpg`
+
+the generator will create files like:
+
+- `assets/img/gallery/generated/wildlife/desert-fox-family-512.jpg`
+- `assets/img/gallery/generated/wildlife/desert-fox-family-1024.jpg`
+- `assets/img/gallery/generated/wildlife/desert-fox-family-1350.jpg`
+- `assets/img/gallery/generated/wildlife/desert-fox-family-2048.jpg`
+
+Then `scripts/build_site.py` will automatically include the photo in gallery pages with:
+
+- responsive thumbnails via `srcset`/`sizes`
+- lazy loading in gallery lists
+- larger image opened in the lightbox (`data-full`)
