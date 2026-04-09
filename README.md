@@ -1,31 +1,52 @@
 # Cane & Camera — Static Website
 
-A lightweight static website for Cane & Camera.
+A lightweight static site for **Cane & Camera** focused on natural history storytelling, wildlife films, and field-based conservation communication.
 
-## Run locally
+## Local preview
 
 ```bash
 ./run.sh
 ```
 
-Open `http://localhost:8000`.
+Open: `http://localhost:8000`
 
-## Project structure
+## Build workflow
 
-- Public pages:
-  - Top-level routes: `index.html`, `gallery.html`, `documentaries.html`, `about.html`, `contact.html`, `landscapes.html`
-  - Pretty-route mirrors: `about/`, `gallery/`, `documentaries/`, `contact/`, `landscapes/`, `work-with-me/`
-- Styles:
-  - `assets/css/style.css` (global layout, nav/footer, gallery, lightbox)
-  - `assets/css/docs.css` (documentaries layout)
-- Scripts:
-  - `assets/js/main.js` (navigation + small UI behavior)
-  - `assets/js/gallery-lightbox.js` (gallery overlay behavior)
+Pages are generated from shared templates and JSON data to keep navigation, SEO metadata, and repeated content maintainable.
 
-## Cleanup notes
+```bash
+python3 scripts/build_site.py
+```
 
-Legacy build artifacts/scripts are removed. The site is now maintained directly as static HTML/CSS/JS.
+This command regenerates:
 
-## Maintenance checklist
+- `index.html`
+- `gallery.html`
+- `landscapes.html`
+- `documentaries.html`
+- `about.html`
+- `contact.html`
+- Pretty-route mirrors under `about/`, `gallery/`, `landscapes/`, `documentaries/`, `contact/`, and `work-with-me/`
+- `sitemap.xml` and `robots.txt`
 
-When editing pages, keep both top-level and pretty-route variants synchronized.
+## Content/data sources
+
+- Gallery manifest: `assets/img/gallery/generated/photos.json`
+- Documentary metadata: `data/documentaries.json`
+
+## Responsive image pipeline
+
+Gallery pages consume responsive variants (`srcset` / `sizes`) from the manifest.
+
+To generate variants from originals (optional, requires Pillow):
+
+```bash
+python3 scripts/generate_responsive_images.py
+```
+
+Source originals should live in:
+
+- `assets/img/gallery/originals/wildlife/`
+- `assets/img/gallery/originals/landscapes/`
+
+The script writes optimized variants and updates `assets/img/gallery/generated/photos.json`.
