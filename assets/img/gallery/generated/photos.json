@@ -14,26 +14,59 @@
       "h": 1365
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2048.jpg",
-        "w": 2048,
-        "h": 1365
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-160.webp",
+        "w": 160,
+        "h": 106
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-1024.jpg",
-        "w": 1024,
-        "h": 682
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-320.webp",
+        "w": 320,
+        "h": 213
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/laggar-falcon-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-512.webp",
         "w": 512,
         "h": 341
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-768.webp",
+        "w": 768,
+        "h": 511
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-1024.webp",
+        "w": 1024,
+        "h": 682
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-1350.webp",
+        "w": 1350,
+        "h": 899
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2048.webp",
+        "w": 2048,
+        "h": 1365
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2048.webp",
+      "w": 2048,
+      "h": 1365
+    }
   },
   {
     "slug": "great-indian-bustard",
@@ -50,26 +83,59 @@
       "h": 1365
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.jpg",
-        "w": 2048,
-        "h": 1365
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-160.webp",
+        "w": 160,
+        "h": 106
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-1024.jpg",
-        "w": 1024,
-        "h": 682
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-320.webp",
+        "w": 320,
+        "h": 213
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-512.webp",
         "w": 512,
         "h": 341
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-768.webp",
+        "w": 768,
+        "h": 511
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-1024.webp",
+        "w": 1024,
+        "h": 682
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-1350.webp",
+        "w": 1350,
+        "h": 899
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.webp",
+        "w": 2048,
+        "h": 1365
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/great-indian-bustard-2048.webp",
+      "w": 2048,
+      "h": 1365
+    }
   },
   {
     "slug": "saker-falcon",
@@ -86,26 +152,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/saker-falcon-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/saker-falcon-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/saker-falcon-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/saker-falcon-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/saker-falcon-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/saker-falcon-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/saker-falcon-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/saker-falcon-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/saker-falcon-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/saker-falcon-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/saker-falcon-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/saker-falcon-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/saker-falcon-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/saker-falcon-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "scaly-breasted-munia-2",
@@ -122,26 +209,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "indian-cuckoo",
@@ -158,26 +266,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/indian-cuckoo-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/indian-cuckoo-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "isabelline-wheatear",
@@ -194,26 +323,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/isabelline-wheatear-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "jacobin-cuckoo",
@@ -230,26 +380,53 @@
       "h": 1012
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1350.jpg",
-        "w": 1350,
-        "h": 1012
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-160.webp",
+        "w": 160,
+        "h": 119
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-320.webp",
+        "w": 320,
+        "h": 239
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-512.webp",
         "w": 512,
-        "h": 384
+        "h": 383
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-768.webp",
+        "w": 768,
+        "h": 575
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1024.webp",
+        "w": 1024,
+        "h": 767
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1350.webp",
+        "w": 1350,
+        "h": 1012
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/jacobin-cuckoo-1350.webp",
+      "w": 1350,
+      "h": 1012
+    }
   },
   {
     "slug": "northern-plains-gray-langur",
@@ -266,26 +443,53 @@
       "h": 1080
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1350.jpg",
-        "w": 1350,
-        "h": 1080
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-160.webp",
+        "w": 160,
+        "h": 128
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1024.jpg",
-        "w": 1024,
-        "h": 819
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-320.webp",
+        "w": 320,
+        "h": 256
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-512.webp",
         "w": 512,
-        "h": 410
+        "h": 409
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-768.webp",
+        "w": 768,
+        "h": 614
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1024.webp",
+        "w": 1024,
+        "h": 819
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1350.webp",
+        "w": 1350,
+        "h": 1080
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/northern-plains-gray-langur-1350.webp",
+      "w": 1350,
+      "h": 1080
+    }
   },
   {
     "slug": "white-breasted-kingfisher",
@@ -302,25 +506,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1024.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/white-breasted-kingfisher-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "white-breasted-kingfisher",
@@ -337,26 +563,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/white-breasted-kingfisher-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "plum-headed-parakeet",
@@ -373,26 +620,53 @@
       "h": 1012
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1350.jpg",
-        "w": 1350,
-        "h": 1012
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-160.webp",
+        "w": 160,
+        "h": 119
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-320.webp",
+        "w": 320,
+        "h": 239
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-512.webp",
         "w": 512,
-        "h": 384
+        "h": 383
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-768.webp",
+        "w": 768,
+        "h": 575
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1024.webp",
+        "w": 1024,
+        "h": 767
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1350.webp",
+        "w": 1350,
+        "h": 1012
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/plum-headed-parakeet-1350.webp",
+      "w": 1350,
+      "h": 1012
+    }
   },
   {
     "slug": "oriental-honey-buzzard",
@@ -409,26 +683,53 @@
       "h": 1012
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1350.jpg",
-        "w": 1350,
-        "h": 1012
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-160.webp",
+        "w": 160,
+        "h": 119
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-320.webp",
+        "w": 320,
+        "h": 239
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-512.webp",
         "w": 512,
-        "h": 384
+        "h": 383
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-768.webp",
+        "w": 768,
+        "h": 575
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1024.webp",
+        "w": 1024,
+        "h": 767
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1350.webp",
+        "w": 1350,
+        "h": 1012
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/oriental-honey-buzzard-1350.webp",
+      "w": 1350,
+      "h": 1012
+    }
   },
   {
     "slug": "baya-weaver-2",
@@ -445,26 +746,53 @@
       "h": 1013
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-1350.jpg",
-        "w": 1350,
-        "h": 1013
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-1350.webp",
+        "w": 1350,
+        "h": 1013
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/baya-weaver-2-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2-1350.webp",
+      "w": 1350,
+      "h": 1013
+    }
   },
   {
     "slug": "red-collared-dove",
@@ -481,26 +809,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/red-collared-dove-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/red-collared-dove-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/red-collared-dove-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/red-collared-dove-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "brown-shrike",
@@ -517,26 +866,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/brown-shrike-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/brown-shrike-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-shrike-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/brown-shrike-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/brown-shrike-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-shrike-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/brown-shrike-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/brown-shrike-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/brown-shrike-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-shrike-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/brown-shrike-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-shrike-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/brown-shrike-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/brown-shrike-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "gray-heron",
@@ -553,26 +923,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/gray-heron-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/gray-heron-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/gray-heron-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/gray-heron-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/gray-heron-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/gray-heron-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/gray-heron-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/gray-heron-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/gray-heron-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/gray-heron-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/gray-heron-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/gray-heron-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/gray-heron-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/gray-heron-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "white-eyed-buzzard",
@@ -589,25 +980,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1024.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/white-eyed-buzzard-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "white-eyed-buzzard",
@@ -624,26 +1037,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/white-eyed-buzzard-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "grey-necked-bunting",
@@ -660,26 +1094,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/grey-necked-bunting-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "towny-lark",
@@ -696,25 +1151,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/landscapes/towny-lark-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/towny-lark-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/towny-lark-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/towny-lark-1024.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/towny-lark-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "towny-lark",
@@ -731,26 +1208,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/towny-lark-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/towny-lark-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/towny-lark-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "towny-lark-2",
@@ -767,25 +1265,59 @@
       "h": 1536
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/towny-lark-2-512.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-1350.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/landscapes/towny-lark-2-2048.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/towny-lark-2-2048.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/towny-lark-2-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "towny-lark-2",
@@ -802,26 +1334,59 @@
       "h": 1536
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/towny-lark-2-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/towny-lark-2-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "baya-weaver",
@@ -838,26 +1403,59 @@
       "h": 1536
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/baya-weaver-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/baya-weaver-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/baya-weaver-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/baya-weaver-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/baya-weaver-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "eurasian-wryneck",
@@ -874,26 +1472,59 @@
       "h": 1536
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/eurasian-wryneck-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/eurasian-wryneck-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "siberian-stonechat",
@@ -910,26 +1541,47 @@
       "h": 1350
     },
     "variants": {
-      "1350": {
-        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-1350.jpg",
-        "w": 1080,
-        "h": 1350
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-1024.webp",
+        "w": 1024,
+        "h": 1280
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/siberian-stonechat-1024.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/siberian-stonechat-1024.webp",
+      "w": 1024,
+      "h": 1280
+    }
   },
   {
     "slug": "laggar-falcon-2",
@@ -946,26 +1598,59 @@
       "h": 1536
     },
     "variants": {
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-2048.jpg",
-        "w": 2048,
-        "h": 1536
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/laggar-falcon-2-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/laggar-falcon-2-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "woodswallow",
@@ -982,30 +1667,53 @@
       "h": 2165
     },
     "variants": {
-      "2165": {
-        "src": "assets/img/gallery/generated/landscapes/woodswallow-2165.jpg",
-        "w": 1732,
-        "h": 2165
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/woodswallow-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/landscapes/woodswallow-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/woodswallow-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/woodswallow-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/woodswallow-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/woodswallow-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/woodswallow-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/landscapes/woodswallow-1350.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/woodswallow-1350.webp",
+        "w": 1350,
+        "h": 1687
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/woodswallow-1350.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/woodswallow-1350.webp",
+      "w": 1350,
+      "h": 1687
+    }
   },
   {
     "slug": "crested-serpent-eagle",
@@ -1022,31 +1730,59 @@
       "h": 2570
     },
     "variants": {
-      "2570": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2570.jpg",
-        "w": 2056,
-        "h": 2570
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.webp",
+        "w": 2048,
+        "h": 2560
       }
     },
     "exposure": "1/500s",
     "aperture": "f/11.0",
     "iso": "",
-    "focal": "500mm"
+    "focal": "500mm",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/crested-serpent-eagle-2048.webp",
+      "w": 2048,
+      "h": 2560
+    }
   },
   {
     "slug": "woodswallow",
@@ -1063,31 +1799,53 @@
       "h": 2165
     },
     "variants": {
-      "2165": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-2165.jpg",
-        "w": 1732,
-        "h": 2165
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/woodswallow-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/woodswallow-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/woodswallow-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/woodswallow-1350.webp",
+        "w": 1350,
+        "h": 1687
       }
     },
     "exposure": "1/400s",
     "aperture": "f/11.0",
     "iso": "",
-    "focal": "500mm"
+    "focal": "500mm",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/woodswallow-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/woodswallow-1350.webp",
+      "w": 1350,
+      "h": 1687
+    }
   },
   {
     "slug": "monitor-lizard",
@@ -1104,31 +1862,59 @@
       "h": 3732
     },
     "variants": {
-      "4976": {
-        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-4976.jpg",
-        "w": 4976,
-        "h": 3732
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-160.webp",
+        "w": 160,
+        "h": 120
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-2048.jpg",
-        "w": 2048,
-        "h": 1536
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-1024.jpg",
-        "w": 1024,
-        "h": 768
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-320.webp",
+        "w": 320,
+        "h": 240
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/monitor-lizard-512.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-512.webp",
         "w": 512,
         "h": 384
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-768.webp",
+        "w": 768,
+        "h": 576
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-1024.webp",
+        "w": 1024,
+        "h": 768
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-1350.webp",
+        "w": 1350,
+        "h": 1012
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/monitor-lizard-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-2048.webp",
+        "w": 2048,
+        "h": 1536
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/monitor-lizard-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/monitor-lizard-2048.webp",
+      "w": 2048,
+      "h": 1536
+    }
   },
   {
     "slug": "spotted-owlet",
@@ -1145,30 +1931,59 @@
       "h": 4160
     },
     "variants": {
-      "4160": {
-        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-4160.jpg",
-        "w": 3328,
-        "h": 4160
+      "160": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-160.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-320.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/landscapes/spotted-owlet-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-768.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-1024.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-1350.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/landscapes/spotted-owlet-2048.jpg",
+        "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-2048.webp",
+        "w": 2048,
+        "h": 2560
       }
     },
     "exposure": "",
     "aperture": "",
-    "iso": ""
+    "iso": "",
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/landscapes/spotted-owlet-2048.jpg",
+      "webp": "assets/img/gallery/generated/landscapes/spotted-owlet-2048.webp",
+      "w": 2048,
+      "h": 2560
+    }
   },
   {
     "slug": "spotted-owlet",
@@ -1185,31 +2000,59 @@
       "h": 4160
     },
     "variants": {
-      "4160": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-4160.jpg",
-        "w": 3328,
-        "h": 4160
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/spotted-owlet-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.webp",
+        "w": 2048,
+        "h": 2560
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/spotted-owlet-2048.webp",
+      "w": 2048,
+      "h": 2560
+    }
   },
   {
     "slug": "oriental-white-eye",
@@ -1226,31 +2069,59 @@
       "h": 2959
     },
     "variants": {
-      "2959": {
-        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-2959.jpg",
-        "w": 2367,
-        "h": 2959
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-2048.webp",
+        "w": 2048,
+        "h": 2560
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/oriental-white-eye-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/oriental-white-eye-2048.webp",
+      "w": 2048,
+      "h": 2560
+    }
   },
   {
     "slug": "greater-flamingo",
@@ -1267,31 +2138,53 @@
       "h": 3254
     },
     "variants": {
-      "3254": {
-        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-3254.jpg",
-        "w": 1831,
-        "h": 3254
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-160.webp",
+        "w": 160,
+        "h": 284
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-2048.jpg",
-        "w": 1152,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-1024.jpg",
-        "w": 576,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-320.webp",
+        "w": 320,
+        "h": 568
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/greater-flamingo-512.jpg",
-        "w": 288,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-512.webp",
+        "w": 512,
+        "h": 909
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-768.webp",
+        "w": 768,
+        "h": 1364
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-1024.webp",
+        "w": 1024,
+        "h": 1819
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/greater-flamingo-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-1350.webp",
+        "w": 1350,
+        "h": 2399
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/greater-flamingo-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/greater-flamingo-1350.webp",
+      "w": 1350,
+      "h": 2399
+    }
   },
   {
     "slug": "indian-courser",
@@ -1308,26 +2201,53 @@
       "h": 1903
     },
     "variants": {
-      "1903": {
-        "src": "assets/img/gallery/generated/wildlife/indian-courser-1903.jpg",
-        "w": 1522,
-        "h": 1903
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/indian-courser-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/indian-courser-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/indian-courser-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/indian-courser-512.jpg",
-        "w": 409,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/indian-courser-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/indian-courser-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/indian-courser-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-courser-1350.webp",
+        "w": 1350,
+        "h": 1687
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/indian-courser-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/indian-courser-1350.webp",
+      "w": 1350,
+      "h": 1687
+    }
   },
   {
     "slug": "indian-golden-oriole",
@@ -1344,31 +2264,59 @@
       "h": 2734
     },
     "variants": {
-      "2734": {
-        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2734.jpg",
-        "w": 2187,
-        "h": 2734
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2048.webp",
+        "w": 2048,
+        "h": 2560
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/indian-golden-oriole-2048.webp",
+      "w": 2048,
+      "h": 2560
+    }
   },
   {
     "slug": "brown-breasted-flycatcher",
@@ -1385,31 +2333,59 @@
       "h": 3031
     },
     "variants": {
-      "3031": {
-        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-3031.jpg",
-        "w": 2425,
-        "h": 3031
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-160.webp",
+        "w": 160,
+        "h": 199
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-2048.jpg",
-        "w": 1639,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-320.webp",
+        "w": 320,
+        "h": 399
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-512.webp",
+        "w": 512,
+        "h": 639
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-768.webp",
+        "w": 768,
+        "h": 959
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-1024.webp",
+        "w": 1024,
+        "h": 1279
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-1350.webp",
+        "w": 1350,
+        "h": 1687
+      },
+      "2048": {
+        "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-2048.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-2048.webp",
+        "w": 2048,
+        "h": 2559
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-2048.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/brown-breasted-flycatcher-2048.webp",
+      "w": 2048,
+      "h": 2559
+    }
   },
   {
     "slug": "black-rumped-flameback",
@@ -1426,31 +2402,53 @@
       "h": 2063
     },
     "variants": {
-      "2063": {
-        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-2063.jpg",
-        "w": 1650,
-        "h": 2063
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-160.webp",
+        "w": 160,
+        "h": 200
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-2048.jpg",
-        "w": 1638,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-320.webp",
+        "w": 320,
+        "h": 400
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-512.webp",
+        "w": 512,
+        "h": 640
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-768.webp",
+        "w": 768,
+        "h": 960
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1024.webp",
+        "w": 1024,
+        "h": 1280
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1350.webp",
+        "w": 1350,
+        "h": 1687
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/black-rumped-flameback-1350.webp",
+      "w": 1350,
+      "h": 1687
+    }
   },
   {
     "slug": "scaly-breasted-munia",
@@ -1467,30 +2465,52 @@
       "h": 2371
     },
     "variants": {
-      "2371": {
-        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2371.jpg",
-        "w": 1897,
-        "h": 2371
+      "160": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-160.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-160.webp",
+        "w": 160,
+        "h": 199
       },
-      "2048": {
-        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-2048.jpg",
-        "w": 1639,
-        "h": 2048
-      },
-      "1024": {
-        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1024.jpg",
-        "w": 819,
-        "h": 1024
+      "320": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-320.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-320.webp",
+        "w": 320,
+        "h": 399
       },
       "512": {
         "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-512.jpg",
-        "w": 410,
-        "h": 512
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-512.webp",
+        "w": 512,
+        "h": 639
+      },
+      "768": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-768.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-768.webp",
+        "w": 768,
+        "h": 959
+      },
+      "1024": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1024.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1024.webp",
+        "w": 1024,
+        "h": 1279
+      },
+      "1350": {
+        "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1350.jpg",
+        "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1350.webp",
+        "w": 1350,
+        "h": 1687
       }
     },
     "exposure": "",
     "aperture": "",
     "iso": "",
-    "focal": ""
+    "focal": "",
+    "default": {
+      "src": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1350.jpg",
+      "webp": "assets/img/gallery/generated/wildlife/scaly-breasted-munia-1350.webp",
+      "w": 1350,
+      "h": 1687
+    }
   }
 ]

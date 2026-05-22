@@ -37,6 +37,17 @@ img {
   max-width: 100%;
 }
 
+.responsive-picture {
+  display: block;
+}
+
+.hero-portfolio__media .responsive-picture,
+.gallery-hero__media .responsive-picture,
+.study-card__link > .responsive-picture {
+  width: 100%;
+  height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration-color: rgba(200, 210, 106, 0.45);
@@ -816,8 +827,10 @@ p {
   gap: 1rem;
 }
 
-.site-footer h4 {
+.footer-heading {
   margin: 0 0 0.3rem;
+  font-size: 1rem;
+  line-height: 1.25;
 }
 
 .site-footer p {

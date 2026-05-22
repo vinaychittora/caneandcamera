@@ -363,12 +363,14 @@ def pick_variant(item, target=1024):
     return variants[str(chosen)]
 
 
-def srcset_for(item):
+def srcset_for(item, source_key="src"):
     variants = item.get("variants", {})
     pairs = []
     for k in sorted((int(k) for k in variants.keys())):
         v = variants[str(k)]
-        pairs.append(f"{v['src']} {v['w']}w")
+        src = v.get(source_key)
+        if src:
+            pairs.append(f"{src} {v['w']}w")
     return ", ".join(pairs)
 
 
@@ -406,6 +408,7 @@ def format_date(raw):
 def image_html(item, class_name, target=1024, sizes="100vw", alt=None, loading="lazy", fetchpriority=None, data_full=False):
     thumb = pick_variant(item, target)
     full = pick_variant(item, 2048)
+    webp_srcset = srcset_for(item, "webp")
     attrs = [
         f'class="{h(class_name)}"',
         f'src="{h(thumb["src"])}"',
@@ -421,7 +424,10 @@ def image_html(item, class_name, target=1024, sizes="100vw", alt=None, loading="
         attrs.append(f'fetchpriority="{fetchpriority}"')
     if data_full:
         attrs.append(f'data-full="{h(full["src"])}"')
-    return f"<img {' '.join(attrs)}>"
+    img = f"<img {' '.join(attrs)}>"
+    if not webp_srcset:
+        return img
+    return f'<picture class="responsive-picture"><source type="image/webp" srcset="{h(webp_srcset)}" sizes="{h(sizes)}">{img}</picture>'
 
 
 def hero_image(slug):
@@ -443,7 +449,7 @@ def mini_strip(slugs):
         item = photo_map.get(slug)
         if not item:
             continue
-        imgs.append(image_html(item, "study-card__mini", target=512, sizes="96px", alt=item["title"]))
+        imgs.append(image_html(item, "study-card__mini", target=160, sizes="50px", alt=item["title"]))
     return "".join(imgs)
 
 
@@ -452,8 +458,8 @@ def study_card(study):
     cover_img = image_html(
         cover,
         "study-card__cover",
-        target=1024,
-        sizes="(min-width: 980px) 32vw, 100vw",
+        target=768,
+        sizes="(min-width: 1181px) 19vw, (min-width: 761px) 31vw, 65vw",
         alt=cover["title"],
     )
     return f'''<article class="study-card" data-study="{h(study["id"])}">
@@ -478,7 +484,7 @@ def photo_card(item, sizes="(min-width: 1100px) 31vw, (min-width: 700px) 46vw, 1
     camera = item.get("camera", "")
     dt = format_date(item.get("datetime", ""))
     tags = photo_tags(item)
-    img = image_html(item, "cc-thumb", target=1024, sizes=sizes, alt=title, data_full=True)
+    img = image_html(item, "cc-thumb", target=768, sizes=sizes, alt=title, data_full=True)
     chips = "".join(f'<span>{h(t.replace("-", " "))}</span>' for t in tags[:3])
     facts = " / ".join(part for part in [dt, camera] if part)
     return f'''<article class="cc-card field-card" data-tags="{h(" ".join(tags))}">
@@ -502,8 +508,8 @@ def featured_frame(slug):
     img = image_html(
         item,
         "featured-frame__image",
-        target=1024,
-        sizes="(min-width: 980px) 32vw, 100vw",
+        target=768,
+        sizes="(min-width: 921px) 31vw, (min-width: 761px) 47vw, 65vw",
         alt=item["title"],
     )
     return f'''<article class="featured-frame">
@@ -627,8 +633,8 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="index.html" class="logo" aria-label="Cane and Camera home">
-      <img src="assets/img/ico/logo.svg" alt="Cane & Camera logo" width="48" height="48">
+    <a href="index.html" class="logo" aria-label="Cane & Camera home">
+      <img src="assets/img/ico/logo.svg" alt="" width="48" height="48">
       <span>Cane & Camera</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">Menu</button>
@@ -638,9 +644,9 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
 <main id="main-content" class="wrap">{body}</main>
 <footer class="site-footer">
   <div class="container footer-grid">
-    <section><h4>Navigate</h4><p><a href="index.html">Home</a> / <a href="gallery.html">Field Index</a> / <a href="documentaries.html">Films</a> / <a href="about.html">About</a> / <a href="contact.html">Collaborate</a></p></section>
-    <section><h4>Connect</h4><p><a href="{SOCIAL["instagram"]}" target="_blank" rel="noopener">Instagram</a> / <a href="{SOCIAL["youtube"]}" target="_blank" rel="noopener">YouTube</a> / <a href="{SOCIAL["patreon"]}" target="_blank" rel="noopener">Patreon</a></p><p><a href="{SOCIAL["mhtr"]}" target="_blank" rel="noopener">Field notes at mhtr.in</a></p></section>
-    <section><h4>Contact</h4><p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p><p><a href="contact.html">Start a collaboration inquiry</a></p></section>
+    <section><h2 class="footer-heading">Navigate</h2><p><a href="index.html">Home</a> / <a href="gallery.html">Field Index</a> / <a href="documentaries.html">Films</a> / <a href="about.html">About</a> / <a href="contact.html">Collaborate</a></p></section>
+    <section><h2 class="footer-heading">Connect</h2><p><a href="{SOCIAL["instagram"]}" target="_blank" rel="noopener">Instagram</a> / <a href="{SOCIAL["youtube"]}" target="_blank" rel="noopener">YouTube</a> / <a href="{SOCIAL["patreon"]}" target="_blank" rel="noopener">Patreon</a></p><p><a href="{SOCIAL["mhtr"]}" target="_blank" rel="noopener">Field notes at mhtr.in</a></p></section>
+    <section><h2 class="footer-heading">Contact</h2><p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p><p><a href="contact.html">Start a collaboration inquiry</a></p></section>
   </div>
   <p class="site-footer__legal">(c) 2026 Cane & Camera. All rights reserved.</p>
 {footer_extra.rstrip()}
