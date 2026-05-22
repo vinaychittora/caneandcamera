@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 import html
+import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def asset_url(path):
+    digest = hashlib.sha1((ROOT / path).read_bytes()).hexdigest()[:10]
+    return f"{path}?v={digest}"
+
+
+CSS_URL = asset_url("assets/css/style.css")
+MAIN_JS_URL = asset_url("assets/js/main.js")
+GALLERY_JS_URL = asset_url("assets/js/gallery-lightbox.js")
 
 with (ROOT / "assets/img/gallery/generated/photos.json").open() as f:
     photos = json.load(f)
@@ -606,9 +617,9 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
   <meta name="twitter:description" content="{h(description)}">
   <meta name="twitter:image" content="{h(og)}">
   <link rel="icon" type="image/png" href="assets/img/ico/favicon.png">
-  <link rel="preload" href="assets/css/style.css" as="style">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script defer src="assets/js/main.js"></script>
+  <link rel="preload" href="{h(CSS_URL)}" as="style">
+  <link rel="stylesheet" href="{h(CSS_URL)}">
+  <script defer src="{h(MAIN_JS_URL)}"></script>
 {head_extra.rstrip()}
   {ld_tags}
 </head>
@@ -794,7 +805,7 @@ gallery = page(
     "gallery.html",
     "gallery",
     gallery_body,
-    extra_head='<script defer src="assets/js/gallery-lightbox.js"></script>',
+    extra_head=f'<script defer src="{h(GALLERY_JS_URL)}"></script>',
     body_class="gallery-page",
     og_image="https://www.caneandcamera.com/assets/img/gallery/generated/wildlife/monitor-lizard-2048.jpg",
 )
@@ -823,7 +834,7 @@ land = page(
     "landscapes.html",
     "gallery",
     land_body,
-    extra_head='<script defer src="assets/js/gallery-lightbox.js"></script>',
+    extra_head=f'<script defer src="{h(GALLERY_JS_URL)}"></script>',
     body_class="gallery-page",
 )
 
