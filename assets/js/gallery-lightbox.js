@@ -3,6 +3,8 @@
   const lgx  = document.getElementById('lgx');
   if(!grid || !lgx) return;
 
+  const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+  const countEl = document.getElementById('gallery-count');
   const imgEl    = lgx.querySelector('.lgx__img');
   const capEl    = lgx.querySelector('.lgx__caption');
   const btnClose = lgx.querySelector('.lgx__close');
@@ -33,16 +35,45 @@
 
   function captionFor(img){
     const card = img.closest('.cc-card');
-    const strong = card?.querySelector('.cc-meta strong')?.textContent?.trim();
+    const strong = card?.querySelector('.cc-meta h3, .cc-meta strong')?.textContent?.trim();
     const extra  = card?.querySelector('.cc-meta .muted')?.textContent?.trim();
     const alt    = img.getAttribute('alt') || '';
     return strong ? (extra ? `${strong} · ${extra}` : strong) : alt;
   }
 
   function collect(){
-    nodes = Array.from(grid.querySelectorAll('img.cc-thumb'));
+    nodes = Array.from(grid.querySelectorAll('.cc-card:not([hidden]) img.cc-thumb'));
   }
   collect();
+
+  function applyFilter(filter, updateHash){
+    const active = filter || 'all';
+    let shown = 0;
+    Array.from(grid.querySelectorAll('.cc-card')).forEach(card=>{
+      const tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+      const visible = active === 'all' || tags.includes(active);
+      card.hidden = !visible;
+      if(visible) shown += 1;
+    });
+    filterButtons.forEach(btn=>{
+      btn.classList.toggle('is-active', btn.getAttribute('data-filter') === active);
+    });
+    if(countEl) countEl.textContent = String(shown);
+    collect();
+    if(updateHash && active !== 'all') history.replaceState(null, '', `#${active}`);
+    if(updateHash && active === 'all') history.replaceState(null, '', location.pathname);
+  }
+
+  if(filterButtons.length){
+    filterButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        applyFilter(btn.getAttribute('data-filter') || 'all', true);
+      });
+    });
+    const initial = location.hash.replace('#', '');
+    const valid = filterButtons.some(btn=>btn.getAttribute('data-filter') === initial);
+    applyFilter(valid ? initial : 'all', false);
+  }
 
   function show(i){
     if(!nodes.length) return;

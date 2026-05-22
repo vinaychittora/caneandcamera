@@ -29,9 +29,10 @@ def normalize_title(name: str) -> str:
     return name.replace("-", " ").replace("_", " ").title()
 
 
-def process_image(src: Path, gallery: str):
+def process_image(src: Path, gallery: str, existing: dict):
     slug = src.stem.lower().strip().replace(" ", "-")
-    title = normalize_title(slug)
+    previous = existing.get(slug, {})
+    title = previous.get("title") or normalize_title(slug)
 
     with Image.open(src) as im:
         rgb = im.convert("RGB")
@@ -56,30 +57,38 @@ def process_image(src: Path, gallery: str):
         maxw = max(int(k) for k in variants)
         full = variants[str(maxw)]
 
-        return {
+        item = {
             "slug": slug,
             "title": title,
-            "description": "",
+            "description": previous.get("description", ""),
             "gallery": gallery,
-            "camera": "",
-            "lens": "",
-            "exif": "",
-            "datetime": "",
+            "camera": previous.get("camera", ""),
+            "lens": previous.get("lens", ""),
+            "exif": previous.get("exif", ""),
+            "datetime": previous.get("datetime", ""),
             "original": {
                 "file": str(src.relative_to(ROOT)).replace("\\", "/"),
                 "w": ow,
                 "h": oh,
             },
             "variants": variants,
-            "exposure": "",
-            "aperture": "",
-            "iso": "",
-            "focal": "",
+            "exposure": previous.get("exposure", ""),
+            "aperture": previous.get("aperture", ""),
+            "iso": previous.get("iso", ""),
+            "focal": previous.get("focal", ""),
             "default": full,
         }
+        for key, value in previous.items():
+            if key not in item and key not in {"original", "variants", "default"}:
+                item[key] = value
+        return item
 
 
 def main():
+    existing = {}
+    if MANIFEST.exists():
+        existing = {item["slug"]: item for item in json.loads(MANIFEST.read_text())}
+
     items = []
     for gallery_dir in sorted(ORIGINALS.iterdir()):
         if not gallery_dir.is_dir():
@@ -88,7 +97,7 @@ def main():
         for src in sorted(gallery_dir.iterdir()):
             if src.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp"}:
                 continue
-            items.append(process_image(src, gallery))
+            items.append(process_image(src, gallery, existing))
 
     MANIFEST.write_text(json.dumps(items, indent=2, ensure_ascii=False) + "\n")
     print(f"Wrote {len(items)} entries to {MANIFEST}")

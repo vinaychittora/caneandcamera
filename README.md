@@ -33,6 +33,9 @@ This command regenerates:
 
 - Gallery manifest: `assets/img/gallery/generated/photos.json`
 - Documentary metadata: `data/documentaries.json`
+- Portfolio taxonomy and page copy: `scripts/build_site.py`
+
+The gallery is now presented as a **Field Index**. Photos are grouped client-side by field-study tags such as raptors, grasslands, wetlands, forest edge, and small lives. Those tags and narrative notes live in `scripts/build_site.py`, so the site stays static while still feeling curated.
 
 ## Responsive image pipeline
 
@@ -75,6 +78,8 @@ python3 scripts/generate_responsive_images.py
 ```bash
 python3 scripts/build_site.py
 ```
+
+The responsive image generator preserves existing manifest metadata for matching slugs, so rerunning it should not wipe the titles, descriptions, camera info, or custom fields you already edited.
 
 ### Concrete example
 
