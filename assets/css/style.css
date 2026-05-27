@@ -668,6 +668,20 @@ p {
   display: none;
 }
 
+.cc-thumb-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.cc-thumb-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
 .cc-thumb {
   display: block;
   width: 100%;

@@ -1,3 +1,6 @@
+http://caneandcamera.com/* https://www.caneandcamera.com/:splat 301!
+https://caneandcamera.com/* https://www.caneandcamera.com/:splat 301!
+http://www.caneandcamera.com/* https://www.caneandcamera.com/:splat 301!
 /index.html / 301!
 /gallery.html /gallery 301!
 /landscapes.html /landscapes 301!
@@ -11,3 +14,4 @@
 /contact/ /contact 301!
 /work-with-me /contact 301!
 /work-with-me/ /contact 301!
+/work-with-me/index.html /contact 301!

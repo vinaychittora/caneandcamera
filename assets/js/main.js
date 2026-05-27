@@ -37,7 +37,12 @@
     if (!a) return;
     const target = a.getAttribute('href');
     if (!target || target === '#') return;
-    const node = document.querySelector(target);
+    let node = null;
+    try {
+      node = document.querySelector(target);
+    } catch (err) {
+      return;
+    }
     if (!node) return;
     e.preventDefault();
     node.scrollIntoView({ behavior: 'smooth' });

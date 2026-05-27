@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /_headers
+Disallow: /_redirects
+Disallow: /data/
+Disallow: /assets/img/gallery/originals/
 
 Sitemap: https://www.caneandcamera.com/sitemap.xml

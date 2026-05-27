@@ -163,7 +163,8 @@
   function togglePlay(){ playing ? stop() : play(); }
 
   grid.addEventListener('click', e=>{
-    const img = e.target.closest('img.cc-thumb');
+    const trigger = e.target.closest('.cc-thumb-button');
+    const img = trigger ? trigger.querySelector('img.cc-thumb') : e.target.closest('img.cc-thumb');
     if(!img) return;
     e.preventDefault();
     collect();

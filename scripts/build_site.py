@@ -2,6 +2,7 @@
 import html
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -14,6 +15,14 @@ ROUTES = {
     "docs": "/documentaries",
     "about": "/about",
     "contact": "/contact",
+}
+ROUTE_LABELS = {
+    ROUTES["home"]: "Home",
+    ROUTES["gallery"]: "Field Index",
+    ROUTES["landscapes"]: "Habitat Frames",
+    ROUTES["docs"]: "Films",
+    ROUTES["about"]: "About",
+    ROUTES["contact"]: "Collaborate",
 }
 
 
@@ -34,9 +43,82 @@ def asset_url(path):
     return root_relative(f"{path}?v={digest}")
 
 
-CSS_URL = asset_url("assets/css/style.css")
-MAIN_JS_URL = asset_url("assets/js/main.js")
-GALLERY_JS_URL = asset_url("assets/js/gallery-lightbox.js")
+MINIFIED_ASSETS = {
+    "assets/css/style.css": "assets/css/style.min.css",
+    "assets/js/main.js": "assets/js/main.min.js",
+    "assets/js/gallery-lightbox.js": "assets/js/gallery-lightbox.min.js",
+}
+
+
+def minify_css(source):
+    css = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{}:;,>+~])\s*", r"\1", css)
+    css = css.replace(";}", "}")
+    return css.strip() + "\n"
+
+
+def strip_js_comments(source):
+    out = []
+    quote = None
+    escaped = False
+    i = 0
+    while i < len(source):
+        ch = source[i]
+        nxt = source[i + 1] if i + 1 < len(source) else ""
+        if quote:
+            out.append(ch)
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == quote:
+                quote = None
+            i += 1
+            continue
+        if ch in ("'", '"', "`"):
+            quote = ch
+            out.append(ch)
+            i += 1
+            continue
+        if ch == "/" and nxt == "/":
+            i += 2
+            while i < len(source) and source[i] not in "\r\n":
+                i += 1
+            out.append("\n")
+            continue
+        if ch == "/" and nxt == "*":
+            i += 2
+            while i + 1 < len(source) and source[i : i + 2] != "*/":
+                i += 1
+            i += 2
+            out.append(" ")
+            continue
+        out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def minify_js(source):
+    stripped = strip_js_comments(source)
+    lines = [line.strip() for line in stripped.splitlines() if line.strip()]
+    return "".join(lines) + "\n"
+
+
+def write_minified_assets():
+    for source, dest in MINIFIED_ASSETS.items():
+        source_path = ROOT / source
+        dest_path = ROOT / dest
+        text = source_path.read_text()
+        minified = minify_css(text) if source.endswith(".css") else minify_js(text)
+        dest_path.write_text(minified)
+
+
+write_minified_assets()
+
+CSS_URL = asset_url("assets/css/style.min.css")
+MAIN_JS_URL = asset_url("assets/js/main.min.js")
+GALLERY_JS_URL = asset_url("assets/js/gallery-lightbox.min.js")
 
 with (ROOT / "assets/img/gallery/generated/photos.json").open() as f:
     photos = json.load(f)
@@ -509,7 +591,7 @@ def photo_card(item, sizes="(min-width: 1100px) 31vw, (min-width: 700px) 46vw, 1
     chips = "".join(f'<span>{h(t.replace("-", " "))}</span>' for t in tags[:3])
     facts = " / ".join(part for part in [dt, camera] if part)
     return f'''<article class="cc-card field-card" data-tags="{h(" ".join(tags))}">
-  {img}
+  <button class="cc-thumb-button" type="button" aria-label="Open {h(title)} in image viewer">{img}</button>
   <div class="cc-meta">
     <p class="field-card__eyebrow">{h(habitat)}</p>
     <h3>{h(title)}</h3>
@@ -564,7 +646,7 @@ def doc_card(doc, full=False):
     desc = doc["desc"]
     if full:
         return f'''<article class="docu-card">
-  <iframe src="https://www.youtube.com/embed/{vid}" title="{h(title)}" loading="lazy" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/{vid}" title="{h(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   <div class="docu-meta"><p class="kicker">Field film</p><h3>{h(title)}</h3><p>{h(desc)}</p></div>
 </article>'''
     return f'''<article class="film-card">
@@ -575,10 +657,11 @@ def doc_card(doc, full=False):
 </article>'''
 
 
-def json_ld_common(page_url):
+def json_ld_common():
     person = {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": absolute_url(ROUTES["about"]) + "#vinay-chittora",
         "name": "Vinay Chittora",
         "jobTitle": "Naturalist, Wildlife Filmmaker, Field Storyteller",
         "url": absolute_url(ROUTES["about"]),
@@ -596,16 +679,19 @@ def json_ld_common(page_url):
     website = {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": absolute_url(ROUTES["home"]) + "#website",
         "name": "Cane & Camera",
         "url": absolute_url(ROUTES["home"]),
         "description": "A naturalist portfolio of wildlife filmmaking, field observation, and conservation storytelling from Rajasthan.",
+        "publisher": {"@id": absolute_url(ROUTES["home"]) + "#organization"},
     }
     organization = {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": absolute_url(ROUTES["home"]) + "#organization",
         "name": "Cane & Camera",
         "url": absolute_url(ROUTES["home"]),
-        "founder": {"@type": "Person", "name": "Vinay Chittora"},
+        "founder": {"@id": absolute_url(ROUTES["about"]) + "#vinay-chittora"},
         "sameAs": [SOCIAL["instagram"], SOCIAL["youtube"], SOCIAL["mhtr"]],
     }
     return [person, website, organization]
@@ -617,7 +703,40 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
         f'<a class="nav-link{(" is-active" if key == active else "")}" href="{href}">{label}</a>'
         for label, href, key in NAV
     )
-    jsonlds = json_ld_common(canonical)
+    jsonlds = json_ld_common()
+    jsonlds.append(
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": canonical_url + "#webpage",
+            "url": canonical_url,
+            "name": title,
+            "description": description,
+            "isPartOf": {"@id": absolute_url(ROUTES["home"]) + "#website"},
+            "publisher": {"@id": absolute_url(ROUTES["home"]) + "#organization"},
+        }
+    )
+    if canonical != ROUTES["home"]:
+        jsonlds.append(
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": ROUTE_LABELS[ROUTES["home"]],
+                        "item": absolute_url(ROUTES["home"]),
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": ROUTE_LABELS.get(canonical, title.split("|")[0].strip()),
+                        "item": canonical_url,
+                    },
+                ],
+            }
+        )
     if extra_jsonld:
         jsonlds.extend(extra_jsonld)
     ld_tags = "\n".join(
@@ -634,8 +753,11 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{h(title)}</title>
   <meta name="description" content="{h(description)}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Vinay Chittora">
   <link rel="canonical" href="{h(canonical_url)}">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cane &amp; Camera">
   <meta property="og:title" content="{h(title)}">
   <meta property="og:description" content="{h(description)}">
   <meta property="og:url" content="{h(canonical_url)}">
@@ -905,7 +1027,7 @@ docsp = page(
     body_class="docs-page",
 )
 
-about_body = '''
+about_body = f'''
 <section class="portfolio-section about-page">
   <p class="kicker">About the naturalist</p>
   <h1>Vinay Chittora works where field craft, filmmaking and conservation meet.</h1>
@@ -988,15 +1110,25 @@ mirrors = {
     "landscapes/index.html": land,
     "documentaries/index.html": docsp,
     "contact/index.html": contact,
-    "work-with-me/index.html": contact,
 }
 for rel, content in mirrors.items():
     (ROOT / rel).write_text(content)
 
-robots = "User-agent: *\nAllow: /\n\nSitemap: https://www.caneandcamera.com/sitemap.xml\n"
+robots = """User-agent: *
+Allow: /
+Disallow: /_headers
+Disallow: /_redirects
+Disallow: /data/
+Disallow: /assets/img/gallery/originals/
+
+Sitemap: https://www.caneandcamera.com/sitemap.xml
+"""
 (ROOT / "robots.txt").write_text(robots)
 
 redirects = [
+    "http://caneandcamera.com/* https://www.caneandcamera.com/:splat 301!",
+    "https://caneandcamera.com/* https://www.caneandcamera.com/:splat 301!",
+    "http://www.caneandcamera.com/* https://www.caneandcamera.com/:splat 301!",
     "/index.html / 301!",
     "/gallery.html /gallery 301!",
     "/landscapes.html /landscapes 301!",
@@ -1010,20 +1142,23 @@ redirects = [
     "/contact/ /contact 301!",
     "/work-with-me /contact 301!",
     "/work-with-me/ /contact 301!",
+    "/work-with-me/index.html /contact 301!",
 ]
 (ROOT / "_redirects").write_text("\n".join(redirects) + "\n")
 
 urls = [
-    absolute_url(ROUTES["home"]),
-    absolute_url(ROUTES["gallery"]),
-    absolute_url(ROUTES["landscapes"]),
-    absolute_url(ROUTES["docs"]),
-    absolute_url(ROUTES["about"]),
-    absolute_url(ROUTES["contact"]),
+    (absolute_url(ROUTES["home"]), "weekly", "1.0"),
+    (absolute_url(ROUTES["gallery"]), "weekly", "0.9"),
+    (absolute_url(ROUTES["landscapes"]), "monthly", "0.7"),
+    (absolute_url(ROUTES["docs"]), "monthly", "0.8"),
+    (absolute_url(ROUTES["about"]), "monthly", "0.6"),
+    (absolute_url(ROUTES["contact"]), "monthly", "0.6"),
 ]
 lastmod = datetime.now(timezone.utc).date().isoformat()
 xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-for u in urls:
-    xml.append(f"  <url><loc>{u}</loc><lastmod>{lastmod}</lastmod></url>")
+for u, changefreq, priority in urls:
+    xml.append(
+        f"  <url><loc>{u}</loc><lastmod>{lastmod}</lastmod><changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>"
+    )
 xml.append("</urlset>")
 (ROOT / "sitemap.xml").write_text("\n".join(xml) + "\n")

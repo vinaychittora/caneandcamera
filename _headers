@@ -1,5 +1,21 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
 /assets/css/*
   Cache-Control: public, max-age=31536000, immutable
 
 /assets/js/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/gallery/originals/*
+  X-Robots-Tag: noindex, noimageindex
+
+/data/*
+  X-Robots-Tag: noindex
+
+/_headers
+  X-Robots-Tag: noindex
+
+/_redirects
+  X-Robots-Tag: noindex
