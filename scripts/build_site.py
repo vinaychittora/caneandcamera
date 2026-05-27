@@ -6,11 +6,32 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+SITE_URL = "https://www.caneandcamera.com"
+ROUTES = {
+    "home": "/",
+    "gallery": "/gallery",
+    "landscapes": "/landscapes",
+    "docs": "/documentaries",
+    "about": "/about",
+    "contact": "/contact",
+}
+
+
+def root_relative(path):
+    if path.startswith(("http://", "https://", "mailto:", "#", "/")):
+        return path
+    return f"/{path}"
+
+
+def absolute_url(path):
+    if path.startswith(("http://", "https://")):
+        return path
+    return f"{SITE_URL}{root_relative(path)}"
 
 
 def asset_url(path):
     digest = hashlib.sha1((ROOT / path).read_bytes()).hexdigest()[:10]
-    return f"{path}?v={digest}"
+    return root_relative(f"{path}?v={digest}")
 
 
 CSS_URL = asset_url("assets/css/style.css")
@@ -33,11 +54,11 @@ for d in docs_raw:
     docs.append(d)
 
 NAV = [
-    ("Home", "index.html", "home"),
-    ("Field Index", "gallery.html", "gallery"),
-    ("Films", "documentaries.html", "docs"),
-    ("About", "about.html", "about"),
-    ("Collaborate", "contact.html", "contact"),
+    ("Home", ROUTES["home"], "home"),
+    ("Field Index", ROUTES["gallery"], "gallery"),
+    ("Films", ROUTES["docs"], "docs"),
+    ("About", ROUTES["about"], "about"),
+    ("Collaborate", ROUTES["contact"], "contact"),
 ]
 
 SOCIAL = {
@@ -370,7 +391,7 @@ def srcset_for(item, source_key="src"):
         v = variants[str(k)]
         src = v.get(source_key)
         if src:
-            pairs.append(f"{src} {v['w']}w")
+            pairs.append(f"{root_relative(src)} {v['w']}w")
     return ", ".join(pairs)
 
 
@@ -411,7 +432,7 @@ def image_html(item, class_name, target=1024, sizes="100vw", alt=None, loading="
     webp_srcset = srcset_for(item, "webp")
     attrs = [
         f'class="{h(class_name)}"',
-        f'src="{h(thumb["src"])}"',
+        f'src="{h(root_relative(thumb["src"]))}"',
         f'srcset="{h(srcset_for(item))}"',
         f'sizes="{h(sizes)}"',
         f'width="{full["w"]}"',
@@ -423,7 +444,7 @@ def image_html(item, class_name, target=1024, sizes="100vw", alt=None, loading="
     if fetchpriority:
         attrs.append(f'fetchpriority="{fetchpriority}"')
     if data_full:
-        attrs.append(f'data-full="{h(full["src"])}"')
+        attrs.append(f'data-full="{h(root_relative(full["src"]))}"')
     img = f"<img {' '.join(attrs)}>"
     if not webp_srcset:
         return img
@@ -463,7 +484,7 @@ def study_card(study):
         alt=cover["title"],
     )
     return f'''<article class="study-card" data-study="{h(study["id"])}">
-  <a class="study-card__link" href="gallery.html#{h(study["id"])}">
+  <a class="study-card__link" href="{ROUTES["gallery"]}#{h(study["id"])}">
     {cover_img}
     <div class="study-card__body">
       <p class="kicker">{h(study["label"])}</p>
@@ -513,7 +534,7 @@ def featured_frame(slug):
         alt=item["title"],
     )
     return f'''<article class="featured-frame">
-  <a href="gallery.html#{h((photo_tags(item) or ["all"])[0])}">
+  <a href="{ROUTES["gallery"]}#{h((photo_tags(item) or ["all"])[0])}">
     {img}
     <div>
       <p class="kicker">{h(note.get("habitat", "Field observation"))}</p>
@@ -547,7 +568,7 @@ def doc_card(doc, full=False):
   <div class="docu-meta"><p class="kicker">Field film</p><h3>{h(title)}</h3><p>{h(desc)}</p></div>
 </article>'''
     return f'''<article class="film-card">
-  <a class="film-card__link" href="documentaries.html">
+  <a class="film-card__link" href="{ROUTES["docs"]}">
     <img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" width="480" height="360" loading="lazy" decoding="async" alt="{h(title)}">
     <div><p class="kicker">Film</p><h3>{h(title)}</h3><p>{h(desc)}</p></div>
   </a>
@@ -560,7 +581,7 @@ def json_ld_common(page_url):
         "@type": "Person",
         "name": "Vinay Chittora",
         "jobTitle": "Naturalist, Wildlife Filmmaker, Field Storyteller",
-        "url": "https://www.caneandcamera.com/about.html",
+        "url": absolute_url(ROUTES["about"]),
         "homeLocation": {"@type": "Place", "name": "Rajasthan, India"},
         "sameAs": [SOCIAL["instagram"], SOCIAL["youtube"], SOCIAL["mhtr"]],
         "knowsAbout": [
@@ -576,14 +597,14 @@ def json_ld_common(page_url):
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Cane & Camera",
-        "url": "https://www.caneandcamera.com/",
+        "url": absolute_url(ROUTES["home"]),
         "description": "A naturalist portfolio of wildlife filmmaking, field observation, and conservation storytelling from Rajasthan.",
     }
     organization = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Cane & Camera",
-        "url": "https://www.caneandcamera.com/",
+        "url": absolute_url(ROUTES["home"]),
         "founder": {"@type": "Person", "name": "Vinay Chittora"},
         "sameAs": [SOCIAL["instagram"], SOCIAL["youtube"], SOCIAL["mhtr"]],
     }
@@ -591,6 +612,7 @@ def json_ld_common(page_url):
 
 
 def page(title, description, canonical, active, body, extra_head="", extra_jsonld=None, body_class="", og_image=None):
+    canonical_url = absolute_url(canonical)
     nav = "\n".join(
         f'<a class="nav-link{(" is-active" if key == active else "")}" href="{href}">{label}</a>'
         for label, href, key in NAV
@@ -612,17 +634,17 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{h(title)}</title>
   <meta name="description" content="{h(description)}">
-  <link rel="canonical" href="https://www.caneandcamera.com/{canonical}">
+  <link rel="canonical" href="{h(canonical_url)}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{h(title)}">
   <meta property="og:description" content="{h(description)}">
-  <meta property="og:url" content="https://www.caneandcamera.com/{canonical}">
+  <meta property="og:url" content="{h(canonical_url)}">
   <meta property="og:image" content="{h(og)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{h(title)}">
   <meta name="twitter:description" content="{h(description)}">
   <meta name="twitter:image" content="{h(og)}">
-  <link rel="icon" type="image/png" href="assets/img/ico/favicon.png">
+  <link rel="icon" type="image/png" href="/assets/img/ico/favicon.png">
   <link rel="preload" href="{h(CSS_URL)}" as="style">
   <link rel="stylesheet" href="{h(CSS_URL)}">
   <script defer src="{h(MAIN_JS_URL)}"></script>
@@ -633,8 +655,8 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="index.html" class="logo" aria-label="Cane & Camera home">
-      <img src="assets/img/ico/logo.svg" alt="" width="48" height="48">
+    <a href="{ROUTES["home"]}" class="logo" aria-label="Cane & Camera home">
+      <img src="/assets/img/ico/logo.svg" alt="" width="48" height="48">
       <span>Cane & Camera</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">Menu</button>
@@ -644,9 +666,9 @@ def page(title, description, canonical, active, body, extra_head="", extra_jsonl
 <main id="main-content" class="wrap">{body}</main>
 <footer class="site-footer">
   <div class="container footer-grid">
-    <section><h2 class="footer-heading">Navigate</h2><p><a href="index.html">Home</a> / <a href="gallery.html">Field Index</a> / <a href="documentaries.html">Films</a> / <a href="about.html">About</a> / <a href="contact.html">Collaborate</a></p></section>
+    <section><h2 class="footer-heading">Navigate</h2><p><a href="{ROUTES["home"]}">Home</a> / <a href="{ROUTES["gallery"]}">Field Index</a> / <a href="{ROUTES["docs"]}">Films</a> / <a href="{ROUTES["about"]}">About</a> / <a href="{ROUTES["contact"]}">Collaborate</a></p></section>
     <section><h2 class="footer-heading">Connect</h2><p><a href="{SOCIAL["instagram"]}" target="_blank" rel="noopener">Instagram</a> / <a href="{SOCIAL["youtube"]}" target="_blank" rel="noopener">YouTube</a> / <a href="{SOCIAL["patreon"]}" target="_blank" rel="noopener">Patreon</a></p><p><a href="{SOCIAL["mhtr"]}" target="_blank" rel="noopener">Field notes at mhtr.in</a></p></section>
-    <section><h2 class="footer-heading">Contact</h2><p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p><p><a href="contact.html">Start a collaboration inquiry</a></p></section>
+    <section><h2 class="footer-heading">Contact</h2><p><b><a href="mailto:hello@caneandcamera.com">hello@caneandcamera.com</a></b></p><p><a href="{ROUTES["contact"]}">Start a collaboration inquiry</a></p></section>
   </div>
   <p class="site-footer__legal">(c) 2026 Cane & Camera. All rights reserved.</p>
 {footer_extra.rstrip()}
@@ -663,9 +685,9 @@ home_body = f'''
     <h1>Cane &amp; Camera</h1>
     <p class="hero-portfolio__line">A naturalist's portfolio of wildlife films, field notes, and biodiversity stories from Mukundara-linked landscapes, Thar grasslands, wetlands and forest edges.</p>
     <div class="hero-portfolio__actions">
-      <a class="btn" href="gallery.html">Enter the field index</a>
-      <a class="btn btn-ghost" href="documentaries.html">Watch films</a>
-      <a class="btn btn-ghost" href="contact.html">Collaborate</a>
+      <a class="btn" href="{ROUTES["gallery"]}">Enter the field index</a>
+      <a class="btn btn-ghost" href="{ROUTES["docs"]}">Watch films</a>
+      <a class="btn btn-ghost" href="{ROUTES["contact"]}">Collaborate</a>
     </div>
   </div>
   <div class="hero-portfolio__specimen">
@@ -685,7 +707,7 @@ home_body = f'''
 <section class="portfolio-section">
   <div class="section-head">
     <div><p class="kicker">Current field studies</p><h2>Five ways into the landscape</h2></div>
-    <a href="gallery.html">Open the full index</a>
+    <a href="{ROUTES["gallery"]}">Open the full index</a>
   </div>
   <div class="study-grid">{''.join(study_card(s) for s in FIELD_STUDIES)}</div>
 </section>
@@ -705,7 +727,7 @@ home_body = f'''
 <section class="portfolio-section">
   <div class="section-head">
     <div><p class="kicker">Selected frames</p><h2>Portfolio edit</h2></div>
-    <a href="gallery.html">Browse by habitat</a>
+    <a href="{ROUTES["gallery"]}">Browse by habitat</a>
   </div>
   <div class="featured-frame-grid">{''.join(featured_frame(slug) for slug in FEATURED_PHOTO_SLUGS if slug in photo_map)}</div>
 </section>
@@ -713,7 +735,7 @@ home_body = f'''
 <section class="portfolio-section film-band">
   <div class="section-head">
     <div><p class="kicker">Films</p><h2>Field stories in motion</h2></div>
-    <a href="documentaries.html">See all films</a>
+    <a href="{ROUTES["docs"]}">See all films</a>
   </div>
   <div class="film-grid">{''.join(doc_card(d) for d in docs[:3])}</div>
 </section>
@@ -731,14 +753,14 @@ home_body = f'''
   <p class="kicker">Collaborations</p>
   <h2>For films, field scouting, conservation campaigns and natural history documentation.</h2>
   <p>If the project needs local ecological context, ethical field execution, or a naturalist's eye behind the camera, start with a short brief.</p>
-  <p><a class="btn" href="contact.html">Send a project brief</a></p>
+  <p><a class="btn" href="{ROUTES["contact"]}">Send a project brief</a></p>
 </section>
 '''
 
 home = page(
     "Cane & Camera | Naturalist Portfolio of Vinay Chittora",
     "Cane & Camera is Vinay Chittora's naturalist portfolio for wildlife films, field photography, scouting, and conservation storytelling from Rajasthan.",
-    "index.html",
+    ROUTES["home"],
     "home",
     home_body,
     body_class="home-page",
@@ -808,7 +830,7 @@ gallery_body = f'''
 gallery = page(
     "Field Index | Wildlife Photography Portfolio | Cane & Camera",
     "A curated field index of Cane & Camera wildlife photographs arranged by raptors, grasslands, wetlands, forest edge species, and overlooked small lives.",
-    "gallery.html",
+    ROUTES["gallery"],
     "gallery",
     gallery_body,
     extra_head=f'<script defer src="{h(GALLERY_JS_URL)}"></script>',
@@ -837,7 +859,7 @@ land_body = f'''
 land = page(
     "Habitat Frames | Cane & Camera",
     "Habitat-focused photographs from Rajasthan that show the ecological setting behind wildlife behavior and natural history storytelling.",
-    "landscapes.html",
+    ROUTES["landscapes"],
     "gallery",
     land_body,
     extra_head=f'<script defer src="{h(GALLERY_JS_URL)}"></script>',
@@ -869,14 +891,14 @@ docs_body = f'''
   <p class="kicker">Field support</p>
   <h2>Need a naturalist's eye on a film?</h2>
   <p>I can support story scouting, local ecological context, field logistics and low-disturbance cinematography for conservation and natural history productions.</p>
-  <p><a class="btn" href="contact.html">Discuss a film collaboration</a></p>
+  <p><a class="btn" href="{ROUTES["contact"]}">Discuss a film collaboration</a></p>
 </section>
 '''
 
 docsp = page(
     "Wildlife Documentaries & Conservation Films | Cane & Camera",
     "Watch conservation-focused wildlife films by Cane & Camera, including grassland, wetland, desert-edge, and Mukundara natural history stories.",
-    "documentaries.html",
+    ROUTES["docs"],
     "docs",
     docs_body,
     extra_jsonld=video_objs,
@@ -899,13 +921,13 @@ about_body = '''
   <p class="kicker">Useful for</p>
   <h2>Editorial teams, NGOs, educators, filmmakers and mission-led brands.</h2>
   <p>The work is most useful when a project needs grounded natural history storytelling, field scouting, ecological interpretation or ethical wildlife cinematography support.</p>
-  <p><a class="btn" href="contact.html">See collaboration options</a></p>
+  <p><a class="btn" href="{ROUTES["contact"]}">See collaboration options</a></p>
 </section>
 '''
 about = page(
     "About Vinay Chittora | Naturalist & Wildlife Filmmaker | Cane & Camera",
     "Learn about Vinay Chittora's field-based natural history practice in Mukundara Hills and Rajasthan, and his biodiversity-first conservation storytelling approach.",
-    "about.html",
+    ROUTES["about"],
     "about",
     about_body,
     body_class="about-page-body",
@@ -941,7 +963,7 @@ contact_body = '''
 contact = page(
     "Collaborate With Cane & Camera | Wildlife Film, Field Scouting, Conservation Storytelling",
     "Contact Cane & Camera for wildlife filmmaking, field scouting, ecological story research, and conservation communication collaborations in Rajasthan and Mukundara landscapes.",
-    "contact.html",
+    ROUTES["contact"],
     "contact",
     contact_body,
     body_class="contact-page-body",
@@ -969,25 +991,35 @@ mirrors = {
     "work-with-me/index.html": contact,
 }
 for rel, content in mirrors.items():
-    out = content.replace("<head>", '<head>\n  <base href="../">', 1)
-    (ROOT / rel).write_text(out)
+    (ROOT / rel).write_text(content)
 
 robots = "User-agent: *\nAllow: /\n\nSitemap: https://www.caneandcamera.com/sitemap.xml\n"
 (ROOT / "robots.txt").write_text(robots)
 
+redirects = [
+    "/index.html / 301!",
+    "/gallery.html /gallery 301!",
+    "/landscapes.html /landscapes 301!",
+    "/documentaries.html /documentaries 301!",
+    "/about.html /about 301!",
+    "/contact.html /contact 301!",
+    "/gallery/ /gallery 301!",
+    "/landscapes/ /landscapes 301!",
+    "/documentaries/ /documentaries 301!",
+    "/about/ /about 301!",
+    "/contact/ /contact 301!",
+    "/work-with-me /contact 301!",
+    "/work-with-me/ /contact 301!",
+]
+(ROOT / "_redirects").write_text("\n".join(redirects) + "\n")
+
 urls = [
-    "https://www.caneandcamera.com/index.html",
-    "https://www.caneandcamera.com/gallery.html",
-    "https://www.caneandcamera.com/landscapes.html",
-    "https://www.caneandcamera.com/documentaries.html",
-    "https://www.caneandcamera.com/about.html",
-    "https://www.caneandcamera.com/contact.html",
-    "https://www.caneandcamera.com/gallery/",
-    "https://www.caneandcamera.com/landscapes/",
-    "https://www.caneandcamera.com/documentaries/",
-    "https://www.caneandcamera.com/about/",
-    "https://www.caneandcamera.com/contact/",
-    "https://www.caneandcamera.com/work-with-me/",
+    absolute_url(ROUTES["home"]),
+    absolute_url(ROUTES["gallery"]),
+    absolute_url(ROUTES["landscapes"]),
+    absolute_url(ROUTES["docs"]),
+    absolute_url(ROUTES["about"]),
+    absolute_url(ROUTES["contact"]),
 ]
 lastmod = datetime.now(timezone.utc).date().isoformat()
 xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

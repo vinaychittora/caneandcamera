@@ -46,6 +46,23 @@
   }
   collect();
 
+  function hasFilter(filter){
+    return filterButtons.some(btn=>btn.getAttribute('data-filter') === filter);
+  }
+
+  function normalizePath(pathname){
+    const clean = pathname.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+    return clean || '/';
+  }
+
+  function scrollToPlates(behavior){
+    const target = grid.closest('.gallery-panel') || grid;
+    const header = document.querySelector('.site-header');
+    const offset = (header?.offsetHeight || 0) + 12;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: behavior || 'smooth' });
+  }
+
   function applyFilter(filter, updateHash){
     const active = filter || 'all';
     let shown = 0;
@@ -71,8 +88,31 @@
       });
     });
     const initial = location.hash.replace('#', '');
-    const valid = filterButtons.some(btn=>btn.getAttribute('data-filter') === initial);
+    const valid = hasFilter(initial);
     applyFilter(valid ? initial : 'all', false);
+    if(valid) requestAnimationFrame(()=>scrollToPlates('auto'));
+
+    document.addEventListener('click', e=>{
+      const link = e.target.closest('a[href*="#"]');
+      if(!link) return;
+      const url = new URL(link.getAttribute('href'), location.href);
+      if(url.origin !== location.origin) return;
+      if(normalizePath(url.pathname) !== normalizePath(location.pathname)) return;
+
+      const filter = decodeURIComponent(url.hash.replace('#', ''));
+      if(!hasFilter(filter)) return;
+
+      e.preventDefault();
+      applyFilter(filter, true);
+      scrollToPlates('smooth');
+    });
+
+    window.addEventListener('hashchange', ()=>{
+      const filter = decodeURIComponent(location.hash.replace('#', ''));
+      if(!hasFilter(filter)) return;
+      applyFilter(filter, false);
+      scrollToPlates('smooth');
+    });
   }
 
   function show(i){

@@ -27,7 +27,9 @@ This command regenerates:
 - `about.html`
 - `contact.html`
 - Pretty-route mirrors under `about/`, `gallery/`, `landscapes/`, `documentaries/`, `contact/`, and `work-with-me/`
-- `sitemap.xml` and `robots.txt`
+- `sitemap.xml`, `robots.txt`, and Netlify-style `_redirects`
+
+The generated canonical URLs, internal links, and sitemap use clean public routes such as `/gallery` and `/about`. The `.html` files remain build artifacts for static hosting and are redirected away from on deploy.
 
 ## Content/data sources
 
