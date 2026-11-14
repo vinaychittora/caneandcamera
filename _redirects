@@ -7,6 +7,8 @@ http://www.caneandcamera.com/* https://www.caneandcamera.com/:splat 301!
 /documentaries.html /documentaries 301!
 /about.html /about 301!
 /contact.html /contact 301!
+/work.html /work 301!
+/work/ /work 301!
 /gallery/ /gallery 301!
 /landscapes/ /landscapes 301!
 /documentaries/ /documentaries 301!

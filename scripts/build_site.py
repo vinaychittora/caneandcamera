@@ -1091,8 +1091,9 @@ contact = page(
     body_class="contact-page-body",
 )
 
+# The home page is no longer written from here. It is the walk, built from
+# walk/walk.page.html by build_walk.py, which runs at the end of this file.
 pages = {
-    "index.html": home,
     "gallery.html": gallery,
     "landscapes.html": land,
     "documentaries.html": docsp,
@@ -1135,6 +1136,8 @@ redirects = [
     "/documentaries.html /documentaries 301!",
     "/about.html /about 301!",
     "/contact.html /contact 301!",
+    "/work.html /work 301!",
+    "/work/ /work 301!",
     "/gallery/ /gallery 301!",
     "/landscapes/ /landscapes 301!",
     "/documentaries/ /documentaries 301!",
@@ -1148,6 +1151,7 @@ redirects = [
 
 urls = [
     (absolute_url(ROUTES["home"]), "weekly", "1.0"),
+    (SITE_URL + "/work", "monthly", "0.9"),
     (absolute_url(ROUTES["gallery"]), "weekly", "0.9"),
     (absolute_url(ROUTES["landscapes"]), "monthly", "0.7"),
     (absolute_url(ROUTES["docs"]), "monthly", "0.8"),
@@ -1162,3 +1166,8 @@ for u, changefreq, priority in urls:
     )
 xml.append("</urlset>")
 (ROOT / "sitemap.xml").write_text("\n".join(xml) + "\n")
+
+# The home page and /work: the walk through Vinay's life and the work page.
+import build_walk  # noqa: E402
+
+build_walk.build()

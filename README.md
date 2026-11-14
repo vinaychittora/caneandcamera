@@ -20,7 +20,7 @@ python3 scripts/build_site.py
 
 This command regenerates:
 
-- `index.html`
+- `index.html` and `work.html` (see "The walk" below)
 - `gallery.html`
 - `landscapes.html`
 - `documentaries.html`
@@ -31,6 +31,22 @@ This command regenerates:
 - `sitemap.xml`, `robots.txt`, and Netlify-style `_redirects`
 
 The generated canonical URLs, internal links, and sitemap use clean public routes such as `/gallery` and `/about`. The `.html` files remain build artifacts for static hosting and are redirected away from on deploy.
+
+## The walk
+
+The home page is a side-scrolling walk through Vinay's life, and `/work` lists the work. Both are written by hand, not from the templates:
+
+- `walk/walk.page.html` is the home page and `walk/work.page.html` is the work page. Each file holds one page's styles, markup and script without the document shell, and addresses its pictures as `img/...`.
+- `scripts/build_walk.py` adds the shell and the metadata, points the pictures at `/assets/img/walk/` and the links at `/` and `/work`, and writes `index.html` and `work.html`. `scripts/build_site.py` runs it at the end, and it can be run on its own:
+
+```bash
+python3 scripts/build_walk.py
+```
+
+- The pictures live in `assets/img/walk/` (large copies for the photographs that fill the sky) and `assets/img/walk/t/` (800 px copies for the prints and the contact sheet).
+- To check one moment of the walk, add `?at=` with a number from 0 to 1 to the address, for example `/?at=0.44`.
+
+The older pages (`/gallery`, `/landscapes`, `/documentaries`, `/about`, `/contact`) are still built and served, but the walk does not link to them.
 
 ## Content/data sources
 

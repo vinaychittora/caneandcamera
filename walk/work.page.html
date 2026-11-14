@@ -1,0 +1,175 @@
+<title>Cane & Camera work</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one ledger of work, ink on paper. Each kind of work is a row: what it is on the left, the thing itself on the right. His track divides the sections. */
+:root{
+  color-scheme: light;
+  --paper:#f4f1e8; --ink:#121212; --soft:#5d5a52; --earth:#e9e4d6; --pencil:#c23a22;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:4px;text-decoration-thickness:1.5px}
+a:hover{color:var(--pencil)}
+a:focus-visible{outline:3px solid var(--pencil);outline-offset:3px}
+h1,h2,h3,p,ul,figure{margin:0}
+.wrap{padding-left:max(20px,5vw,env(safe-area-inset-left,0px));padding-right:max(20px,5vw,env(safe-area-inset-right,0px));max-width:1500px;margin-inline:auto}
+.mast{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:calc(env(safe-area-inset-top,0px) + 14px) 14px}
+.brand{display:flex;align-items:center;gap:10px;font:700 14px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.brand img{width:46px}
+.mast nav a{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;padding:10px 14px 9px;border:2px solid var(--ink);text-decoration:none;display:inline-block}
+.mast nav a:hover{background:var(--ink);color:var(--paper)}
+.head{padding-block:clamp(40px,9vh,110px) clamp(30px,6vh,70px)}
+.head h1{font:800 clamp(64px,13vw,210px)/.8 var(--display);font-stretch:75%;letter-spacing:-.04em}
+.head p{font-size:clamp(19px,1.7vw,25px);max-width:36ch;margin-top:1.1em;line-height:1.4}
+.track{height:34px;margin-block:clamp(28px,5vh,56px);
+  background:
+    radial-gradient(ellipse 11px 5px at 12px 8px,var(--ink) 98%,transparent) 0 0/52px 34px repeat-x,
+    radial-gradient(ellipse 11px 5px at 38px 20px,var(--ink) 98%,transparent) 0 0/52px 34px repeat-x,
+    radial-gradient(circle 3px at 16px 30px,var(--ink) 98%,transparent) 0 0/52px 34px repeat-x}
+.row{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);gap:clamp(20px,5vw,90px);align-items:start}
+.row h2{font:800 clamp(34px,4.8vw,78px)/.9 var(--display);font-stretch:76%;letter-spacing:-.03em;text-wrap:balance}
+.row .kind{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+.row p{max-width:54ch}
+.row p + p{margin-top:.8em}
+.go{display:inline-block;margin-top:18px;font:500 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:2px solid var(--ink);padding:12px 15px 11px}
+.go:hover{background:var(--ink);color:var(--paper)}
+.go.solid{background:var(--ink);color:var(--paper)}
+.go.solid:hover{background:var(--pencil);border-color:var(--pencil);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.go.todo{border-style:dashed;border-color:var(--pencil);color:var(--pencil)}
+.reel{list-style:none;padding:0;margin-top:26px;border-top:2px solid var(--ink)}
+.reel a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(18,18,18,.3);text-decoration:none}
+.reel b{font:700 clamp(19px,1.9vw,27px)/1.1 var(--display);font-stretch:84%}
+.reel span{grid-column:1;color:var(--soft);font-size:16px;line-height:1.4}
+.reel em{grid-row:1;grid-column:2;font:500 13px/1 var(--mono);font-style:normal;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.grid figure{background:#fff;padding:8px 8px 0}
+.grid img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.grid figcaption{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:8px 2px 10px;font:500 14px/1.25 var(--text)}
+.grid figcaption span{font:400 11.5px/1 var(--mono);color:var(--soft);white-space:nowrap}
+.mail{font:800 clamp(24px,3.4vw,54px)/1.05 var(--display);font-stretch:80%;letter-spacing:-.02em;user-select:all;overflow-wrap:anywhere;margin-top:16px}
+.foot{border-top:1px solid rgba(18,18,18,.3);margin-top:clamp(50px,9vh,110px);padding-block:24px;font:400 12px/1.5 var(--mono);color:var(--soft);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+@media (max-width:760px){
+  body{font-size:17.5px}
+  .brand span{display:none}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+
+<header class="mast wrap">
+  <a class="brand" href="life.html" aria-label="Cane and Camera, back to the walk"><img src="img/logo.svg" alt="" width="46" height="38"><span>Cane &amp; Camera</span></a>
+  <nav aria-label="Pages"><a href="life.html">&#9664; The walk</a></nav>
+</header>
+
+<main class="wrap">
+  <section class="head">
+    <h1>My work</h1>
+    <p>Photographs, films, software and field data from Kota, Rajasthan. Most of it is about Mukundara Hills Tiger Reserve and the dry country around it.</p>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="citizen-science">
+    <div><p class="kind">Citizen science</p><h2>Biodiversity of MHTR</h2></div>
+    <div>
+      <p>I co-run an iNaturalist project that gathers observations from Mukundara Hills Tiger Reserve: plants, insects, reptiles, birds and mammals, each with a place, a date and an identification that others can check.</p>
+      <a class="go" href="https://www.inaturalist.org/projects/biodiversity-of-mhtr" target="_blank" rel="noopener">Open the project on iNaturalist</a>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="software">
+    <div><p class="kind">Open-source software</p><h2>FALCON</h2></div>
+    <div>
+      <p>Field Acoustic, Lens &amp; Climate Observation Node. FALCON watches a place for animals with a camera, microphones and weather sensors, and analyses everything on your own hardware. Nothing goes to a cloud service.</p>
+      <p>It finds animals in the video, suggests the species, identifies bird calls, saves a clip of each visit and exports a clean dataset in the Camtrap DP standard for researchers.</p>
+      <a class="go" href="https://github.com/vinaychittora/FALCON" target="_blank" rel="noopener">FALCON on GitHub</a>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="mhtr">
+    <div><p class="kind">Website</p><h2>mhtr.in</h2></div>
+    <div>
+      <p>An independent, factual website on Mukundara Hills Tiger Reserve, written to help people understand the forest as a whole and not only its headline animal.</p>
+      <a class="go" href="https://mhtr.in" target="_blank" rel="noopener">Visit mhtr.in</a>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="films">
+    <div><p class="kind">Films</p><h2>Season: Out of Tune</h2></div>
+    <div>
+      <p>A short documentary on wildlife and climate change in rural Rajasthan. 15 minutes.</p>
+      <div class="btns">
+        <a class="go solid" href="https://www.youtube.com/watch?v=vNTxghP-uhM" target="_blank" rel="noopener">Watch the film</a>
+        <a class="go" href="https://www.youtube.com/watch?v=8JZoWLjWFc0" target="_blank" rel="noopener">Trailer, 2:44</a>
+      </div>
+      <ul class="reel">
+        <li><a href="https://www.youtube.com/watch?v=duddKWaLG5w" target="_blank" rel="noopener"><b>Gods of the Ghats</b><span>Life in the Sahyadris and the sacred ecology of the Western Ghats.</span><em>10:00</em></a></li>
+        <li><a href="https://www.youtube.com/watch?v=hjRtHOO40L4" target="_blank" rel="noopener"><b>The Last Dance</b><span>The Great Indian Bustard's courtship display on the last grasslands of Rajasthan.</span><em>10:16</em></a></li>
+        <li><a href="https://www.youtube.com/watch?v=wwb_qPS59wQ" target="_blank" rel="noopener"><b>The 10-Gram Traveller</b><span>A Red-breasted Flycatcher links continents and Mukundara Hills in one tiny migratory body.</span><em>10:01</em></a></li>
+        <li><a href="https://www.youtube.com/watch?v=4uPAnSuYyb0" target="_blank" rel="noopener"><b>Struggles of a Desert Fox Family</b><span>A fox family through heat, predators and the daily pressures of open country.</span><em>11:28</em></a></li>
+      </ul>
+      <a class="go" href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">All films on YouTube</a>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section id="photographs">
+    <div class="row" style="margin-bottom:clamp(22px,4vh,44px)">
+      <div><p class="kind">Photographs</p><h2>A few of them</h2></div>
+      <div><p>No baiting, playback, handling or forced proximity. I shoot from the car, and I wait.</p></div>
+    </div>
+    <div class="grid">
+      <figure><img src="img/t/wolf.jpg" width="800" height="450" loading="lazy" alt="An Indian grey wolf lying in shallow water, looking at the camera."><figcaption>Indian grey wolf <span>Alania</span></figcaption></figure>
+      <figure><img src="img/t/gib-scrub.jpg" width="800" height="533" loading="lazy" alt="A Great Indian Bustard walking through pale scrub."><figcaption>Great Indian Bustard <span>3 Dec 2024</span></figcaption></figure>
+      <figure><img src="img/t/pallid-harrier.jpg" width="800" height="600" loading="lazy" alt="A Pallid Harrier standing in dry grass."><figcaption>Pallid Harrier</figcaption></figure>
+      <figure><img src="img/t/pitta-rock.jpg" width="800" height="533" loading="lazy" alt="An Indian Pitta on a red rock with an insect in its bill."><figcaption>Indian Pitta <span>29 Jul 2026</span></figcaption></figure>
+      <figure><img src="img/t/laggar.jpg" width="800" height="533" loading="lazy" alt="A Laggar Falcon on a bare branch."><figcaption>Laggar Falcon <span>30 Nov 2024</span></figcaption></figure>
+      <figure><img src="img/t/black-capped-kingfisher.jpg" width="800" height="600" loading="lazy" alt="A Black-capped Kingfisher on a branch among green leaves."><figcaption>Black-capped Kingfisher <span>22 Dec 2025</span></figcaption></figure>
+      <figure><img src="img/t/flamingo-pelican.jpg" width="800" height="533" loading="lazy" alt="A flamingo feeding beside a pelican in shallow water, with more flamingos behind."><figcaption>Flamingo and pelican <span>17 Feb 2024</span></figcaption></figure>
+      <figure><img src="img/t/blackbuck.jpg" width="800" height="600" loading="lazy" alt="Two male blackbuck against a dusty evening sky."><figcaption>Blackbuck</figcaption></figure>
+      <figure><img src="img/t/serpent-eagle.jpg" width="800" height="533" loading="lazy" alt="A Crested Serpent Eagle among green leaves, looking at the camera."><figcaption>Crested Serpent Eagle <span>13 Oct 2026</span></figcaption></figure>
+      <figure><img src="img/t/rollers.jpg" width="800" height="533" loading="lazy" alt="Two Indian Rollers mating on a wire, wings spread."><figcaption>Indian Rollers <span>2 Jun 2026</span></figcaption></figure>
+      <figure><img src="img/t/jackal.jpg" width="800" height="533" loading="lazy" alt="An Indian jackal looking back over its shoulder."><figcaption>Indian jackal <span>12 Aug 2026</span></figcaption></figure>
+      <figure><img src="img/t/nightjar.jpg" width="800" height="533" loading="lazy" alt="A Savanna Nightjar roosting on a gravel track."><figcaption>Savanna Nightjar <span>15 Aug 2026</span></figcaption></figure>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="write">
+    <div><p class="kind">Work with me</p><h2>Write to me</h2></div>
+    <div>
+      <p>Wildlife filming, field scouting, story research and conservation communication in Rajasthan. If I can be useful to your project, I would like to hear about it.</p>
+      <p class="mail">hello@caneandcamera.com</p>
+      <div class="btns" style="margin-top:8px">
+        <a class="go" href="https://instagram.com/caneandcamera" target="_blank" rel="noopener">Instagram</a>
+        <a class="go" href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">YouTube</a>
+        <a class="go" href="https://www.patreon.com/cw/CaneAndCamera" target="_blank" rel="noopener">Patreon</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="track" aria-hidden="true"></div>
+  <section class="row" id="support">
+    <div><p class="kind">Support</p><h2>Keep me in the field</h2></div>
+    <div>
+      <p>If this work is worth something to you, you can help me keep going. Four people already have: Ina Koys, Anish Thimanna, Somsubhro and Hrushikesh Patra. Thank you.</p>
+      <div class="btns">
+        <a class="go solid" href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a>
+        <a class="go" href="https://www.patreon.com/cw/CaneAndCamera" target="_blank" rel="noopener">Patreon</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Photographs, films and words © Vinay Chittora</span>
+    <span>First cut of the work page</span>
+  </footer>
+</main>

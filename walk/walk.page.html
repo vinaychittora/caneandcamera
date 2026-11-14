@@ -1,0 +1,762 @@
+<title>Cane & Camera walk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* A walk through his life. One fixed stage and a world that slides sideways; the man from the logo walks it with his cane.
+   Scroll, arrow keys or the two buttons move him. Ink on paper; colour only in his photographs, which open in the sky.
+   1 world unit = 1vh. */
+:root{
+  color-scheme: light;
+  --paper:#f4f1e8; --ink:#121212; --soft:#5d5a52; --earth:#e9e4d6; --hill:#dcd6c6; --pencil:#d8442a;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gl:max(20px,4vw,env(safe-area-inset-left,0px));
+  --gr:max(20px,4vw,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-size:18px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--pencil);outline-offset:3px}
+h1,h2,p,ol,figure{margin:0}
+.spacer{height:calc(var(--pages,17) * 100vh)}
+
+/* ---------- stage and layers ---------- */
+.stage{position:fixed;inset:0;overflow:hidden;background:var(--paper)}
+.layer{position:absolute;left:0;top:0;height:100%;width:3700vh;will-change:transform}
+.far{width:1200vh;transform:translate3d(calc(var(--camf,0) * -.22vh),0,0);
+  background:radial-gradient(ellipse 50% 100% at 50% 100%,var(--paper) 0,var(--paper) 98.3%,var(--ink) 98.7%,var(--ink) 99.5%,transparent 100%) 10vh 56vh/150vh 24vh repeat-x}
+.mid{width:2000vh;transform:translate3d(calc(var(--camm,0) * -.5vh),0,0);
+  background:radial-gradient(ellipse 50% 100% at 50% 100%,var(--hill) 99.4%,transparent 100%) 40vh 65vh/84vh 15vh repeat-x}
+/* trees and shrubs that pass by behind him, a little slower than the road */
+.scrub{width:2900vh;transform:translate3d(calc(var(--cams,0) * -.72vh),0,0);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%202400%20220'%20preserveAspectRatio%3D'none'%20fill%3D'%23c6beaa'%3E%3Crect%20x%3D'180'%20y%3D'118'%20width%3D'8'%20height%3D'102'%2F%3E%3Ccircle%20cx%3D'184'%20cy%3D'98'%20r%3D'46'%2F%3E%3Ccircle%20cx%3D'420'%20cy%3D'206'%20r%3D'22'%2F%3E%3Ccircle%20cx%3D'448'%20cy%3D'197'%20r%3D'28'%2F%3E%3Ccircle%20cx%3D'481'%20cy%3D'207'%20r%3D'20'%2F%3E%3Cpath%20d%3D'M600%20220l6-24%204%2024%206-30%205%2030%207-20%203%2020z'%2F%3E%3Cpath%20d%3D'M764%20220l4-100h8l4%20100z'%2F%3E%3Cellipse%20cx%3D'772'%20cy%3D'106'%20rx%3D'88'%20ry%3D'25'%2F%3E%3Ccircle%20cx%3D'1010'%20cy%3D'207'%20r%3D'18'%2F%3E%3Ccircle%20cx%3D'1034'%20cy%3D'200'%20r%3D'25'%2F%3E%3Cpath%20d%3D'M1150%20220l5-20%204%2020%206-27%205%2027%206-17%203%2017z'%2F%3E%3Crect%20x%3D'1296'%20y%3D'96'%20width%3D'7'%20height%3D'124'%2F%3E%3Cellipse%20cx%3D'1300'%20cy%3D'78'%20rx%3D'34'%20ry%3D'46'%2F%3E%3Ccircle%20cx%3D'1660'%20cy%3D'205'%20r%3D'26'%2F%3E%3Ccircle%20cx%3D'1694'%20cy%3D'198'%20r%3D'31'%2F%3E%3Ccircle%20cx%3D'1730'%20cy%3D'208'%20r%3D'18'%2F%3E%3Cpath%20d%3D'M1846%20220l5-22%204%2022%206-28%205%2028%206-18%203%2018z'%2F%3E%3Cpath%20d%3D'M1994%20220l3-80h7l3%2080z'%2F%3E%3Cellipse%20cx%3D'2000'%20cy%3D'130'%20rx%3D'64'%20ry%3D'20'%2F%3E%3Crect%20x%3D'2266'%20y%3D'132'%20width%3D'8'%20height%3D'88'%2F%3E%3Ccircle%20cx%3D'2270'%20cy%3D'114'%20r%3D'40'%2F%3E%3C%2Fsvg%3E") 0 58vh/240vh 22vh repeat-x}
+.world{transform:translate3d(calc(var(--cam,0) * -1vh),0,0)}
+.ground{position:absolute;left:0;right:0;top:80%;bottom:0;background:var(--earth);border-top:.45vh solid var(--ink)}
+/* his track on the ground: left shoe, right shoe, and the cane mark with every left step. One repeating pattern,
+   and a strip of bare ground ahead of him that hides the steps he has not taken yet. */
+.prints{position:absolute;left:66vh;right:0;top:80%;bottom:0;transform:translate3d(calc(var(--tread,0) * -1vh),0,0);
+  background:
+    radial-gradient(ellipse 1.2vh .575vh at 1.2vh calc(27% + .575vh),var(--ink) 96%,transparent 100%) 0 0/12.8vh 100% repeat-x,
+    radial-gradient(ellipse 1.2vh .575vh at 7.6vh calc(43% + .575vh),var(--ink) 96%,transparent 100%) 0 0/12.8vh 100% repeat-x,
+    radial-gradient(circle .45vh at 2.65vh calc(60% + .45vh),var(--ink) 94%,transparent 100%) 0 0/12.8vh 100% repeat-x}
+.ahead{position:absolute;left:0;width:300vw;top:calc(80% + .45vh);bottom:0;background:var(--earth);transform:translate3d(calc((var(--wxp,60) + 1.2) * 1vh),0,0)}
+.obj{position:absolute;left:calc(var(--x) * 1vh);bottom:20%;fill:var(--ink)}
+.tree{width:1.1vh;height:13vh;background:var(--ink)}
+.tree::before{content:"";position:absolute;left:50%;bottom:9vh;width:calc(var(--s,11) * 1vh);height:calc(var(--s,11) * 1vh);margin-left:calc(var(--s,11) * -.5vh);border-radius:50%;background:var(--ink)}
+.bush{width:9vh;height:4.2vh;background:var(--ink);border-radius:4.5vh 4.5vh 0 0/4.2vh 4.2vh 0 0}
+.bush::before{content:"";position:absolute;left:5.2vh;bottom:0;width:6.4vh;height:2.9vh;background:var(--ink);border-radius:3.2vh 3.2vh 0 0/2.9vh 2.9vh 0 0}
+
+/* ---------- the sky opens: his photographs ---------- */
+.sky{position:absolute;left:0;right:0;top:0;height:80%;overflow:hidden;background:var(--paper);visibility:hidden}
+.sky.on{visibility:visible}
+.sky img{position:absolute;max-width:none;opacity:0;will-change:transform}
+.sky img.on{opacity:1}
+.tag{position:absolute;z-index:6;left:var(--gl);top:calc(80% + 2.2vh);max-width:min(88vw,64ch);margin:0;padding:.65em .9em .6em;background:var(--paper);border:2px solid var(--ink);
+  font:500 clamp(11px,1.6vh,14px)/1.35 var(--mono);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.tag.on{opacity:1;transform:none}
+.tag b{display:block;font:800 clamp(16px,2.6vh,24px)/1.05 var(--display);font-stretch:85%;margin-bottom:.2em}
+.flash{position:absolute;inset:0;background:#fff;opacity:var(--flash,0);pointer-events:none}
+
+/* ---------- birds and posts ---------- */
+.post{width:.8vh;height:calc(var(--h,15) * 1vh);background:var(--ink)}
+.bird{position:absolute;left:calc(var(--bx) * 1vh);bottom:calc(20% + var(--h,15) * 1vh);width:9vh;margin:0 0 -1.1vh -4.3vh;fill:var(--ink);overflow:visible}
+.bird.sit{opacity:clamp(0,calc(var(--bx) - var(--d,42) - var(--wx,0)),1)}
+.bird.fly{--f:clamp(0,calc((var(--wx,0) - var(--bx) + var(--d,42)) / 30),1);opacity:min(calc(var(--f) * 30),calc((1 - var(--f)) * 5),1);
+  transform:translate3d(calc(var(--f) * 30vh),calc(var(--f) * -30vh),0) rotate(calc(var(--f) * -12deg)) scale(calc(1 - var(--f) * .4))}
+.bird.fly .wing{transform-box:fill-box;transform-origin:30% 100%;animation:flap .26s ease-in-out infinite alternate}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(-.5)}}
+/* the frame he gets when the bird has gone */
+.miss{position:absolute;z-index:5;left:50%;top:22vh;width:min(46vh,78vw);margin:0 0 0 calc(min(46vh,78vw) / -2);background:#fff;border:.45vh solid var(--ink);padding:.9vh .9vh 0;box-shadow:0 1.6vh 3.4vh rgba(0,0,0,.18);pointer-events:none;
+  --t:var(--miss,0);opacity:min(calc(var(--t) * 14),calc((1 - var(--t)) * 10),1);transform:translate3d(0,calc((1 - min(var(--t) * 7,1)) * 16vh),0) rotate(-3deg)}
+.miss svg{display:block;width:100%;height:auto;background:var(--paper)}
+.miss figcaption{display:flex;justify-content:space-between;gap:1vh;padding:.9vh .3vh 1vh;font:500 max(1.55vh,11px)/1.2 var(--mono)}
+
+/* ---------- the car ---------- */
+.car{width:52vh;overflow:visible}
+.car .me{opacity:0}
+.in-car .car .me{opacity:1}
+.clock{position:absolute;left:calc(var(--x) * 1vh);bottom:calc(20% + 30vh);font:500 3.4vh/1 var(--mono);font-variant-numeric:tabular-nums;opacity:0;transition:opacity .3s}
+.clock small{display:block;font:500 1.5vh/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.timing .clock{opacity:1}
+.bird.back{opacity:clamp(0,calc((var(--car,0) - .45) * 24),1)}
+.bird.roof{width:6vh;margin-left:-2.9vh;margin-bottom:-.8vh;opacity:min(clamp(0,calc((var(--car,0) - var(--on)) * 24),1),clamp(0,calc(490 - var(--wx,0)),1))}
+/* the sun comes up behind the hills while he waits */
+.sun{position:absolute;left:70%;top:calc(66vh - var(--rise,0) * 34vh);width:6vh;height:6vh;border:.45vh solid var(--ink);border-radius:50%;background:var(--paper);opacity:0;transition:opacity .4s}
+.in-car .sun{opacity:1}
+
+/* ---------- home ---------- */
+.house{width:44vh;overflow:visible}
+.house .win{fill:var(--ink)}
+.at-home .house .win{fill:#fff}
+.panel{position:absolute;left:calc(var(--x) * 1vh);bottom:calc(20% + 9vh);width:calc(var(--pu) * 62);opacity:clamp(0,calc(var(--home,0) * 24),1);--p:var(--home,0);--pu:min(1vh,1.42vw)}
+.left-home .panel{opacity:0;transition:opacity .4s}
+.panel::after{content:"";position:absolute;left:calc(var(--pu) * -2.6);bottom:calc(var(--pu) * 6);border:calc(var(--pu) * 1.6) solid transparent;border-right:calc(var(--pu) * 2.2) solid var(--ink);border-left:0}
+.screen{position:relative;width:calc(var(--pu) * 50);aspect-ratio:16/10;border:.6vh solid var(--ink);border-radius:1.4vh;overflow:hidden;background:#fff}
+.sheet{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5vh;padding:.5vh;--t:clamp(0,calc((var(--p) - .04) / .36),1);--e:calc(var(--t) * var(--t) * (3 - 2 * var(--t)));transform:translate3d(0,calc(var(--e) * -38.6%),0)}
+.sheet img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.ring{position:absolute;left:50%;top:50%;width:25%;aspect-ratio:1.42;transform:translate(-50%,-50%) rotate(-6deg);overflow:visible;fill:none;stroke:var(--pencil);stroke-width:5;stroke-linecap:round;opacity:clamp(0,calc((.6 - var(--p)) * 30),1)}
+.ring ellipse{stroke-dasharray:1;stroke-dashoffset:calc(1 - clamp(0,calc((var(--p) - .4) / .07),1))}
+.pick{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;--t:clamp(0,calc((var(--p) - .49) / .1),1);opacity:calc(var(--t) * 3);transform:scale(calc(.21 + var(--t) * .79))}
+.phone{position:absolute;right:0;bottom:-3vh;width:calc(var(--pu) * 16);border:.6vh solid var(--ink);border-radius:2.4vh;background:var(--paper);padding:1.6vh .7vh 1vh;
+  --t:clamp(0,calc((var(--p) - .6) / .12),1);opacity:calc(var(--t) * 4);transform:translate3d(calc((1 - var(--t)) * 10vh),0,0) rotate(calc(9deg - var(--t) * 5deg))}
+.phone img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.likes{display:flex;align-items:center;gap:.8vh;padding-top:1.1vh;font:500 1.7vh/1 var(--mono)}
+.likes svg{width:2.2vh;height:2.2vh;fill:none;stroke:var(--ink);stroke-width:2.4}
+
+/* ---------- doors, coffee, rain, prints on a line ---------- */
+.door{width:15vh;height:30vh;background:var(--ink);border-radius:.6vh .6vh 0 0}
+.door::before{content:"";position:absolute;inset:1.6vh 1.6vh 0;border:.35vh solid var(--paper);border-bottom:0}
+.door::after{content:"";position:absolute;right:3vh;top:15vh;width:1.5vh;height:1.5vh;border-radius:50%;background:var(--paper)}
+.coffee{width:55.2vh;overflow:visible}
+.coffee text{font:500 13.5px var(--mono);fill:var(--ink);text-anchor:middle}
+.coffee .card{fill:var(--paper);stroke:var(--ink);stroke-width:2.2}
+.coffee .steam{animation:steam 2.2s ease-in-out infinite alternate}
+.coffee g:nth-of-type(2) .steam{animation-delay:-.8s}
+.coffee g:nth-of-type(3) .steam{animation-delay:-1.5s}
+@keyframes steam{from{transform:translateY(0);opacity:.95}to{transform:translateY(-6px);opacity:.3}}
+.rain{display:none;position:absolute;inset:0 0 20% 0;pointer-events:none;opacity:calc(var(--rain,0) * .62);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='120'%3E%3Cpath d='M70 6l-8 24M28 34l-7 21M52 70l-8 24M12 92l-7 21' stroke='%23121212' stroke-width='1.7' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") 0 0/80px 120px;animation:rain .82s linear infinite}
+.raining .rain{display:block}
+@keyframes rain{to{background-position:-80px 240px}}
+.pole{width:.9vh;height:51vh;background:var(--ink)}
+.line{position:absolute;left:calc(var(--x) * 1vh);bottom:calc(20% + 48vh);width:calc(var(--w) * 1vh);height:.35vh;background:var(--ink)}
+.hang{position:absolute;left:calc(var(--x) * 1vh);bottom:calc(20% + 48vh);width:29vh;margin:0;background:#fff;padding:.7vh .7vh 0;box-shadow:0 1.6vh 3.4vh rgba(0,0,0,.2);transform-origin:50% 0;
+  --t:clamp(0,calc((var(--wx,0) - var(--x) + 78) / 26),1);opacity:calc(var(--t) * 3);transform:translateY(100%) rotate(var(--r,0deg)) scale(calc(.5 + var(--t) * .5))}
+.hang::before{content:"";position:absolute;left:50%;top:-1.2vh;width:.9vh;height:2.2vh;margin-left:-.45vh;background:var(--ink)}
+.hang img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.hang figcaption{padding:.7vh .1vh .8vh;font:500 max(1.25vh,9.5px)/1.3 var(--mono);white-space:nowrap;overflow:hidden}
+.hang figcaption span{display:block}
+.hang figcaption span+span{color:var(--soft)}
+
+/* ---------- what worked: milestones by the road, and the sign ---------- */
+.stone{width:24vh;height:22vh;margin-left:-12vh;display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:var(--ink);background:var(--paper);
+  border:.45vh solid var(--ink);border-bottom:0;border-radius:12vh 12vh 0 0/8vh 8vh 0 0;overflow:hidden}
+.stone small{display:block;width:100%;background:var(--ink);color:var(--paper);font:500 max(1.35vh,9.5px)/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:3.6vh 1vh 1.1vh}
+.stone b{display:block;padding:1.5vh 1.4vh 0;font:800 2.9vh/.95 var(--display);font-stretch:80%;letter-spacing:-.01em;text-wrap:balance}
+.stone span{margin-top:auto;padding:0 0 1.6vh;font:500 max(1.35vh,9.5px)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:.3em}
+.stone:hover{background:var(--ink);color:var(--paper)}
+.stone:hover small{background:var(--pencil)}
+.sign{width:1vh;height:36vh;background:var(--ink)}
+.sign a,.sign span{position:absolute;left:-1vh;white-space:nowrap;background:var(--ink);color:var(--paper);font:700 2.5vh/1 var(--display);font-stretch:85%;letter-spacing:.02em;padding:1.3vh 3.4vh 1.2vh 1.8vh;text-decoration:none;clip-path:polygon(0 0,calc(100% - 2vh) 0,100% 50%,calc(100% - 2vh) 100%,0 100%)}
+.sign a{top:1.5vh}
+.sign.low{height:25vh}
+.sign a:hover{background:var(--pencil)}
+.sign span{top:9vh;background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 .4vh var(--ink);clip-path:none;padding-right:1.8vh;font:500 min(1.9vh,3.1vw)/1 var(--mono);user-select:all}
+
+/* ---------- the walker: the man from the logo, seen as in the logo with both shoulders showing ---------- */
+.walker{position:absolute;left:calc(var(--sx,30) * 1vh);bottom:calc(20% - .4vh);width:15vh;margin-left:-7.5vh;overflow:visible;fill:var(--ink);transition:opacity .25s}
+.walker .flip{transform-origin:60px 100px;transform:scaleX(var(--dir,1)) translateY(calc(var(--bob,0) * -1px))}
+.walker .leg{transform-origin:60px 132px}
+.walker .leg.front{transform:rotate(calc(var(--a,0) * 1deg))}
+.walker .leg.back{transform:rotate(calc(var(--a,0) * -1deg))}
+.walker .head{transform-origin:64px 72px;transform:rotate(calc(var(--tilt,-22) * 1deg));transition:transform .45s}
+.walker .upper{transform:rotate(calc((-25 - var(--shoot,0) * 55) * 1deg));transition:transform .3s}
+.walker .fore{transform:rotate(calc((38 + var(--shoot,0) * 5) * 1deg));transition:transform .3s}
+.walker .camturn{transition:transform .3s}
+.walker .cane{transform-origin:36px 82px;transform:rotate(calc(var(--a,0) * -.3deg))}
+/* what he feels, drawn on the logo face and carried by the arm with the camera */
+.walker .mood{opacity:0;transition:opacity .2s}
+.walker.happy .m-happy,.walker.sad .m-sad,.walker.angry .m-angry{opacity:1}
+.walker.happy .upper{transform:rotate(-110deg)}
+.walker.happy .fore{transform:rotate(120deg)}
+.walker.sad .upper{transform:rotate(6deg)}
+.walker.sad .fore{transform:rotate(168deg)}
+.walker.sad .camturn{transform:rotate(-174deg)}
+.walker.angry .upper{animation:shake .14s linear infinite alternate}
+.walker.angry .fume{animation:fume .5s ease-in-out infinite alternate}
+.walker.happy .shine{animation:shine .5s ease-in-out infinite alternate}
+@keyframes shake{from{transform:rotate(-30deg)}to{transform:rotate(-20deg)}}
+@keyframes fume{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+@keyframes shine{from{opacity:.35}to{opacity:1}}
+.in-car .walker,.at-home .walker{opacity:0}
+
+/* ---------- words ---------- */
+.mast{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) max(20px,env(safe-area-inset-right,0px)) 12px max(20px,env(safe-area-inset-left,0px));pointer-events:none}
+.mast a{pointer-events:auto;text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;margin:-4px 0 -4px -4px;padding:4px 10px 4px 4px;background:var(--paper);font:700 14px/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.brand img{width:46px;height:auto}
+.mast nav a,.outro a{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;padding:10px 14px 9px;border:2px solid var(--ink);background:var(--paper);text-decoration:none}
+.mast nav a:hover,.outro a:hover{background:var(--ink);color:var(--paper)}
+.title{position:absolute;left:var(--gl);right:var(--gr);top:15vh;opacity:clamp(0,calc((104 - var(--wx,60)) / 30),1);pointer-events:none}
+.title h1{font:800 clamp(52px,13vh,170px)/.8 var(--display);font-stretch:75%;letter-spacing:-.04em;margin-bottom:.22em}
+.title h1 span{font-weight:400}
+.title p{font-size:clamp(16px,2.5vh,22px);max-width:30ch}
+.say{position:absolute;z-index:6;left:var(--gl);right:var(--gr);top:max(84px,12vh);list-style:none;padding:0;display:grid;pointer-events:none}
+.say li{grid-area:1/1;font:800 clamp(24px,5.6vh,64px)/1 var(--display);font-stretch:78%;letter-spacing:-.02em;max-width:17ch;text-wrap:balance;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.say li.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.say li.long{font-size:clamp(20px,4.1vh,46px);max-width:25ch}
+/* each line sits on a strip of paper, so it reads over a photograph too */
+.say li>span{background:var(--paper);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:.02em .16em 0;margin-left:-.16em}
+.outro{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;max-width:min(92vw,560px)}
+.say li.on .outro{pointer-events:auto}
+.outro a.solid{background:var(--ink);color:var(--paper)}
+.outro a.solid:hover{background:var(--pencil);border-color:var(--pencil)}
+.outro b{font:500 13px/1 var(--mono);letter-spacing:.02em;background:var(--paper);padding:10px 4px 9px;user-select:all}
+/* the support stop: a coffee, or UPI */
+.outro p{flex:0 0 100%;margin:10px 0 0;font:400 clamp(15px,2.2vh,19px)/1.35 var(--text);letter-spacing:0;font-stretch:100%}
+.outro p span{background:var(--paper);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:2px 6px 2px 0}
+.outro i{font:500 12px/1 var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px 9px;border:2px dashed var(--pencil);color:var(--pencil);background:var(--paper)}
+.pad{position:fixed;z-index:41;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;justify-content:center;align-items:center;gap:14px;pointer-events:none}
+.pad button{pointer-events:auto;width:58px;height:58px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:700 22px/1 var(--display);cursor:pointer;touch-action:none;user-select:none}
+.pad button:active,.pad button.down{background:var(--ink);color:var(--paper)}
+.pad span{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);background:var(--paper);padding:2px 6px}
+.meter{position:fixed;z-index:41;left:0;bottom:0;height:5px;width:calc(var(--prog,0) * 100%);background:var(--ink)}
+
+/* ---------- without scripting: the story as plain text ---------- */
+html:not(.js) .stage,html:not(.js) .spacer,html:not(.js) .pad,html:not(.js) .meter{display:none}
+html:not(.js) .plain{display:block}
+.plain{display:none;padding:120px var(--gr) 80px var(--gl);max-width:70ch}
+.plain h1{font:800 clamp(52px,12vw,150px)/.85 var(--display);font-stretch:75%;letter-spacing:-.04em;margin-bottom:.4em}
+.plain p{margin-top:1em;font-size:20px}
+
+@media (max-width:760px){
+  .brand span{display:none}
+  .brand{padding-right:4px}
+  .say{top:76px}
+  .say li{max-width:14ch}
+  .say li.long{max-width:19ch}
+  .pad span{display:none}
+  .miss{top:21vh}
+}
+@media (prefers-reduced-motion:reduce){.bird.fly .wing,.rain,.coffee .steam,.walker.angry .upper,.walker.angry .fume,.walker.happy .shine{animation:none}.say li{transition:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="b-sit" viewBox="0 0 120 100">
+    <ellipse cx="64" cy="54" rx="34" ry="22" transform="rotate(-18 64 54)"/>
+    <circle cx="36" cy="34" r="15"/>
+    <path d="M23 30 6 37l18 5z"/>
+    <path d="M88 58l30 18-8 8-28-14z"/>
+    <path d="M58 72v17M68 72v17" fill="none" stroke="#121212" stroke-width="3.5"/>
+    <circle cx="33" cy="31" r="3.2" fill="#f4f1e8"/>
+    <path d="M50 50q22-7 42 12" fill="none" stroke="#f4f1e8" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="b-fly" viewBox="0 0 120 100">
+    <ellipse cx="60" cy="58" rx="27" ry="11" transform="rotate(-10 60 58)"/>
+    <circle cx="87" cy="47" r="9.5"/>
+    <path d="M95 43l13 2-12 5z"/>
+    <path d="M36 61l-25 5 4 9 23-6z"/>
+  </symbol>
+  <defs>
+    <!-- the man from the logo: its own paths for the beanie, face, beard and ear, with paper behind so nothing shows through the face -->
+    <g id="lg-head">
+      <g fill="#f4f1e8" stroke="#f4f1e8" stroke-width="22" stroke-linejoin="round">
+        <path d="M540 291L563 266 631 210 734 147 874 97 880 110 850 184 860 300 895 407 800 480 700 490 650 524 631 520 581 396z"/>
+        <path d="M676 567L702 541 724 549 780 568 827 572 777 594 720 590 698 586z"/>
+        <path d="M537.68,297.6l-2.96-3.3c-23.11-25.71-17.22-40.86-16.48-42.5l.31-.68.53-.52c73.37-71.87,154.98-118.16,210.53-144.34,62.05-29.24,110.8-42.53,120.68-43.15,21.25-1.34,28.6,31.93,28.91,33.35l.83,3.9-3.89.85c-103.14,22.43-188.83,73.71-242.55,112.77-58.3,42.39-92.59,79.97-92.93,80.34l-2.98,3.28Z"/>
+        <path d="M521.07,251.76s2.45-116.15,127.87-184.66c128.19-70.02,201.6,0,201.6,0,0,0-231.77,79.34-329.47,184.66Z"/>
+        <path d="M620.92,84.47s-7.27-28.54,15.65-40.83c23.11-12.39,41.29,9.65,41.29,9.65,0,0-28.92,13.82-56.94,31.18Z"/>
+        <path d="M675.48,568s-32.75-15.81-28.24-48c4.52-32.19,29.36-53.65,146.82-48,117.46,5.65,100.56-45.18,88.4-64.94,0,0-67.5-137.79-45.48-223.06,22.02-85.27,24.85-82.45,24.85-82.45l21.18-7.34s-11.95,95.44,8.05,135.53c21.6,39.53,68.61,132,71.86,141.18,0,0,56.19,135.81-28.52,229.83-84.71,94.02-204.99,132.14-204.99,132.14,0,0,43.2-46.59-33.88-124.52,0,0-16.85-16.47,2.35-22.87,19.2-6.4,59.48,11.29,79.06,9.79,19.58-1.51,41.79-9.79,51.2-22.96,0,0-34.55,12.7-104.98-24.58-5.34-2.83-15.29-7.07-21.25-8.07-13.04-2.2-30.69-.25-26.43,28.32Z"/>
+        <path d="M909.5,284.34c-.94,0-1.89-.27-2.77-.8-1.95-1.16-6.53-3.88-18.99-44.21-6.09-19.72-11.89-41.76-12.92-49.13v-.02c-.09-.67-2.18-16.51-2.05-35.29.18-25.8,4.4-43.79,12.55-53.49,6.47-7.7,13.44-11.01,20.73-9.84,12.16,1.95,20.94,16.4,23.89,23.76,3.42,8.54,6.79,20.81,5.93,47.07-.23,6.92-2.53,16.42-5.2,27.42-4.47,18.42-10.03,41.33-7.26,59.67,3.82,25.29-.17,31.08-9.97,33.87-.77.22-1.51.43-2.18.68-.56.21-1.15.32-1.74.32Z"/>
+      </g>
+      <path d="M537.68,297.6l-2.96-3.3c-23.11-25.71-17.22-40.86-16.48-42.5l.31-.68.53-.52c73.37-71.87,154.98-118.16,210.53-144.34,62.05-29.24,110.8-42.53,120.68-43.15,21.25-1.34,28.6,31.93,28.91,33.35l.83,3.9-3.89.85c-103.14,22.43-188.83,73.71-242.55,112.77-58.3,42.39-92.59,79.97-92.93,80.34l-2.98,3.28ZM525.35,255.66c-1.2,4.34.17,15.09,12.47,30,9.73-10.15,41.97-42.44,90.88-78.03,53.66-39.05,138.87-90.14,241.61-113.33-2.33-7.62-8.6-23.89-19.53-23.2-7.06.44-52.57,11.68-117.77,42.4-54.82,25.83-135.27,71.44-207.67,142.16Z"/>
+      <path d="M521.07,251.76s2.45-116.15,127.87-184.66c128.19-70.02,201.6,0,201.6,0,0,0-231.77,79.34-329.47,184.66Z"/>
+      <path d="M620.92,84.47s-7.27-28.54,15.65-40.83c23.11-12.39,41.29,9.65,41.29,9.65,0,0-28.92,13.82-56.94,31.18Z"/>
+      <path d="M630.61,526.94l-2.22-4.57c-16.61-34.12-90.38-222.74-93.51-230.75-.8-2.06.21-4.38,2.27-5.18,2.06-.8,4.38.21,5.18,2.27.74,1.88,71.03,181.62,91.09,225.55l45.87-37.84-17.49-19.3c-1.48-1.64-1.36-4.17.28-5.65,1.64-1.48,4.17-1.36,5.65.28l23.12,25.51-60.23,49.69Z"/>
+      <path d="M581.85,377.06l2.28-7.34c.31-1,8.01-24.89,41.75-59.62,30.79-31.7,90.28-78.97,198.84-124.15l9.12-3.79-3.9,9.07c-.55,1.27-13.83,31.6-50.27,69.59-33.49,34.92-93.72,83.03-190.49,113.91l-7.32,2.34ZM817.64,197.63c-57.91,24.9-133.66,64.43-185.43,117.44-21.56,22.08-32.24,39.73-37.03,49.26,90.04-30.35,146.56-75.62,178.41-108.74,23.61-24.56,37.41-46.14,44.06-57.96Z"/>
+      <path d="M628.06,314.76s21.37-.49,37.82-14.43c8.29-7.02,13.46-18.27,17.8-32.96l-55.63,47.39Z"/>
+      <path d="M675.48,568s-32.75-15.81-28.24-48c4.52-32.19,29.36-53.65,146.82-48,117.46,5.65,100.56-45.18,88.4-64.94,0,0-67.5-137.79-45.48-223.06,22.02-85.27,24.85-82.45,24.85-82.45l21.18-7.34s-11.95,95.44,8.05,135.53c21.6,39.53,68.61,132,71.86,141.18,0,0,56.19,135.81-28.52,229.83-84.71,94.02-204.99,132.14-204.99,132.14,0,0,43.2-46.59-33.88-124.52,0,0-16.85-16.47,2.35-22.87,19.2-6.4,59.48,11.29,79.06,9.79,19.58-1.51,41.79-9.79,51.2-22.96,0,0-34.55,12.7-104.98-24.58-5.34-2.83-15.29-7.07-21.25-8.07-13.04-2.2-30.69-.25-26.43,28.32Z"/>
+      <path d="M909.5,284.34c-.94,0-1.89-.27-2.77-.8-1.95-1.16-6.53-3.88-18.99-44.21-6.09-19.72-11.89-41.76-12.92-49.13v-.02c-.09-.67-2.18-16.51-2.05-35.29.18-25.8,4.4-43.79,12.55-53.49,6.47-7.7,13.44-11.01,20.73-9.84,12.16,1.95,20.94,16.4,23.89,23.76,3.42,8.54,6.79,20.81,5.93,47.07-.23,6.92-2.53,16.42-5.2,27.42-4.47,18.42-10.03,41.33-7.26,59.67,3.82,25.29-.17,31.08-9.97,33.87-.77.22-1.51.43-2.18.68-.56.21-1.15.32-1.74.32ZM882.74,189.11c2,14.21,20.5,77.57,27.47,86.84.35-.11.69-.2,1.02-.3,2.91-.83,3.87-1.18,4.64-3.13,1.4-3.53,1.27-10.88-.38-21.86-3-19.88,2.77-43.65,7.4-62.75,2.57-10.57,4.78-19.7,4.98-25.8.81-24.79-2.26-36.07-5.36-43.84-2.23-5.57-9.5-17.51-17.73-18.83-4.3-.69-8.8,1.69-13.33,7.09-6.81,8.11-10.5,24.81-10.67,48.31-.13,18.09,1.92,33.86,1.97,34.26Z"/>
+    </g>
+    <!-- and the camera from the logo -->
+    <g id="lg-cam">
+      <g fill="#f4f1e8" stroke="#f4f1e8" stroke-width="26" stroke-linejoin="round">
+        <path d="M1337.6,138.26c-3.39-6.78-33.04-69.46-56.75-102.27-23.72-32.82-33.04-40.03-63.53-34.1-30.49,5.93-80.47,45.74-117.74,70.31-37.27,24.56-58.45,28.8-107.58,72.53-49.13,43.73-31.34,68.93-17.79,97.73,13.55,28.8,35.58,60.99,35.58,60.99,26.26-23.72,75.39-11.86,112.66,8.47,37.27,20.33,46.59,10.16,49.13,9.32,2.54-.85,78.78-66.07,131.29-102.49,52.52-36.42,38.12-73.69,34.73-80.47Z"/>
+        <path d="M1044.58,78.17l-7.91,37.4,105.15-70.76-32.05-8.77c-6.25-1.71-12.94-.61-18.31,3.01l-37.51,25.24c-4.8,3.23-8.16,8.21-9.36,13.87Z"/>
+      </g>
+      <path d="M1337.6,138.26c-3.39-6.78-33.04-69.46-56.75-102.27-23.72-32.82-33.04-40.03-63.53-34.1-30.49,5.93-80.47,45.74-117.74,70.31-37.27,24.56-58.45,28.8-107.58,72.53-49.13,43.73-31.34,68.93-17.79,97.73,13.55,28.8,35.58,60.99,35.58,60.99,26.26-23.72,75.39-11.86,112.66,8.47,37.27,20.33,46.59,10.16,49.13,9.32,2.54-.85,78.78-66.07,131.29-102.49,52.52-36.42,38.12-73.69,34.73-80.47ZM1143.46,250.07c-40.32,0-73.01-32.69-73.01-73.01s32.73-71.24,73.01-73.01c39.01-1.71,66,22.72,67.93,65.54,1.81,40.28-27.6,80.47-67.92,80.47Z"/>
+      <path d="M1044.58,78.17l-7.91,37.4,105.15-70.76-32.05-8.77c-6.25-1.71-12.94-.61-18.31,3.01l-37.51,25.24c-4.8,3.23-8.16,8.21-9.36,13.87Z"/>
+      <path d="M1095.72,156.34c-.45,2.27-14.88,51.66,29.51,61.17,44.39,9.51,60.57-22.7,63.76-37.92,3.62-17.29-12.63-52.97-48.36-54.66-32.44-1.53-44.91,31.41-44.91,31.41Z"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="mast">
+  <a class="brand" href="#top" aria-label="Cane and Camera"><img src="img/logo.svg" alt="" width="46" height="38"><span>Cane &amp; Camera</span></a>
+  <nav aria-label="Pages"><a href="work.html">My work</a></nav>
+</header>
+
+<main id="top">
+<div class="stage" id="stage">
+  <div class="layer far" aria-hidden="true"></div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="layer mid" aria-hidden="true"></div>
+  <div class="layer scrub" aria-hidden="true"></div>
+
+  <!-- his photographs: the paper sky opens from his lens and one of them fills it -->
+  <div class="sky" id="sky">
+    <img data-src="img/shrike-sun.jpg" width="2000" height="1333" alt="A Long-tailed Shrike on a post in front of a red sun at sunrise.">
+    <img data-src="img/gib-pair.jpg" width="3000" height="2000" alt="Great Indian Bustards resting in golden grass below thorn trees.">
+    <img data-src="img/gib-scrub.jpg" width="2000" height="1333" alt="A Great Indian Bustard walking through pale flowering scrub under a tree, head held high.">
+    <img data-src="img/leopard.jpg" width="2400" height="3000" alt="Dense green undergrowth beside a tree trunk. A leopard sits half hidden in the leaves, looking out.">
+    <img data-src="img/nightjar.jpg" width="3000" height="2000" alt="A gravel track between tall grass. A Savanna Nightjar sits on the stones, almost the same colour as them.">
+  </div>
+
+  <div class="layer world" id="world" aria-hidden="true">
+    <div class="ground"></div>
+    <div class="prints"></div>
+    <div class="ahead"></div>
+
+    <!-- trees and bushes he passes -->
+    <div class="obj tree" style="--x:20;--s:12"></div>
+    <div class="obj tree" style="--x:176;--s:9"></div>
+    <div class="obj tree" style="--x:402;--s:13"></div>
+    <div class="obj tree" style="--x:640;--s:10"></div>
+    <div class="obj tree" style="--x:672;--s:13"></div>
+    <div class="obj tree" style="--x:842;--s:11"></div>
+    <div class="obj tree" style="--x:1168;--s:12"></div>
+    <div class="obj tree" style="--x:1300;--s:10"></div>
+    <div class="obj tree" style="--x:1468;--s:12"></div>
+    <div class="obj tree" style="--x:1768;--s:10"></div>
+    <div class="obj tree" style="--x:2579;--s:11"></div>
+    <div class="obj tree" style="--x:2715;--s:13"></div>
+    <div class="obj tree" style="--x:2865;--s:10"></div>
+    <div class="obj bush" style="--x:128"></div>
+    <div class="obj bush" style="--x:330"></div>
+    <div class="obj bush" style="--x:556"></div>
+    <div class="obj bush" style="--x:706"></div>
+    <div class="obj bush" style="--x:868"></div>
+    <div class="obj bush" style="--x:1212"></div>
+    <div class="obj bush" style="--x:1392"></div>
+    <div class="obj bush" style="--x:1506"></div>
+    <div class="obj bush" style="--x:1742"></div>
+    <div class="obj bush" style="--x:2555"></div>
+    <div class="obj bush" style="--x:2671"></div>
+    <div class="obj bush" style="--x:2811"></div>
+    <div class="obj bush" style="--x:2911"></div>
+
+    <!-- 1. the birds that leave -->
+    <div class="obj post" style="--x:250;--h:15"></div>
+    <svg class="bird sit" style="--bx:250;--h:15" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <svg class="bird fly" style="--bx:250;--h:15" viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg>
+    <div class="obj post" style="--x:306;--h:22"></div>
+    <svg class="bird sit" style="--bx:306;--h:22" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <svg class="bird fly" style="--bx:306;--h:22" viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg>
+    <div class="obj post" style="--x:358;--h:12"></div>
+    <svg class="bird sit" style="--bx:358;--h:12" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <svg class="bird fly" style="--bx:358;--h:12" viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg>
+
+    <!-- 2. the car, his hide: a small boxy four-by-four with the spare wheel on the back -->
+    <div class="clock" style="--x:462"><span id="clock">04:40</span><small>waiting</small></div>
+    <svg class="obj car" style="--x:455" viewBox="0 0 430 200">
+      <rect x="6" y="72" width="28" height="80" rx="11"/>
+      <path d="M70 5H240" fill="none" stroke="#121212" stroke-width="5" stroke-linecap="round"/>
+      <path d="M30 168V24q0-12 12-12h234l24 72 104 6q20 2 20 20v40h6v18z"/>
+      <rect x="48" y="30" width="92" height="50" rx="5" fill="#f4f1e8"/>
+      <path d="M158 30h110l17 50H158z" fill="#f4f1e8"/>
+      <clipPath id="win"><path d="M158 30h110l17 50H158z"/></clipPath>
+      <g class="me" clip-path="url(#win)"><g transform="rotate(-22 222 78)"><use href="#lg-head" transform="translate(294.38 27.24) scale(-.094 .094)"/></g><use href="#lg-cam" transform="translate(262 57) scale(.0785) translate(-1151 -162)"/></g>
+      <path d="M149 84v82M294 96v60" fill="none" stroke="#f4f1e8" stroke-width="2.5"/>
+      <rect x="288" y="70" width="13" height="10" rx="2"/>
+      <circle cx="413" cy="112" r="6.5" fill="#f4f1e8"/>
+      <path d="M49 160a48 48 0 0 1 96 0v8H49zM297 160a48 48 0 0 1 96 0v8h-96z" fill="#f4f1e8"/>
+      <circle cx="97" cy="160" r="40"/><circle cx="345" cy="160" r="40"/>
+      <circle cx="97" cy="160" r="15" fill="#f4f1e8"/><circle cx="345" cy="160" r="15" fill="#f4f1e8"/>
+    </svg>
+    <svg class="bird roof" style="--bx:468;--h:23.6;--on:.52" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <svg class="bird roof" style="--bx:479;--h:23.6;--on:.7" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <div class="obj post" style="--x:524;--h:14"></div>
+    <svg class="bird sit" style="--bx:524;--h:14;--d:92" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+    <svg class="bird fly" style="--bx:524;--h:14;--d:92" viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg>
+    <svg class="bird back" style="--bx:524;--h:14" viewBox="0 0 120 100"><use href="#b-sit"/></svg>
+
+    <!-- 3. home -->
+    <svg class="obj house" style="--x:745" viewBox="0 0 200 170">
+      <path d="M4 74 100 8l96 66z"/>
+      <path d="M24 72h152v98H24z" fill="#f4f1e8" stroke="#121212" stroke-width="5"/>
+      <path class="win" d="M44 96h46v38H44z"/>
+      <path d="M118 104h36v66h-36z"/>
+    </svg>
+    <div class="panel" style="--x:796">
+      <div class="screen">
+        <div class="sheet" id="sheet"></div>
+        <svg class="ring" viewBox="0 0 142 100"><ellipse cx="71" cy="50" rx="66" ry="45" pathLength="1"/></svg>
+        <img class="pick" loading="lazy" decoding="async" src="img/gib-sun.jpg" width="2000" height="1333" alt="">
+      </div>
+      <div class="phone">
+        <img loading="lazy" decoding="async" src="img/t/gib-sun.jpg" width="800" height="533" alt="" style="object-position:30% 50%">
+        <div class="likes"><svg viewBox="0 0 24 24"><path d="M12 20.5C5 15.5 3 12 3 8.8 3 6 5.1 4 7.6 4c1.8 0 3.4 1 4.4 2.6C13 5 14.6 4 16.4 4 18.9 4 21 6 21 8.8c0 3.2-2 6.7-9 11.7z"/></svg><span>3 likes</span></div>
+      </div>
+    </div>
+
+    <!-- 4. doors that stay shut -->
+    <div class="obj door" style="--x:905"></div>
+    <div class="obj door" style="--x:962"></div>
+    <div class="obj door" style="--x:1019"></div>
+
+    <!-- 5. and the coffees four people bought him, each with their name -->
+    <svg class="obj coffee" style="--x:1070" viewBox="0 0 460 190">
+      <path d="M18 136H442M50 136l-9 54M410 136l9 54" fill="none" stroke="#121212" stroke-width="6" stroke-linecap="round"/>
+      <path d="M82 28V70" fill="none" stroke="#121212" stroke-width="1.6"/><rect class="card" x="38" y="7" width="88" height="22" rx="3"/><text x="82" y="22.8">Ina Koys</text><path d="M180 54V70" fill="none" stroke="#121212" stroke-width="1.6"/><rect class="card" x="112" y="33" width="136" height="22" rx="3"/><text x="180" y="48.8">Anish Thimanna</text><path d="M278 28V70" fill="none" stroke="#121212" stroke-width="1.6"/><rect class="card" x="230" y="7" width="96" height="22" rx="3"/><text x="278" y="22.8">Somsubhro</text><path d="M376 54V70" fill="none" stroke="#121212" stroke-width="1.6"/><rect class="card" x="300" y="33" width="152" height="22" rx="3"/><text x="376" y="48.8">Hrushikesh Patra</text>
+      <g transform="translate(82 133)"><path d="M-17 -36h34l-5 36h-24z"/><path d="M15 -27q14 1 11 12-3 8-13 7" fill="none" stroke="#121212" stroke-width="4"/><path class="steam" d="M-7 -42q-6-6 0-12t0-12M7 -42q-6-6 0-12t0-12" fill="none" stroke="#121212" stroke-width="2.6" stroke-linecap="round"/></g>
+      <g transform="translate(180 133)"><path d="M-17 -36h34l-5 36h-24z"/><path d="M15 -27q14 1 11 12-3 8-13 7" fill="none" stroke="#121212" stroke-width="4"/><path class="steam" d="M-7 -42q-6-6 0-12t0-12M7 -42q-6-6 0-12t0-12" fill="none" stroke="#121212" stroke-width="2.6" stroke-linecap="round"/></g>
+      <g transform="translate(278 133)"><path d="M-17 -36h34l-5 36h-24z"/><path d="M15 -27q14 1 11 12-3 8-13 7" fill="none" stroke="#121212" stroke-width="4"/><path class="steam" d="M-7 -42q-6-6 0-12t0-12M7 -42q-6-6 0-12t0-12" fill="none" stroke="#121212" stroke-width="2.6" stroke-linecap="round"/></g>
+      <g transform="translate(376 133)"><path d="M-17 -36h34l-5 36h-24z"/><path d="M15 -27q14 1 11 12-3 8-13 7" fill="none" stroke="#121212" stroke-width="4"/><path class="steam" d="M-7 -42q-6-6 0-12t0-12M7 -42q-6-6 0-12t0-12" fill="none" stroke="#121212" stroke-width="2.6" stroke-linecap="round"/></g>
+    </svg>
+
+    <!-- 6. what the waiting pays: prints on a line -->
+    <div class="obj pole" style="--x:1820"></div>
+    <div class="obj pole" style="--x:2248"></div>
+    <div class="line" style="--x:1820;--w:429"></div>
+    <figure class="hang" style="--x:1828;--r:-3deg"><img loading="lazy" decoding="async" src="img/t/wolf.jpg" width="800" height="533" alt=""><figcaption><span>Indian grey wolf</span><span>Alania</span></figcaption></figure>
+    <figure class="hang" style="--x:1863;--r:2deg"><img loading="lazy" decoding="async" src="img/t/pallid-harrier.jpg" width="800" height="533" alt=""><figcaption><span>Pallid Harrier</span><span>&nbsp;</span></figcaption></figure>
+    <figure class="hang" style="--x:1898;--r:-1.5deg"><img loading="lazy" decoding="async" src="img/t/blackbuck.jpg" width="800" height="533" alt=""><figcaption><span>Blackbuck</span><span>&nbsp;</span></figcaption></figure>
+    <figure class="hang" style="--x:1933;--r:3deg"><img loading="lazy" decoding="async" src="img/t/black-capped-kingfisher.jpg" width="800" height="533" alt=""><figcaption><span>Black-capped Kingfisher</span><span>22 Dec 2025</span></figcaption></figure>
+    <figure class="hang" style="--x:1968;--r:-2.5deg"><img loading="lazy" decoding="async" src="img/t/flamingo-pelican.jpg" width="800" height="533" alt=""><figcaption><span>Flamingo and pelican</span><span>17 Feb 2024</span></figcaption></figure>
+    <figure class="hang" style="--x:2003;--r:1.5deg"><img loading="lazy" decoding="async" src="img/t/rollers.jpg" width="800" height="533" alt=""><figcaption><span>Indian Rollers, mating</span><span>2 Jun 2026</span></figcaption></figure>
+    <figure class="hang" style="--x:2038;--r:-2deg"><img loading="lazy" decoding="async" src="img/t/short-eared-owl.jpg" width="800" height="533" alt="" style="object-position:50% 38%"><figcaption><span>Short-eared Owl</span><span>&nbsp;</span></figcaption></figure>
+    <figure class="hang" style="--x:2073;--r:2.5deg"><img loading="lazy" decoding="async" src="img/t/pitta-stump.jpg" width="800" height="533" alt=""><figcaption><span>Indian Pitta</span><span>1 Jul 2026</span></figcaption></figure>
+    <figure class="hang" style="--x:2108;--r:-1deg"><img loading="lazy" decoding="async" src="img/t/sarus.jpg" width="800" height="533" alt=""><figcaption><span>Sarus Crane</span><span>14 Jun 2026</span></figcaption></figure>
+    <figure class="hang" style="--x:2143;--r:3deg"><img loading="lazy" decoding="async" src="img/t/curlew-crab.jpg" width="800" height="533" alt=""><figcaption><span>Eurasian Curlew, with a crab</span><span>2 Nov 2026</span></figcaption></figure>
+    <figure class="hang" style="--x:2178;--r:-2.5deg"><img loading="lazy" decoding="async" src="img/t/laggar.jpg" width="800" height="533" alt=""><figcaption><span>Laggar Falcon</span><span>30 Nov 2024</span></figcaption></figure>
+    <figure class="hang" style="--x:2213;--r:1.5deg"><img loading="lazy" decoding="async" src="img/t/red-headed-vulture.jpg" width="800" height="533" alt="" style="object-position:50% 30%"><figcaption><span>Red-headed Vulture</span><span>&nbsp;</span></figcaption></figure>
+  </div>
+
+  <!-- 7. the milestones he made himself, and the sign at the end. Real links, so they sit outside the hidden layer. -->
+  <div class="layer world" id="signs">
+    <div class="obj sign low" style="--x:1131"><a href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a></div>
+    <a class="obj stone" style="--x:2305" href="https://www.youtube.com/watch?v=vNTxghP-uhM" target="_blank" rel="noopener"><small>Film · 15 min</small><b>Season: Out of Tune</b><span>Watch</span></a>
+    <a class="obj stone" style="--x:2367" href="https://www.inaturalist.org/projects/biodiversity-of-mhtr" target="_blank" rel="noopener"><small>Citizen science</small><b>Biodiversity of MHTR</b><span>iNaturalist</span></a>
+    <a class="obj stone" style="--x:2429" href="https://github.com/vinaychittora/FALCON" target="_blank" rel="noopener"><small>Open source</small><b>FALCON</b><span>GitHub</span></a>
+    <a class="obj stone" style="--x:2491" href="https://mhtr.in" target="_blank" rel="noopener"><small>Website</small><b>mhtr.in</b><span>Visit</span></a>
+    <div class="obj sign" style="--x:2969"><a href="work.html">My work</a><span>hello@caneandcamera.com</span></div>
+  </div>
+
+  <svg class="walker" id="walker" viewBox="0 0 120 210" aria-hidden="true">
+    <g class="flip">
+      <g class="leg back"><rect x="52" y="126" width="15" height="72" rx="7"/><rect x="50" y="192" width="31" height="13" rx="6"/></g>
+      <g class="leg front"><rect x="57" y="126" width="15" height="72" rx="7"/><rect x="55" y="192" width="31" height="13" rx="6"/></g>
+      <path d="M26 96q0-24 24-26h24q24 2 24 26v30q0 16-16 16H42q-16 0-16-16z"/>
+      <g class="cane">
+        <g transform="translate(36 82) rotate(9)"><path d="M-8 0A8 8 0 0 1 8 0L5.5 38A5.5 5.5 0 0 1 -5.5 38z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/><path d="M-8 0A8 8 0 0 1 8 0L5.5 38A5.5 5.5 0 0 1 -5.5 38z" fill="#f4f1e8"/></g>
+        <path d="M23 114q3-9 11-6M30 118l-3 87" fill="none" stroke="#121212" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <g class="head">
+        <use href="#lg-head" transform="translate(147.16 13.68) scale(-0.108 0.108)"/>
+        <g transform="translate(147.16 13.68) scale(-0.108 0.108)">
+          <g class="mood m-happy">
+            <path d="M566 390L598 300 700 224 842 166 848 198 792 268 692 338 592 390z" fill="#f4f1e8"/>
+            <path d="M621 350Q660 222 797 212" fill="none" stroke="#121212" stroke-width="20" stroke-linecap="round"/>
+          </g>
+          <g class="mood m-sad">
+            <path d="M566 390L598 300 700 224 842 166 848 198 792 268 692 338 592 390z" fill="#f4f1e8"/>
+            <path d="M606 362Q722 322 834 204" fill="none" stroke="#121212" stroke-width="18" stroke-linecap="round"/>
+            <path d="M548 420q-26 40-2 54q24-12 2-54z" fill="#f4f1e8" stroke="#121212" stroke-width="9" stroke-linejoin="round"/>
+          </g>
+          <g class="mood m-angry">
+            <path d="M788 176L590 330" fill="none" stroke="#121212" stroke-width="30" stroke-linecap="round"/>
+          </g>
+        </g>
+        <g class="mood m-happy shine"><path d="M96 26l9-5M90 15l5-9M100 39l10-1" fill="none" stroke="#f4f1e8" stroke-width="8" stroke-linecap="round"/><path d="M96 26l9-5M90 15l5-9M100 39l10-1" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round"/></g>
+        <g class="mood m-angry fume"><path d="M50 6q-5-5 0-10t0-10M62 3q-5-5 0-10t0-10M74 7q-5-5 0-10t0-10" fill="none" stroke="#f4f1e8" stroke-width="8" stroke-linecap="round"/><path d="M50 6q-5-5 0-10t0-10M62 3q-5-5 0-10t0-10M74 7q-5-5 0-10t0-10" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round"/></g>
+      </g>
+      <g transform="translate(88 82)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/></g></g></g></g>
+      <g transform="translate(88 82)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#f4f1e8"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#f4f1e8"/><g transform="translate(3 -44)"><g class="camturn"><use href="#lg-cam" transform="scale(0.089) translate(-1151 -162)"/></g></g></g></g></g></g>
+    </g>
+  </svg>
+
+  <div class="rain" aria-hidden="true"></div>
+
+  <figure class="miss" aria-hidden="true">
+    <svg viewBox="0 0 300 200">
+      <path d="M0 150h300M26 150q34-20 66 0M184 150q46-26 104 0" fill="none" stroke="#121212" stroke-width="2"/>
+      <rect x="146" y="88" width="7" height="62" fill="#121212"/>
+      <path d="M204 104q12-12 6-28-14 10-6 28z" fill="#121212"/>
+      <path d="M211 74l-9 36" fill="none" stroke="#121212" stroke-width="1.6" stroke-linecap="round"/>
+      <use href="#b-fly" x="234" y="-34" width="110" height="92" fill="#121212"/>
+    </svg>
+    <figcaption><span>Still life with post</span><span>0 birds</span></figcaption>
+  </figure>
+
+  <div class="flash" aria-hidden="true"></div>
+
+  <div class="title">
+    <h1>Cane <span>&amp;</span><br>Camera</h1>
+    <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora. Walk with me.</p>
+  </div>
+  <ol class="say" id="say">
+    <li class="long"><span>I am disabled. My footprints come in threes: left, right, cane.</span></li>
+    <li><span>Tap. Tap. Tap. Every bird hears me long before I see it.</span></li>
+    <li><span>I have a fine collection of empty posts.</span></li>
+    <li><span>So I bring my own hiding place. It has four wheels.</span></li>
+    <li><span>I park, switch off and wait. The clock moves. I do not.</span></li>
+    <li><span>Sit still long enough and the birds forget the car.</span></li>
+    <li><span>And then, sometimes, this.</span></li>
+    <li><span>At home I go through hours of photos to find the one.</span></li>
+    <li><span>I edit it. I post it. I wait again.</span></li>
+    <li><span>3 likes. I know all three people.</span></li>
+    <li><span>I am better at waiting for birds than at chasing followers.</span></li>
+    <li class="long"><span>I knock on doors and ask for a chance. Mostly they stay doors.</span></li>
+    <li><span>But a few people bought me a coffee. I remember every cup.</span></li>
+    <li class="long"><span>Some days I carry more than two things: the jobs, the responsibilities.</span></li>
+    <li class="long"><span>They have made me older than I am. But slowly is still forward.</span></li>
+    <li class="long"><span>Why? For the sheer joy of it. Nothing beats a bird that stays.</span></li>
+    <li><span>Habitat first. Then the bird.</span></li>
+    <li class="long"><span>Pass through the forest 100 times and you may see a big cat once. They saw you the other 99.</span></li>
+    <li><span>This stone has eyes.</span></li>
+    <li><span>This is what the waiting pays.</span></li>
+    <li><span>Nobody put milestones on my road. So I made a few.</span></li>
+    <li class="long"><span>I have decided what the rest of this walk is for. Conservation.</span></li>
+    <li><span>I may never be famous. Fame was never the bird I was after.</span></li>
+    <li><span>The target is simple: to be of real use to the wild.</span></li>
+    <li><span>My day has not come yet. I am good at waiting.</span></li>
+    <li><span>And I keep going. Tap. Tap. Tap.</span>
+      <div class="outro"><a class="solid" href="work.html">See my work</a><a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">Watch the films</a><a href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a><b>hello@caneandcamera.com</b></div>
+    </li>
+  </ol>
+  <p class="tag" id="tag"></p>
+</div>
+
+<div class="pad">
+  <button type="button" id="back" aria-label="Walk back">&#9664;</button>
+  <span>scroll, arrow keys or hold</span>
+  <button type="button" id="fwd" aria-label="Walk on">&#9654;</button>
+</div>
+<div class="meter" aria-hidden="true"></div>
+<div class="spacer" aria-hidden="true"></div>
+
+<div class="plain">
+  <h1>Cane &amp; Camera</h1>
+  <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora, a field naturalist in Kota, Rajasthan.</p>
+  <p>I am disabled. My footprints come in threes: left, right, cane. Tap, tap, tap: every bird hears me long before I see it, and I have a fine collection of empty posts. So I bring my own hiding place. It has four wheels. I park, switch off and wait. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
+  <p>At home I go through hours of photos to find the one. I edit it, I post it, I wait again. 3 likes. I know all three people. I am better at waiting for birds than at chasing followers. I knock on doors and ask for a chance. Mostly they stay doors. But a few people bought me a coffee, and I remember every cup. Some days I carry more than two things: the jobs, the responsibilities. They have made me older than I am. But slowly is still forward. Why? For the sheer joy of it. Nothing beats a bird that stays.</p>
+  <p>Nobody put milestones on my road, so I made a few: a film, <a href="https://www.youtube.com/watch?v=vNTxghP-uhM">Season: Out of Tune</a>; a citizen science project, <a href="https://www.inaturalist.org/projects/biodiversity-of-mhtr">Biodiversity of MHTR</a>; open-source software, <a href="https://github.com/vinaychittora/FALCON">FALCON</a>; and a website, <a href="https://mhtr.in">mhtr.in</a>.</p>
+  <p>I have decided what the rest of this walk is for. Conservation. I may never be famous. Fame was never the bird I was after. The target is simple: to be of real use to the wild. My day has not come yet. I am good at waiting. And I keep going. <a href="work.html">See my work</a>, or write to me at hello@caneandcamera.com.</p>
+</div>
+</main>
+
+<script>
+(() => {
+  const root = document.documentElement; root.classList.add('js');
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), walker = $('walker'), sky = $('sky'), tag = $('tag'), clockEl = $('clock'), meter = document.querySelector('.meter');
+  const lines = [...document.querySelectorAll('#say li')], photos = [...sky.querySelectorAll('img')];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), ease = t => t * t * (3 - 2 * t), mid = v => v > 0 && v < 1;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const set = (k, v) => stage.style.setProperty(k, v);
+
+  // The journey. Walking moves him through the world; a wait holds him still while something happens.
+  // PAGE is how many screens of scrolling one unit of length below takes.
+  const START = 60, END = 2957, SIGN = 2969, PAGE = .52;
+  const SEG = [
+    { to: 384, len: 2.8 }, { wait: 'miss', len: .9 },
+    { to: 478, len: .8 }, { wait: 'car', len: 2.2 }, { wait: 'p1', len: 1.5 },
+    { to: 770, len: 1.8 }, { wait: 'home', len: 1.9 },
+    { to: 1550, len: 7.9 }, { wait: 'p2', len: 1.7 },
+    { to: 1620, len: .6 }, { wait: 'p3', len: 1.6 },
+    { to: 1690, len: .6 }, { wait: 'p4', len: 1.5 },
+    { to: 2517, len: 5.3 }, { to: END, len: 4.8 }
+  ];
+  const TOTAL = SEG.reduce((s, g) => s + g.len, 0);
+  root.style.setProperty('--pages', (TOTAL * PAGE + 1).toFixed(2));
+  const at = p => {
+    let s = p * TOTAL, wx = START, prev = START;
+    const w = { miss: 0, car: 0, p1: 0, home: 0, p2: 0, p3: 0, p4: 0 };
+    for (const g of SEG) {
+      const t = clamp(s / g.len, 0, 1);
+      if (g.to) { wx = prev + (g.to - prev) * t; prev = g.to; } else w[g.wait] = t;
+      s -= g.len; if (s <= 0) break;
+    }
+    return { wx, w };
+  };
+  // which line he is saying
+  const line = (wx, w, going) => {
+    if (going) return 25;
+    if (mid(w.miss)) return 2;
+    if (mid(w.car)) return w.car < .34 ? 3 : w.car < .7 ? 4 : 5;
+    if (mid(w.p1)) return 6;
+    if (mid(w.home)) return w.home < .4 ? 7 : w.home < .7 ? 8 : 9;
+    if (mid(w.p2)) return 16;
+    if (mid(w.p3)) return 17;
+    if (mid(w.p4)) return 18;
+    if (w.miss < 1) return wx < 104 ? -1 : wx < 236 ? 0 : 1;
+    if (w.car < 1) return wx < 412 ? 2 : 3;
+    if (w.home < 1) return wx < 600 ? 6 : 7;
+    if (w.p2 < 1) return wx < 790 ? 9 : wx < 900 ? 10 : wx < 1045 ? 11 : wx < 1195 ? 12 : wx < 1325 ? 13 : wx < 1425 ? 14 : 15;
+    if (w.p3 < 1) return wx < 1582 ? 16 : 17;
+    if (w.p4 < 1) return wx < 1652 ? 17 : 18;
+    return wx < 1722 ? 18 : wx < 2257 ? 19 : wx < 2517 ? 20 : wx < 2625 ? 21 : wx < 2735 ? 22 : wx < 2845 ? 23 : 24;
+  };
+
+  // The photographs that open in the sky. i is the picture, fx and fy the point it closes in on,
+  // zw how much of its width is left across the screen at the end, then a second, closer frame.
+  const SHOTS = {
+    p1: { x: 478, i: 0, fx: .5, fy: .46, zw: 1, tag: '<b>A Long-tailed Shrike, at sunrise</b>2 Nov 2026 · 06:45' },
+    p2: { x: 1550, i: 1, fx: .34, fy: .62, zw: .6, then: { i: 2, fx: .57, fy: .56 }, tag: '<b>Great Indian Bustard</b>Critically Endangered · Desert National Park · December 2024' },
+    p3: { x: 1620, i: 3, fx: .57, fy: .505, zw: 1, tag: '<b>Leopard, watching from the undergrowth</b>Panthera pardus fusca' },
+    p4: { x: 1690, i: 4, fx: .485, fy: .59, zw: .6, tag: '<b>A Savanna Nightjar, roosting on the track</b>15 Aug 2026 · 10:16' }
+  };
+  const PRINTS = [1820, 2248];   // where the line of prints starts and ends
+  let W = 1, H = 1, HS = 1, vwu = 100;
+  // each photograph starts as the whole frame, fitted inside the sky
+  const fit = () => {
+    W = innerWidth; H = innerHeight; HS = H * .8; vwu = W / H * 100;
+    photos.forEach(im => {
+      const ar = im.getAttribute('width') / im.getAttribute('height'), w0 = Math.min(W, HS * ar), h0 = w0 / ar;
+      im._w = w0; im._h = h0;
+      im.style.width = w0.toFixed(1) + 'px'; im.style.height = h0.toFixed(1) + 'px';
+      im.style.left = ((W - w0) / 2).toFixed(1) + 'px'; im.style.top = ((HS - h0) / 2).toFixed(1) + 'px';
+    });
+  };
+  // ... and closes in on its subject until it fills the sky: e runs 0 to 1
+  const place = (im, fx, fy, zw, e, extra) => {
+    const w0 = im._w, h0 = im._h, x0 = (W - w0) / 2 + fx * w0, y0 = (HS - h0) / 2 + fy * h0;
+    const S = Math.max(W / w0, HS / h0, W / (zw * w0)) * 1.02;
+    const tx = clamp(W * .5, W - (1 - fx) * w0 * S, fx * w0 * S), ty = clamp(HS * .46, HS - (1 - fy) * h0 * S, fy * h0 * S);
+    im.style.transformOrigin = (fx * 100).toFixed(2) + '% ' + (fy * 100).toFixed(2) + '%';
+    im.style.transform = 'translate3d(' + ((tx - x0) * e).toFixed(1) + 'px,' + ((ty - y0) * e).toFixed(1) + 'px,0) scale(' + ((1 + (S - 1) * e) * (1 + extra)).toFixed(4) + ')';
+  };
+  const load = k => {
+    const sh = SHOTS[k];
+    (sh.then ? [sh.i, sh.then.i] : [sh.i]).forEach(i => { const im = photos[i]; if (!im.getAttribute('src')) im.src = im.dataset.src; });
+  };
+  let shown = '';
+  // t runs 0 to 1 over the wait: the sky opens from his lens at (ix, iy), the picture closes in, the sky shuts again
+  const shoot = (key, t, ix, iy) => {
+    const sh = SHOTS[key], im = photos[sh.i], im2 = sh.then && photos[sh.then.i];
+    if (shown !== key) {
+      shown = key; tag.innerHTML = sh.tag; sky.classList.add('on');
+      photos.forEach(p => { p.classList.toggle('on', p === im || p === im2); p.style.opacity = ''; });
+    }
+    const r = Math.min(ease(clamp(t / .13, 0, 1)), ease(clamp((1 - t) / .12, 0, 1)));
+    const far = Math.hypot(Math.max(ix, W - ix), Math.max(iy, HS - iy)) + 4;
+    sky.style.clipPath = r >= 1 ? 'none' : 'circle(' + (r * far).toFixed(1) + 'px at ' + ix.toFixed(1) + 'px ' + iy.toFixed(1) + 'px)';
+    place(im, sh.fx, sh.fy, sh.zw, ease(clamp((t - .24) / .36, 0, 1)), clamp((t - .6) / .4, 0, 1) * .04);
+    if (im2) {
+      place(im2, sh.then.fx, sh.then.fy, 1, 1, clamp((t - .6) / .4, 0, 1) * .05);
+      im2.style.opacity = ease(clamp((t - .62) / .09, 0, 1)).toFixed(3);
+    }
+    tag.classList.toggle('on', t > .1 && t < .9);
+  };
+  const unshoot = () => { if (shown) { shown = ''; sky.classList.remove('on'); tag.classList.remove('on'); } };
+
+  // the contact sheet at home
+  const names = ['wolf', 'pallid-harrier', 'nightjar', 'rollers', 'gib-pair', 'jackal', 'flamingo-pelican', 'blackbuck', 'black-capped-kingfisher', 'common-buzzard', 'shrike-sun', 'sarus', 'gib-scrub', 'red-headed-vulture', 'pitta-stump', 'indian-hare', 'serpent-eagle', 'curlew-crab', 'laggar', 'houbara', 'common-kingfisher', 'white-throated-kingfisher', 'tawny-lark', 'hawk-cuckoo'];
+  const sheet = $('sheet');
+  let sheetFilled = false;
+  const fillSheet = () => { sheetFilled = true; for (let i = 0; i < 40; i++) {
+    const im = new Image(); im.alt = ''; im.width = 800; im.height = 533;
+    im.src = 'img/t/' + (i === 27 ? 'gib-sun' : names[(i * 7 + 3) % names.length]) + '.jpg';
+    sheet.appendChild(im);
+  } };
+
+  const qs = new URLSearchParams(location.search), forced = qs.get('at'), forcedT = qs.get('t');   // test hooks: ?at=0..1 pins the walk, &t= the distance walked on after the end
+  let cur = 0, last = performance.now(), lastD = START, dir = 0, shownLine = -2, lastClock = '', lastMood = '', T = 0;
+  const span = () => Math.max(1, root.scrollHeight - innerHeight);
+  const render = (p, dt) => {
+    const { wx, w } = at(p), rest = Math.min(vwu * .34, 62), CAP = vwu + 30, vh = H / 100;
+    const inCar = w.car > 0 && w.p1 < 1, ended = p > .9995;
+    // At the end he does not stop. The walk goes on by itself, and scrolling back walks it back.
+    if (forcedT !== null) T = +forcedT;
+    else if (ended && !still) T += dt * .013;
+    else if (T > 0) { if (T > CAP + 168) T = CAP + (T - CAP) % 168; T = Math.max(0, T - dt * .7); }
+    const drift = Math.min(T, CAP), loop = T - drift;
+
+    // The camera follows him. At home it glides over to the screen he is looking at, and at the end to the last sign.
+    let cam = wx - rest;
+    const panelW = 62 * Math.min(1, 1.42 * vwu / 100), showHome = Math.max(770 - rest, 796 + panelW + 3 - vwu);
+    const wHome = w.home < 1 ? ease(clamp(w.home * 7, 0, 1)) : clamp(1 - (wx - 770) / (showHome - (770 - rest) + 30), 0, 1);
+    if (w.home > 0) cam += (showHome - cam) * wHome;
+    cam += (Math.max(cam, SIGN + 29 - vwu) - cam) * ease(clamp((wx - END + 48) / 48, 0, 1));
+    cam = Math.max(0, cam);
+    const sx = wx - cam + (rest - wx + cam) * ease(clamp(T / CAP, 0, 1));   // once he walks on, he drifts back to his usual place on screen
+    cam = wx + drift - sx;
+    set('--cam', cam.toFixed(2));
+    set('--camf', (cam + loop % (150 / .22)).toFixed(2));   // the hills repeat, so they can roll for ever
+    set('--camm', (cam + loop % 168).toFixed(2));
+    set('--cams', (cam + loop % (240 / .72)).toFixed(2));
+    set('--tread', (loop % 12.8).toFixed(2));               // and so does his track
+    set('--wx', (wx + drift).toFixed(2));
+    set('--wxp', (wx + drift).toFixed(2));
+    set('--sx', sx.toFixed(2));
+    set('--car', w.car.toFixed(3));
+    set('--home', w.home.toFixed(3));
+    set('--miss', w.miss.toFixed(3));
+    set('--rise', ease(clamp((w.car - .45) / .55, 0, 1)).toFixed(3));
+    const rain = w.home >= 1 && w.p2 === 0 ? clamp((wx - 1200) / 40, 0, 1) * clamp((1365 - wx) / 45, 0, 1) : 0;
+    set('--rain', rain.toFixed(2));
+    stage.classList.toggle('raining', rain > 0);
+    stage.classList.toggle('in-car', inCar);
+    stage.classList.toggle('timing', w.car > 0 && w.p1 < .03);
+    stage.classList.toggle('at-home', mid(w.home));
+    stage.classList.toggle('left-home', w.home >= 1 && wx > 800);
+
+    // the photographs
+    for (const k in SHOTS) if (wx > SHOTS[k].x - 560) load(k);
+    if (!sheetFilled && wx > 540) fillSheet();
+    const key = mid(w.p1) ? 'p1' : mid(w.p2) ? 'p2' : mid(w.p3) ? 'p3' : mid(w.p4) ? 'p4' : '';
+    if (key === 'p1') shoot(key, w.p1, (486.7 - cam) * vh, 62.8 * vh);   // from the camera at the car window
+    else if (key) shoot(key, w[key], (sx + 4.1) * vh, 59.6 * vh);        // from the camera at his eye
+    else unshoot();
+    const ft = key ? w[key] : w.miss;
+    set('--flash', (ft > 0 && ft < .06 ? 1 - Math.abs(ft - .03) / .03 : 0).toFixed(2));
+
+    // He looks straight ahead, and up at a bird on a post, at a photograph in the sky and at the prints on the line.
+    // The camera goes to his eye as he reaches the spot and comes down once the picture is taken.
+    const st = key ? w[key] : w.miss, stop = [384, SHOTS.p2.x, SHOTS.p3.x, SHOTS.p4.x].some(x => wx > x - 9 && wx <= x);
+    const aim = (st > 0 && st < .17) || (stop && st === 0 && !inCar) ? 1 : 0;
+    let up = key && st > .17 && st < .9 ? 1 : 0;
+    if (!key) { if ([250, 306, 358].some(bx => wx > bx - 125 && wx < bx - 38)) up = .6; if (wx > PRINTS[0] - 20 && wx < PRINTS[1] + 10) up = .8; }
+    // What he feels along the way, shown on the logo face: let down when the bird has gone and when nobody looks,
+    // angry at the shut doors, glad when a photograph works, when somebody is kind and under his own prints.
+    let mood = '';
+    if (key) mood = st > .2 && st < .95 ? 'happy' : '';
+    else if (!inCar && !mid(w.home)) {
+      if (w.miss < 1) mood = mid(w.miss) || [250, 306].some(bx => wx > bx - 40 && wx < bx - 6) ? 'sad' : wx > 318 && wx < 352 ? 'angry' : '';
+      else if (w.car < 1) mood = wx < 412 ? 'sad' : '';
+      else if (w.home < 1) mood = w.p1 >= 1 && wx < 570 ? 'happy' : '';
+      else if (w.p2 < 1) mood = wx < 800 ? 'sad' : wx > 912 && wx < 1046 ? 'angry' : wx >= 1046 && wx < 1195 ? 'happy' : wx >= 1195 && wx < 1325 ? 'sad' : wx > 1440 ? 'happy' : '';
+      else if (w.p4 >= 1) mood = wx > PRINTS[0] - 30 && wx < PRINTS[1] + 10 ? 'happy' : '';
+    }
+    if (aim) mood = '';
+    if (mood !== lastMood) { lastMood = mood; walker.setAttribute('class', 'walker' + (mood ? ' ' + mood : '')); }
+    walker.style.setProperty('--shoot', aim);
+    walker.style.setProperty('--tilt', (mood === 'sad' ? -10 : mood === 'angry' ? -17 : Math.min(-22 - up * 18, mood === 'happy' ? -30 : 0)).toFixed(1));
+
+    // legs swing with distance, so he only walks when the world moves
+    const d = wx + T, phase = d * .5;
+    if (Math.abs(d - lastD) > .01) set('--dir', d >= lastD ? 1 : -1);
+    lastD = d;
+    walker.style.setProperty('--a', (Math.sin(phase) * 23).toFixed(1));
+    walker.style.setProperty('--bob', (Math.abs(Math.cos(phase)) * (mood === 'happy' ? 7 : 3)).toFixed(1));
+    const mins = 280 + Math.round(w.car * 125 / 5) * 5, c = String(Math.floor(mins / 60)).padStart(2, '0') + ':' + String(mins % 60).padStart(2, '0');
+    if (c !== lastClock) { lastClock = c; clockEl.textContent = c; }
+    const n = line(wx, w, ended || T > 0);
+    if (n !== shownLine) { shownLine = n; lines.forEach((li, i) => li.classList.toggle('on', i === n)); }
+    meter.style.setProperty('--prog', p.toFixed(4));
+  };
+  const tick = now => {
+    const dt = Math.min(100, now - last); last = now;
+    if (dir) window.scrollBy(0, dir * innerHeight * .22 * dt / 1000);
+    const target = forced !== null ? +forced : clamp(window.scrollY / span(), 0, 1);
+    cur += (target - cur) * (1 - Math.exp(-dt / 120));
+    if (Math.abs(target - cur) < .00005) cur = target;
+    render(cur, dt);
+    requestAnimationFrame(tick);
+  };
+  addEventListener('resize', fit);
+  fit();
+  if (forced !== null) {
+    cur = +forced;
+    fillSheet();
+    photos.forEach(im => { im.src = im.dataset.src; });
+    document.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+  }
+  render(cur, 0); requestAnimationFrame(tick);
+
+  // arrow keys and the two buttons walk him by scrolling the page
+  const keys = { ArrowRight: 1, ArrowDown: 1, d: 1, D: 1, ArrowLeft: -1, ArrowUp: -1, a: -1, A: -1 };
+  addEventListener('keydown', e => { if (keys[e.key] && !e.metaKey && !e.ctrlKey && !e.altKey) { dir = keys[e.key]; e.preventDefault(); } });
+  addEventListener('keyup', e => { if (keys[e.key]) dir = 0; });
+  addEventListener('blur', () => { dir = 0; });
+  [['fwd', 1], ['back', -1]].forEach(([id, d]) => {
+    const b = $(id);
+    const on = e => { dir = d; b.classList.add('down'); e.preventDefault(); }, off = () => { dir = 0; b.classList.remove('down'); };
+    b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off);
+    b.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { dir = d; e.preventDefault(); } });
+    b.addEventListener('keyup', off);
+  });
+})();
+</script>
