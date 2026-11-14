@@ -1,0 +1,44 @@
+<title>Nothing here</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Newsreader:opsz,wght@6..72,400&family=DM+Mono:wght@500&display=swap">
+<style>
+/* The page for an address that does not exist. Ink on paper like the walk, and his track on the ground: it fades out. */
+:root{
+  color-scheme: light;
+  --paper:#f4f1e8; --ink:#121212; --soft:#5d5a52; --earth:#e9e4d6; --pencil:#d8442a;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gl:max(20px,4vw,env(safe-area-inset-left,0px));
+  --gr:max(20px,4vw,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font:400 19px/1.45 var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--pencil);outline-offset:3px}
+.mast{padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gr) 0 var(--gl)}
+.mast a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 14px/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.mast img{display:block;width:46px;height:auto}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6vh var(--gr) 7vh var(--gl)}
+h1{margin:0 0 .28em;max-width:10ch;font:800 clamp(52px,12vw,150px)/.84 var(--display);font-stretch:75%;letter-spacing:-.04em;text-wrap:balance}
+p{margin:0;max-width:33ch;font-size:clamp(17px,2.5vh,22px)}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.5em}
+nav a{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;padding:12px 16px 11px;border:2px solid var(--ink);background:var(--paper);text-decoration:none}
+nav a:hover,nav a.solid{background:var(--ink);color:var(--paper)}
+nav a.solid:hover{background:var(--pencil);border-color:var(--pencil)}
+/* left shoe, right shoe, and the cane mark with every left step */
+.ground{position:relative;flex:none;height:20vh;min-height:96px;background:var(--earth);border-top:.45vh solid var(--ink);overflow:hidden}
+.ground::before{content:"";position:absolute;left:0;top:0;bottom:0;width:72%;
+  -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent);mask-image:linear-gradient(90deg,#000 45%,transparent);
+  background:
+    radial-gradient(ellipse 1.2vh .575vh at 1.2vh calc(27% + .575vh),var(--ink) 96%,transparent 100%) 0 0/12.8vh 100% repeat-x,
+    radial-gradient(ellipse 1.2vh .575vh at 7.6vh calc(43% + .575vh),var(--ink) 96%,transparent 100%) 0 0/12.8vh 100% repeat-x,
+    radial-gradient(circle .45vh at 2.65vh calc(60% + .45vh),var(--ink) 94%,transparent 100%) 0 0/12.8vh 100% repeat-x}
+</style>
+
+<header class="mast"><a href="life.html" aria-label="Cane &amp; Camera, home"><img src="img/logo.svg" width="46" height="38" alt=""><span>Cane &amp; Camera</span></a></header>
+<main>
+  <h1>This trail has gone cold.</h1>
+  <p>The page you were after is not here any more. The walk starts at the beginning, and my work is all on one page.</p>
+  <nav aria-label="Where to go"><a class="solid" href="life.html">Walk with me</a><a href="work.html">See my work</a></nav>
+</main>
+<div class="ground" aria-hidden="true"></div>

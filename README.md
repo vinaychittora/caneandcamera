@@ -1,120 +1,52 @@
-# Cane & Camera — Static Website
+# Cane & Camera
 
-A lightweight static site for **Cane & Camera** focused on natural history storytelling, wildlife films, and field-based conservation communication.
+The website of Vinay Chittora, a field naturalist in Kota, Rajasthan: <https://www.caneandcamera.com>
 
-## Local preview
+The home page is a side-scrolling walk through Vinay's life, and `/work` lists the work. It is a static site with no dependencies. Pushing to `main` deploys it.
 
-```bash
-./run.sh
-```
+## What is where
 
-Open: `http://localhost:8000`
+- `walk/walk.page.html` is the home page, `walk/work.page.html` is the work page, and `walk/404.page.html` is the page shown for an address that does not exist. Each file holds one page's styles, markup and script without the document shell, and addresses its pictures as `img/...`.
+- `scripts/build_walk.py` adds the shell and the metadata, points the pictures at `/assets/img/walk/` and the links at `/` and `/work`, and writes `index.html`, `work.html` and `404.html`. It also writes `_redirects`, `sitemap.xml` and `robots.txt`.
+- `assets/img/walk/` holds the large copies of the photographs that fill the sky, the logo and the UPI code. `assets/img/walk/t/` holds 800 px copies for the prints, the contact sheet and the work page.
+- `_headers` is written by hand.
 
-## Build workflow
+Edit the files in `walk/`, never `index.html`, `work.html` or `404.html`: the build overwrites those.
 
-Pages are generated from shared templates and JSON data to keep navigation, SEO metadata, and repeated content maintainable.
-
-```bash
-python3 scripts/build_site.py
-```
-
-This command regenerates:
-
-- `index.html` and `work.html` (see "The walk" below)
-- `gallery.html`
-- `landscapes.html`
-- `documentaries.html`
-- `about.html`
-- `contact.html`
-- Pretty-route mirrors under `about/`, `gallery/`, `landscapes/`, `documentaries/`, and `contact/`
-- Minified CSS and JavaScript assets used by the generated pages
-- `sitemap.xml`, `robots.txt`, and Netlify-style `_redirects`
-
-The generated canonical URLs, internal links, and sitemap use clean public routes such as `/gallery` and `/about`. The `.html` files remain build artifacts for static hosting and are redirected away from on deploy.
-
-## The walk
-
-The home page is a side-scrolling walk through Vinay's life, and `/work` lists the work. Both are written by hand, not from the templates:
-
-- `walk/walk.page.html` is the home page and `walk/work.page.html` is the work page. Each file holds one page's styles, markup and script without the document shell, and addresses its pictures as `img/...`.
-- `scripts/build_walk.py` adds the shell and the metadata, points the pictures at `/assets/img/walk/` and the links at `/` and `/work`, and writes `index.html` and `work.html`. `scripts/build_site.py` runs it at the end, and it can be run on its own:
+## Build and preview
 
 ```bash
 python3 scripts/build_walk.py
 ```
 
-- The pictures live in `assets/img/walk/` (large copies for the photographs that fill the sky) and `assets/img/walk/t/` (800 px copies for the prints and the contact sheet).
-- To check one moment of the walk, add `?at=` with a number from 0 to 1 to the address, for example `/?at=0.44`.
-
-The older pages (`/gallery`, `/landscapes`, `/documentaries`, `/about`, `/contact`) are still built and served, but the walk does not link to them.
-
-## Content/data sources
-
-- Gallery manifest: `assets/img/gallery/generated/photos.json`
-- Documentary metadata: `data/documentaries.json`
-- Portfolio taxonomy and page copy: `scripts/build_site.py`
-
-The gallery is now presented as a **Field Index**. Photos are grouped client-side by field-study tags such as raptors, grasslands, wetlands, forest edge, and small lives. Those tags and narrative notes live in `scripts/build_site.py`, so the site stays static while still feeling curated.
-
-## Responsive image pipeline
-
-Gallery pages consume responsive variants (`srcset` / `sizes`) from the manifest.
-
-To generate variants from originals (optional, requires Pillow):
-
 ```bash
-python3 scripts/generate_responsive_images.py
+./run.sh
 ```
 
-Source originals should live in:
+Then open `http://localhost:8000`. The local server does not read `_redirects`, and it shows `404.html` only at `/404.html`.
 
-- `assets/img/gallery/originals/wildlife/`
-- `assets/img/gallery/originals/landscapes/`
+## Checking the walk
 
-The script writes optimized variants and updates `assets/img/gallery/generated/photos.json`.
+- Add `?at=` with a number from 0 to 1 to pin the walk at one moment, for example `/?at=0.44`.
+- Add `&t=` to that with a number of steps to see him walk on after the end, for example `/?at=1&t=200`.
+- Add `&upi=1` to open the UPI card in the ending.
 
-## How to add a new photo
+The walk moves by scrolling the page. Arrow keys, the two arrow buttons, Play, and a tap or a hold on either side of the picture all scroll it.
 
-1. Copy the original high-resolution file into one of these folders:
-   - `assets/img/gallery/originals/wildlife/`
-   - `assets/img/gallery/originals/landscapes/`
-2. Use a clear filename slug (example: `desert-fox-family.jpg`).
-3. Run:
+## Adding a photograph
 
-```bash
-python3 scripts/generate_responsive_images.py
-```
+1. Save a large copy (about 2400 px wide) in `assets/img/walk/` if it will fill the sky, and an 800 px copy in `assets/img/walk/t/`.
+2. Add it to `walk/walk.page.html` or `walk/work.page.html`.
+3. Run the build.
 
-4. This generates responsive variants at widths `512`, `1024`, `1350`, and `2048` (when source size allows) and rewrites:
-   - `assets/img/gallery/generated/photos.json`
-5. Open `assets/img/gallery/generated/photos.json` and fill/edit metadata for the new entry:
-   - `title`
-   - `description`
-   - `datetime`
-   - `camera` (if available)
-6. Rebuild the site pages:
+Keep the watermark on every photograph, and never publish a photograph of a nest.
+
+## Old addresses
+
+The site this one replaced had `/gallery`, `/landscapes`, `/documentaries`, `/about` and `/contact`. `_redirects` sends each of them to the walk or to the matching part of `/work`. Anything else that no longer exists gets `404.html`.
+
+That site, with its pages, pictures and build scripts, is kept in git under the tag `old-site`. To bring something back:
 
 ```bash
-python3 scripts/build_site.py
+git checkout old-site -- assets/img/gallery
 ```
-
-The responsive image generator preserves existing manifest metadata for matching slugs, so rerunning it should not wipe the titles, descriptions, camera info, or custom fields you already edited.
-
-### Concrete example
-
-If you add:
-
-- `assets/img/gallery/originals/wildlife/desert-fox-family.jpg`
-
-the generator will create files like:
-
-- `assets/img/gallery/generated/wildlife/desert-fox-family-512.jpg`
-- `assets/img/gallery/generated/wildlife/desert-fox-family-1024.jpg`
-- `assets/img/gallery/generated/wildlife/desert-fox-family-1350.jpg`
-- `assets/img/gallery/generated/wildlife/desert-fox-family-2048.jpg`
-
-Then `scripts/build_site.py` will automatically include the photo in gallery pages with:
-
-- responsive thumbnails via `srcset`/`sizes`
-- lazy loading in gallery lists
-- larger image opened in the lightbox (`data-full`)

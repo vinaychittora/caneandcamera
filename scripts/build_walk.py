@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Build the home page (the walk) and /work from the page bodies in walk/.
+"""Build the site: the home page (the walk), /work and the not-found page.
 
-The two files in walk/ each hold one page's styles, markup and script without
-the document shell, and address their pictures as img/... so they can be
-previewed on their own. This script adds the shell and the metadata, points the
-pictures at /assets/img/walk/ and the links at the public routes, and writes
-index.html and work.html at the site root.
+The files in walk/ each hold one page's styles, markup and script without the
+document shell, and address their pictures as img/... so they can be previewed
+on their own. This script adds the shell and the metadata, points the pictures
+at /assets/img/walk/ and the links at the public routes, and writes index.html,
+work.html and 404.html at the site root.
 
-Run it on its own, or let scripts/build_site.py run it at the end:
+It also writes _redirects (the old site's addresses, sent to where that content
+lives now), sitemap.xml and robots.txt.
 
     python3 scripts/build_walk.py
 """
+from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
 import json
@@ -32,6 +34,8 @@ PAGES = [
             "scouting, and conservation storytelling from Rajasthan."
         ),
         "image": IMG + "gib-sun.jpg",
+        "changefreq": "weekly",
+        "priority": "1.0",
     },
     {
         "source": "work.page.html",
@@ -43,7 +47,27 @@ PAGES = [
             "citizen science in Mukundara Hills Tiger Reserve, the FALCON field recorder, mhtr.in and wildlife films."
         ),
         "image": IMG + "gib-sun.jpg",
+        "changefreq": "monthly",
+        "priority": "0.9",
     },
+    {
+        # Served by the host, with a 404 status, for any address that does not exist.
+        # It has no route of its own, so it stays out of the sitemap and out of search.
+        "source": "404.page.html",
+        "out": "404.html",
+        "route": None,
+        "title": "Nothing here | Cane & Camera",
+    },
+]
+
+# The site this one replaced had a page for each of these. Each old address goes to where that content lives now.
+MOVED = [
+    ("/gallery", "/work#photographs"),
+    ("/landscapes", "/work#photographs"),
+    ("/documentaries", "/work#films"),
+    ("/contact", "/work#write"),
+    ("/work-with-me", "/work#write"),
+    ("/about", "/"),
 ]
 
 SAME_AS = [
@@ -95,13 +119,7 @@ def localise(text):
 
 
 def document(page, head, body):
-    url = SITE_URL + page["route"]
     title = escape(page["title"])
-    description = escape(page["description"], quote=True)
-    image = SITE_URL + page["image"]
-    json_ld = "\n".join(
-        '  <script type="application/ld+json">' + json.dumps(block, ensure_ascii=False) + "</script>" for block in JSON_LD
-    )
     lines = [
         "<!doctype html>",
         '<html lang="en">',
@@ -109,33 +127,73 @@ def document(page, head, body):
         '  <meta charset="utf-8">',
         '  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
         f"  <title>{title}</title>",
-        f'  <meta name="description" content="{description}">',
-        '  <meta name="robots" content="index,follow,max-image-preview:large">',
-        '  <meta name="author" content="Vinay Chittora">',
-        f'  <link rel="canonical" href="{url}">',
-        '  <meta property="og:type" content="website">',
-        '  <meta property="og:site_name" content="Cane &amp; Camera">',
-        f'  <meta property="og:title" content="{title}">',
-        f'  <meta property="og:description" content="{description}">',
-        f'  <meta property="og:url" content="{url}">',
-        f'  <meta property="og:image" content="{image}">',
-        '  <meta name="twitter:card" content="summary_large_image">',
-        f'  <meta name="twitter:title" content="{title}">',
-        f'  <meta name="twitter:description" content="{description}">',
-        f'  <meta name="twitter:image" content="{image}">',
+    ]
+    if page["route"] is None:
+        lines.append('  <meta name="robots" content="noindex,follow">')
+    else:
+        url = SITE_URL + page["route"]
+        description = escape(page["description"], quote=True)
+        image = SITE_URL + page["image"]
+        lines += [
+            f'  <meta name="description" content="{description}">',
+            '  <meta name="robots" content="index,follow,max-image-preview:large">',
+            '  <meta name="author" content="Vinay Chittora">',
+            f'  <link rel="canonical" href="{url}">',
+            '  <meta property="og:type" content="website">',
+            '  <meta property="og:site_name" content="Cane &amp; Camera">',
+            f'  <meta property="og:title" content="{title}">',
+            f'  <meta property="og:description" content="{description}">',
+            f'  <meta property="og:url" content="{url}">',
+            f'  <meta property="og:image" content="{image}">',
+            '  <meta name="twitter:card" content="summary_large_image">',
+            f'  <meta name="twitter:title" content="{title}">',
+            f'  <meta name="twitter:description" content="{description}">',
+            f'  <meta name="twitter:image" content="{image}">',
+        ]
+    lines += [
         '  <link rel="icon" type="image/png" href="/assets/img/ico/favicon.png">',
         '  <link rel="preconnect" href="https://fonts.googleapis.com">',
         '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-        json_ld,
-        head,
-        "</head>",
-        "<body>",
-        body,
-        "</body>",
-        "</html>",
-        "",
     ]
+    if page["route"] is not None:
+        lines += [
+            '  <script type="application/ld+json">' + json.dumps(block, ensure_ascii=False) + "</script>"
+            for block in JSON_LD
+        ]
+    lines += [head, "</head>", "<body>", body, "</body>", "</html>", ""]
     return "\n".join(lines)
+
+
+def redirects():
+    """One line per old address, in the form the host reads: from, to, status.
+
+    The host matches an address exactly, so each page is listed the four ways it could be asked for.
+    """
+    lines = ["/favicon.ico /assets/img/ico/favicon.png 301"]
+    for old, new in MOVED:
+        for form in (old, old + "/", old + ".html", old + "/index.html"):
+            lines.append(f"{form} {new} 301")
+    return "\n".join(lines) + "\n"
+
+
+def sitemap():
+    today = datetime.now(timezone.utc).date().isoformat()
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for page in PAGES:
+        if page["route"] is not None:
+            lines.append(
+                f"  <url><loc>{SITE_URL}{page['route']}</loc><lastmod>{today}</lastmod>"
+                f"<changefreq>{page['changefreq']}</changefreq><priority>{page['priority']}</priority></url>"
+            )
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+ROBOTS = f"""User-agent: *
+Allow: /
+
+Sitemap: {SITE_URL}/sitemap.xml
+"""
 
 
 def build():
@@ -144,6 +202,9 @@ def build():
         head, body = split(localise(fragment))
         (ROOT / page["out"]).write_text(document(page, head, body), encoding="utf-8")
         print(f"built {page['out']} from walk/{page['source']}")
+    for name, text in (("_redirects", redirects()), ("sitemap.xml", sitemap()), ("robots.txt", ROBOTS)):
+        (ROOT / name).write_text(text, encoding="utf-8")
+        print(f"wrote {name}")
 
 
 if __name__ == "__main__":
