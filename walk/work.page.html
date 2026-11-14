@@ -41,7 +41,10 @@ h1,h2,h3,p,ul,figure{margin:0}
 .go.solid{background:var(--ink);color:var(--paper)}
 .go.solid:hover{background:var(--pencil);border-color:var(--pencil);color:#fff}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-.go.todo{border-style:dashed;border-color:var(--pencil);color:var(--pencil)}
+.upi{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin-top:24px}
+.upi img{width:150px;height:auto;border:2px solid var(--ink);background:#fff}
+.upi p{max-width:30ch}
+.upi b{display:block;margin-top:6px;font:500 15px/1.3 var(--mono);user-select:all;overflow-wrap:anywhere}
 .reel{list-style:none;padding:0;margin-top:26px;border-top:2px solid var(--ink)}
 .reel a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(18,18,18,.3);text-decoration:none}
 .reel b{font:700 clamp(19px,1.9vw,27px)/1.1 var(--display);font-stretch:84%}
@@ -165,11 +168,15 @@ h1,h2,h3,p,ul,figure{margin:0}
         <a class="go solid" href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a>
         <a class="go" href="https://www.patreon.com/cw/CaneAndCamera" target="_blank" rel="noopener">Patreon</a>
       </div>
+      <div class="upi">
+        <img src="img/upi-qr.png" width="580" height="580" loading="lazy" alt="QR code for paying Vinay Chittora by UPI">
+        <p>Or pay by UPI. Scan the code with any UPI app, or send to <b>vinay.chittora-2@okaxis</b></p>
+      </div>
     </div>
   </section>
 
   <footer class="foot">
     <span>Photographs, films and words © Vinay Chittora</span>
-    <span>First cut of the work page</span>
+    <span>Kota, Rajasthan</span>
   </footer>
 </main>

@@ -194,10 +194,18 @@ h1,h2,p,ol,figure{margin:0}
 .outro a.solid{background:var(--ink);color:var(--paper)}
 .outro a.solid:hover{background:var(--pencil);border-color:var(--pencil)}
 .outro b{font:500 13px/1 var(--mono);letter-spacing:.02em;background:var(--paper);padding:10px 4px 9px;user-select:all}
+.outro button{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;padding:10px 14px 9px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+.outro button:hover{background:var(--ink);color:var(--paper)}
 /* the support stop: a coffee, or UPI */
 .outro p{flex:0 0 100%;margin:10px 0 0;font:400 clamp(15px,2.2vh,19px)/1.35 var(--text);letter-spacing:0;font-stretch:100%}
 .outro p span{background:var(--paper);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:2px 6px 2px 0}
 .outro i{font:500 12px/1 var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px 9px;border:2px dashed var(--pencil);color:var(--pencil);background:var(--paper)}
+/* paying by UPI: his own QR code and the ID to copy */
+.upi{flex:0 0 auto;display:flex;align-items:center;gap:14px;max-width:100%;margin-top:4px;padding:12px;background:#fff;border:2px solid var(--ink)}
+.upi[hidden]{display:none}
+.upi img{width:min(170px,32vw);height:auto;flex:none}
+.outro .upi p{flex:none;margin:0;font:400 15px/1.35 var(--text);letter-spacing:0;font-stretch:100%}
+.outro .upi b{display:block;margin:6px 0 10px;padding:0;background:none;font:500 13.5px/1.25 var(--mono);letter-spacing:0;overflow-wrap:anywhere}
 .pad{position:fixed;z-index:41;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;justify-content:center;align-items:center;gap:14px;pointer-events:none}
 .pad button{pointer-events:auto;width:58px;height:58px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:700 22px/1 var(--display);cursor:pointer;touch-action:none;user-select:none}
 .pad button:active,.pad button.down{background:var(--ink);color:var(--paper)}
@@ -503,7 +511,7 @@ html:not(.js) .plain{display:block}
     <li><span>The target is simple: to be of real use to the wild.</span></li>
     <li><span>My day has not come yet. I am good at waiting.</span></li>
     <li><span>And I keep going. Tap. Tap. Tap.</span>
-      <div class="outro"><a class="solid" href="work.html">See my work</a><a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">Watch the films</a><a href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a><b>hello@caneandcamera.com</b></div>
+      <div class="outro"><a class="solid" href="work.html">See my work</a><a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">Watch the films</a><a href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a><button type="button" id="upi-open" aria-expanded="false" aria-controls="upi">Pay by UPI</button><b>hello@caneandcamera.com</b><div class="upi" id="upi" hidden><img src="img/upi-qr.png" width="580" height="580" alt="QR code for paying Vinay Chittora by UPI"><div><p>Scan with any UPI app, or pay to</p><b id="upi-id">vinay.chittora-2@okaxis</b><button type="button" id="upi-copy">Copy the ID</button></div></div></div>
     </li>
   </ol>
   <p class="tag" id="tag"></p>
@@ -523,7 +531,7 @@ html:not(.js) .plain{display:block}
   <p>I am disabled. My footprints come in threes: left, right, cane. Tap, tap, tap: every bird hears me long before I see it, and I have a fine collection of empty posts. So I bring my own hiding place. It has four wheels. I park, switch off and wait. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
   <p>At home I go through hours of photos to find the one. I edit it, I post it, I wait again. 3 likes. I know all three people. I am better at waiting for birds than at chasing followers. I knock on doors and ask for a chance. Mostly they stay doors. But a few people bought me a coffee, and I remember every cup. Some days I carry more than two things: the jobs, the responsibilities. They have made me older than I am. But slowly is still forward. Why? For the sheer joy of it. Nothing beats a bird that stays.</p>
   <p>Nobody put milestones on my road, so I made a few: a film, <a href="https://www.youtube.com/watch?v=vNTxghP-uhM">Season: Out of Tune</a>; a citizen science project, <a href="https://www.inaturalist.org/projects/biodiversity-of-mhtr">Biodiversity of MHTR</a>; open-source software, <a href="https://github.com/vinaychittora/FALCON">FALCON</a>; and a website, <a href="https://mhtr.in">mhtr.in</a>.</p>
-  <p>I have decided what the rest of this walk is for. Conservation. I may never be famous. Fame was never the bird I was after. The target is simple: to be of real use to the wild. My day has not come yet. I am good at waiting. And I keep going. <a href="work.html">See my work</a>, or write to me at hello@caneandcamera.com.</p>
+  <p>I have decided what the rest of this walk is for. Conservation. I may never be famous. Fame was never the bird I was after. The target is simple: to be of real use to the wild. My day has not come yet. I am good at waiting. And I keep going. <a href="work.html">See my work</a>, or write to me at hello@caneandcamera.com. If you would like to support the work, you can <a href="https://buymeacoffee.com/caneandcamera">buy me a coffee</a> or pay by UPI to vinay.chittora-2@okaxis.</p>
 </div>
 </main>
 
@@ -745,6 +753,17 @@ html:not(.js) .plain{display:block}
     document.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
   }
   render(cur, 0); requestAnimationFrame(tick);
+
+  // the UPI card in the ending
+  const upi = $('upi'), upiOpen = $('upi-open');
+  upiOpen.addEventListener('click', () => { upi.hidden = !upi.hidden; upiOpen.setAttribute('aria-expanded', String(!upi.hidden)); });
+  $('upi-copy').addEventListener('click', e => {
+    const b = e.currentTarget, el = $('upi-id');
+    const pick = () => { const r = document.createRange(); r.selectNodeContents(el); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); };
+    const done = () => { b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy the ID'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.textContent).then(done, pick); else pick();
+  });
+  if (qs.get('upi')) upi.hidden = false;   // test hook
 
   // arrow keys and the two buttons walk him by scrolling the page
   const keys = { ArrowRight: 1, ArrowDown: 1, d: 1, D: 1, ArrowLeft: -1, ArrowUp: -1, a: -1, A: -1 };
