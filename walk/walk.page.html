@@ -48,7 +48,12 @@ h1,h2,p,ol,figure{margin:0}
 .bush::before{content:"";position:absolute;left:5.2vh;bottom:0;width:6.4vh;height:2.9vh;background:var(--ink);border-radius:3.2vh 3.2vh 0 0/2.9vh 2.9vh 0 0}
 
 /* ---------- the sky opens: his photographs ---------- */
-.sky{position:absolute;left:0;right:0;top:0;height:80%;overflow:hidden;background:var(--paper);visibility:hidden}
+/* a photograph comes up as a print in a white frame, to one side of him, and the picture closes in on its subject inside it */
+.sky{position:absolute;z-index:5;left:calc(min(34vw,62vh) + 30vh);width:min(calc(100vw - min(34vw,62vh) - 30vh - var(--gr)),104vh);top:14vh;bottom:calc(20% + 6vh);overflow:hidden;background:#fff;
+  border:1vh solid #fff;outline:.45vh solid var(--ink);box-shadow:0 1.6vh 3.4vh rgba(0,0,0,.18);visibility:hidden;
+  opacity:min(calc(var(--pop,0) * 3),1);transform:translate3d(0,calc((1 - var(--pop,0)) * 9vh),0) rotate(-1.2deg)}
+/* where the screen is not wide enough for that, the print sits between the words and his head */
+@media (max-aspect-ratio:13/10){.sky{left:5vw;width:90vw;top:auto;bottom:calc(20% + 29vh);height:min(26vh,58vw)}}
 .sky.on{visibility:visible}
 .sky img{position:absolute;max-width:none;opacity:0;will-change:transform}
 .sky img.on{opacity:1}
@@ -262,7 +267,7 @@ html:not(.night) .nightlife *{animation-play-state:paused}
 @media (hover:none) and (pointer:coarse){.title small .mouse{display:none}.title small .touch{display:inline}}
 .title small{display:block;margin-top:1.4em;font:500 clamp(11px,1.5vh,13px)/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
 .say{position:absolute;z-index:6;left:var(--gl);right:var(--gr);top:max(84px,12vh);list-style:none;padding:0;display:grid;pointer-events:none}
-.say li{grid-area:1/1;font:600 clamp(19px,4.3vh,46px)/1.12 var(--display);font-stretch:92%;letter-spacing:-.01em;max-width:24ch;text-wrap:balance;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.say li{grid-area:1/1;align-self:start;font:600 clamp(19px,4.3vh,46px)/1.12 var(--display);font-stretch:92%;letter-spacing:-.01em;max-width:24ch;text-wrap:balance;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s .35s}
 .say li.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 /* one word in each line is the big one */
 .say li>span b{font-weight:800;font-stretch:76%;font-size:1.85em;line-height:.92;letter-spacing:-.03em;vertical-align:-.04em}
@@ -272,6 +277,8 @@ html:not(.night) .nightlife *{animation-play-state:paused}
 .say li.on .outro{pointer-events:auto}
 .say li:not(.on):not(.links){position:absolute;left:0;top:0}
 .say li.links{grid-area:2/1;max-width:none}
+/* at the end the links keep their place: the row above them is as tall as the tallest line said there */
+.going .say{grid-template-rows:minmax(var(--endh,0px),auto) auto}
 .say li.links .outro{margin-top:14px}
 .outro a.solid{background:var(--ink);color:var(--paper)}
 .outro a.solid:hover{background:var(--pencil);border-color:var(--pencil)}
@@ -649,13 +656,13 @@ html:not(.js) .plain{display:block}
 
   <div class="title">
     <h1>Cane <span>&amp;</span><br>Camera</h1>
-    <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora. Walk with me.</p>
+    <p>I am Vinay Chittora, a disabled naturalist. I carry two things. One holds me up. The other keeps me going. Walk with me.</p>
     <small><b class="mouse">Scroll, tap either side, or press Let&rsquo;s walk</b><b class="touch">Swipe, tap either side, or press Let&rsquo;s walk</b></small>
   </div>
   <ol class="say" id="say">
-    <li><span>I am <b>disabled</b>. My footprints come in threes.</span></li>
+    <li><span>A <b>disabled naturalist</b>. My footprints come in threes.</span></li>
     <li><span>Left, right, cane. I try to keep the <b>carbon</b> one small.</span></li>
-    <li><span><b>Tap. Tap. Tap.</b> Every bird hears me first.</span></li>
+    <li><span><b>Tap. Tap-tap.</b> Every bird hears me first.</span></li>
     <li><span>I collect <b>empty posts</b>.</span></li>
     <li><span>So I bring a <b>hide</b>. It has four wheels.</span></li>
     <li><span>I park and <b>wait</b>. The sun moves. I do not.</span></li>
@@ -680,7 +687,7 @@ html:not(.js) .plain{display:block}
     <li><span>That is why I like it here. No stress. <b>No pressure.</b></span></li>
     <li><span>The target is simple: be of real <b>use</b> to the wild.</span></li>
     <li><span>I am slow, I know. Birds taught me <b>patience</b>.</span></li>
-    <li><span>And I <b>keep going</b>. Tap. Tap. Tap.</span></li>
+    <li><span>And I <b>keep going</b>. Tap. Tap-tap.</span></li>
     <li><span>Sometimes I just <b>sit</b>. The tree does not mind.</span></li>
     <li><span>Tap. <b>Sorry, fish.</b></span></li>
     <li><span>Hey, <b>Canis lupus</b>. I am Homo sapiens.</span></li>
@@ -703,8 +710,8 @@ html:not(.js) .plain{display:block}
 
 <div class="plain">
   <h1>Cane &amp; Camera</h1>
-  <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora, a field naturalist in Kota, Rajasthan.</p>
-  <p>I am disabled. My footprints come in threes: left, right, cane. I try to keep the carbon one small. Tap, tap, tap: every bird hears me first, and I collect empty posts. So I bring a hide. It has four wheels. I park and wait. The sun moves. I do not. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
+  <p>I am Vinay Chittora, a disabled naturalist in Kota, Rajasthan. I carry two things. One holds me up. The other keeps me going.</p>
+  <p>My footprints come in threes: left, right, cane. I try to keep the carbon one small. Tap, tap-tap: every bird hears me first, and I collect empty posts. So I bring a hide. It has four wheels. I park and wait. The sun moves. I do not. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
   <p>At home, hours of photos to find the one. I edit. I post. I wait again. 3 likes. I know all three people. Phone down. Camera up. I knock on doors. Mostly they stay doors. A few people bought me a coffee, and I remember every cup. Some days I carry more than two things. Jobs. Responsibilities. They made me older. But slowly is still forward. Why? Joy. Nothing beats a bird that stays.</p>
   <p>Nobody put milestones on my road, so I made a few: a film, <a href="https://www.youtube.com/watch?v=vNTxghP-uhM">Season: Out of Tune</a>; a citizen science project, <a href="https://www.inaturalist.org/projects/biodiversity-of-mhtr">Biodiversity of MHTR</a>; open-source software, <a href="https://github.com/vinaychittora/FALCON">FALCON</a>; and a website, <a href="https://mhtr.in">mhtr.in</a>.</p>
   <p>What is the rest of this walk for? Conservation. The forest does not care about my species count or my followers. That is why I like it here. No stress. No pressure. The target is simple: be of real use to the wild. I am slow, I know. Birds taught me patience. And I keep going. Sometimes I just sit under a tree, or lie down and let the birds do the flying. <a href="work.html">See my work</a>, or write to me at hello@caneandcamera.com. If you would like to support the work, you can <a href="https://buymeacoffee.com/caneandcamera">buy me a coffee</a> or pay by UPI to vinay.chittora-2@okaxis.</p>
@@ -794,22 +801,27 @@ html:not(.js) .plain{display:block}
     p4: { x: 1690, i: 4, fx: .485, fy: .59, zw: .6, tag: '<b>A Savanna Nightjar, roosting on the track</b><i>15 Aug 2026</i> <i>10:16</i>' }
   };
   const PRINTS = [1820, 2248];   // where the line of prints starts and ends
-  let W = 1, H = 1, HS = 1, vwu = 100;
+  let W = 1, H = 1, HS = 1, SW = 1, SH = 1, vwu = 100;
+  const sayEl = $('say');
   // each photograph starts as the whole frame, fitted inside the sky
   const fit = () => {
     W = innerWidth; H = innerHeight; HS = H * .8; vwu = W / H * 100;
+    SW = sky.clientWidth; SH = sky.clientHeight;   // the inside of the frame
+    let eh = 0;
+    lines.slice(27).forEach(li => { eh = Math.max(eh, li.offsetHeight); });
+    sayEl.style.setProperty('--endh', eh + 'px');
     photos.forEach(im => {
-      const ar = im.getAttribute('width') / im.getAttribute('height'), w0 = Math.min(W, HS * ar), h0 = w0 / ar;
+      const ar = im.getAttribute('width') / im.getAttribute('height'), w0 = Math.min(SW, SH * ar), h0 = w0 / ar;
       im._w = w0; im._h = h0;
       im.style.width = w0.toFixed(1) + 'px'; im.style.height = h0.toFixed(1) + 'px';
-      im.style.left = ((W - w0) / 2).toFixed(1) + 'px'; im.style.top = ((HS - h0) / 2).toFixed(1) + 'px';
+      im.style.left = ((SW - w0) / 2).toFixed(1) + 'px'; im.style.top = ((SH - h0) / 2).toFixed(1) + 'px';
     });
   };
   // ... and closes in on its subject until it fills the sky: e runs 0 to 1
   const place = (im, fx, fy, zw, e, extra) => {
-    const w0 = im._w, h0 = im._h, x0 = (W - w0) / 2 + fx * w0, y0 = (HS - h0) / 2 + fy * h0;
-    const S = Math.max(W / w0, HS / h0, W / (zw * w0)) * 1.02;
-    const tx = clamp(W * .5, W - (1 - fx) * w0 * S, fx * w0 * S), ty = clamp(HS * .46, HS - (1 - fy) * h0 * S, fy * h0 * S);
+    const w0 = im._w, h0 = im._h, x0 = (SW - w0) / 2 + fx * w0, y0 = (SH - h0) / 2 + fy * h0;
+    const S = Math.max(SW / w0, SH / h0, SW / (zw * w0)) * 1.02;
+    const tx = clamp(SW * .5, SW - (1 - fx) * w0 * S, fx * w0 * S), ty = clamp(SH * .46, SH - (1 - fy) * h0 * S, fy * h0 * S);
     im.style.transformOrigin = (fx * 100).toFixed(2) + '% ' + (fy * 100).toFixed(2) + '%';
     im.style.transform = 'translate3d(' + ((tx - x0) * e).toFixed(1) + 'px,' + ((ty - y0) * e).toFixed(1) + 'px,0) scale(' + ((1 + (S - 1) * e) * (1 + extra)).toFixed(4) + ')';
   };
@@ -826,8 +838,7 @@ html:not(.js) .plain{display:block}
       photos.forEach(p => { p.classList.toggle('on', p === im || p === im2); p.style.opacity = ''; });
     }
     const r = Math.min(ease(clamp(t / .13, 0, 1)), ease(clamp((1 - t) / .12, 0, 1)));
-    const far = Math.hypot(Math.max(ix, W - ix), Math.max(iy, HS - iy)) + 4;
-    sky.style.clipPath = r >= 1 ? 'none' : 'circle(' + (r * far).toFixed(1) + 'px at ' + ix.toFixed(1) + 'px ' + iy.toFixed(1) + 'px)';
+    sky.style.setProperty('--pop', r.toFixed(3));   // the print comes up, and goes down again
     place(im, sh.fx, sh.fy, sh.zw, ease(clamp((t - .24) / .36, 0, 1)), clamp((t - .6) / .4, 0, 1) * .04);
     if (im2) {
       place(im2, sh.then.fx, sh.then.fy, 1, 1, clamp((t - .6) / .4, 0, 1) * .05);
@@ -855,7 +866,7 @@ html:not(.js) .plain{display:block}
     const inCar = w.car > 0 && w.p1 < 1, ended = p > .9995;
     // At the end he does not stop. The walk goes on by itself, and scrolling back walks it back.
     if (forcedT !== null) T = +forcedT;
-    else if (ended && !still) T += dt * .013;
+    else if (ended && !still) T += dt * .02;
     else if (T > 0) { if (T > CAP + 168) T = CAP + (after(T, CAP).D - CAP) % 168; T = Math.max(0, T - dt * .7); }
     const A = after(T, CAP), tc = A.tc, on = T > 0 && (ended || forcedT !== null);
     const drift = Math.min(A.D, CAP), loop = A.D - drift;
@@ -964,14 +975,27 @@ html:not(.js) .plain{display:block}
     const going = ended || T > 0, n = going ? endLine(tc) : line(wx, w);
     if (n !== shownLine) { shownLine = n; lines.forEach((li, i) => li.classList.toggle('on', i === n)); }
     links.classList.toggle('on', going);
+    stage.classList.toggle('going', going);
     meter.style.setProperty('--prog', p.toFixed(4));
+  };
+  // Left to walk by himself he keeps one pace all the way, a little brisker than his stroll after the end: WALK units a second.
+  // A wait goes by at REST of its length a second. The answer is in lengths of the journey a second.
+  const WALK = 28, REST = .36;
+  const pace = p => {
+    let s = p * TOTAL, prev = START;
+    for (const g of SEG) {
+      if (s < g.len) return g.to ? WALK * g.len / (g.to - prev) : REST;
+      s -= g.len; if (g.to) prev = g.to;
+    }
+    return REST;
   };
   const tick = now => {
     const dt = Math.min(100, now - last); last = now;
     // He walks by scrolling the page: a held key, button or side (dir), Play (auto), the steps of a tap (burst),
     // a finger dragging the picture sideways (pull) and the coasting after it lets go (glide).
     // Whole pixels only, with the rest carried over, so a slow pace still moves on every browser.
-    let go = (dir < 0 ? -.22 : (dir ? .22 : 0) + (auto ? .15 : 0)) * innerHeight * dt / 1000;
+    let go = (dir < 0 ? -.22 : dir ? .22 : 0) * innerHeight * dt / 1000;
+    if (auto && dir >= 0) go += pace(clamp(window.scrollY / span(), 0, 1)) * PAGE * innerHeight * dt / 1000;
     if (auto && dir >= 0 && window.scrollY >= span() - 1) setAuto(false);
     if (burst) { const st = Math.sign(burst) * Math.min(Math.abs(burst), innerHeight * 1.1 * dt / 1000); go += st; burst -= st; }
     if (pull) { go += pull; pull = 0; }
@@ -984,6 +1008,7 @@ html:not(.js) .plain{display:block}
     requestAnimationFrame(tick);
   };
   addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   fit();
   if (forced !== null) {
     cur = +forced;
