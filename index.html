@@ -101,13 +101,13 @@ h1,h2,p,ol,figure{margin:0}
 .car{width:52vh;overflow:visible}
 .car .me{opacity:0}
 .in-car .car .me{opacity:1}
-.clock{position:absolute;left:calc(var(--x) * 1vh);bottom:calc(20% + 30vh);font:500 3.4vh/1 var(--mono);font-variant-numeric:tabular-nums;opacity:0;transition:opacity .3s}
-.clock small{display:block;font:500 1.5vh/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
-.timing .clock{opacity:1}
 .bird.back{opacity:clamp(0,calc((var(--car,0) - .45) * 24),1)}
 .bird.roof{width:6vh;margin-left:-2.9vh;margin-bottom:-.8vh;opacity:min(clamp(0,calc((var(--car,0) - var(--on)) * 24),1),clamp(0,calc(490 - var(--wx,0)),1))}
-/* the sun comes up behind the hills while he waits */
-.sun{position:absolute;left:70%;top:calc(66vh - var(--rise,0) * 34vh);width:6vh;height:6vh;border:.45vh solid var(--ink);border-radius:50%;background:var(--paper);opacity:0;transition:opacity .4s}
+/* the sun comes up behind the hills while he waits, and it is the clock: its hands go from 04:40 to 06:45 */
+.sun{position:absolute;left:70%;top:calc(64vh - var(--rise,0) * 38vh);width:13vh;height:13vh;margin-left:-3.5vh;opacity:0;transition:opacity .4s;overflow:visible}
+.sun .hh,.sun .mh{transform-origin:50px 50px}
+.sun .hh{transform:rotate(calc(var(--hh,140) * 1deg))}
+.sun .mh{transform:rotate(calc(var(--mh,240) * 1deg))}
 .in-car .sun{opacity:1}
 
 /* ---------- home ---------- */
@@ -196,6 +196,76 @@ h1,h2,p,ol,figure{margin:0}
 @keyframes shine{from{opacity:.35}to{opacity:1}}
 .in-car .walker,.at-home .walker{opacity:0}
 
+/* ---------- after the last sign: he walks on, and the day goes round ---------- */
+.loop{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.onward .loop{opacity:1}
+.lo{position:absolute;left:0;bottom:20%;fill:var(--ink);transform:translate3d(calc(var(--lx,-400) * 1vh),0,0);will-change:transform}
+.bigtree{width:1.8vh;height:21vh;background:var(--ink)}
+.bigtree::before{content:"";position:absolute;left:50%;bottom:14vh;width:34vh;height:21vh;margin-left:-16vh;border-radius:50%;background:var(--ink)}
+.bigtree::after{content:"";position:absolute;left:50%;bottom:26vh;width:19vh;height:12vh;margin-left:-12vh;border-radius:50%;background:var(--ink)}
+.stream{bottom:0;width:26vh;height:20%;overflow:visible}
+.stream .fish{transition:transform .5s ease-in var(--fd,0s),opacity .5s var(--fd,0s)}
+.scared .stream .fish{transform:translate(var(--fx),var(--fy));opacity:0}
+.stream .ring{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+.tapping-on .stream .ring{animation:ring 1.1s ease-out infinite}
+@keyframes ring{0%,38%{opacity:0;transform:scale(.3)}45%{opacity:1}100%{opacity:0;transform:scale(1.9)}}
+.mound{width:30vh;height:7vh;background:var(--earth);border:.45vh solid var(--ink);border-bottom:0;border-radius:50% 50% 0 0/100% 100% 0 0}
+.wolf{position:absolute;left:4vh;bottom:5.9vh;width:19vh;overflow:visible}
+.wolfhead{transform-origin:62px 54px;transition:transform .5s}
+.nod .wolfhead{transform:rotate(-13deg)}
+/* birds that cross the sky now and then, and a hare that crosses the road */
+.flock{position:absolute;left:0;top:calc(var(--y,26) * 1vh);width:100%;height:0;pointer-events:none;visibility:hidden}
+.flock.rev{transform:scaleX(-1)}
+.flock svg{position:absolute;left:-12vh;top:0;width:6.5vh;fill:var(--ink);overflow:visible}
+.flock svg:nth-child(2){top:5vh;margin-left:-7vh}
+.flock svg:nth-child(3){top:-4vh;margin-left:-12vh}
+.flock svg:nth-child(4){top:9vh;margin-left:-17vh}
+.flock .wing{transform-box:fill-box;transform-origin:30% 100%;animation:flap .26s ease-in-out infinite alternate}
+.flock svg:nth-child(even) .wing{animation-delay:-.13s}
+.fl-a .flock.a,.fl-b .flock.b{visibility:visible}
+.fl-a .flock.a svg{animation:cross 5.5s linear both}
+.fl-b .flock.b svg{animation:cross 5.5s linear both}
+@keyframes cross{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(100vw + 34vh),-9vh,0)}}
+.hare{position:absolute;left:0;bottom:calc(20% + .2vh);width:6.5vh;visibility:hidden;pointer-events:none}
+.hare svg{display:block;width:100%;fill:var(--ink);overflow:visible;transform:scaleX(-1)}
+.hop .hare{visibility:visible;animation:hare 3.8s linear both}
+.hop .hare svg{animation:hop .3s ease-out infinite alternate}
+@keyframes hare{from{transform:translate3d(calc(100vw + 4vh),0,0)}to{transform:translate3d(-12vh,0,0)}}
+@keyframes hop{from{transform:scaleX(-1) translateY(0)}to{transform:scaleX(-1) translateY(-2.6vh) rotate(8deg)}}
+/* night: one sheet over the whole page turns the ink to light and the paper to dark, opening out from the moon */
+.night{position:fixed;inset:0;z-index:60;pointer-events:none;background:#fff;mix-blend-mode:difference;visibility:hidden}
+html:not(.js) .night{display:none}
+.moon{position:absolute;right:14%;top:13vh;width:9vh;height:9vh;border-radius:50%;background:var(--ink);overflow:hidden;opacity:var(--night,0)}
+.moon::after{content:"";position:absolute;left:-2.6vh;top:-1.2vh;width:8.6vh;height:8.6vh;border-radius:50%;background:var(--paper)}
+.stars{position:absolute;inset:0 0 36% 0;opacity:var(--night,0);
+  background:radial-gradient(circle .3vh at 8% 30%,var(--ink) 96%,transparent),radial-gradient(circle .22vh at 17% 62%,var(--ink) 96%,transparent),radial-gradient(circle .3vh at 29% 44%,var(--ink) 96%,transparent),
+    radial-gradient(circle .2vh at 38% 78%,var(--ink) 96%,transparent),radial-gradient(circle .34vh at 47% 22%,var(--ink) 96%,transparent),radial-gradient(circle .22vh at 55% 58%,var(--ink) 96%,transparent),
+    radial-gradient(circle .3vh at 64% 36%,var(--ink) 96%,transparent),radial-gradient(circle .2vh at 72% 70%,var(--ink) 96%,transparent),radial-gradient(circle .26vh at 93% 52%,var(--ink) 96%,transparent),
+    radial-gradient(circle .22vh at 97% 18%,var(--ink) 96%,transparent),radial-gradient(circle .2vh at 22% 14%,var(--ink) 96%,transparent),radial-gradient(circle .24vh at 60% 84%,var(--ink) 96%,transparent)}
+.nightlife{position:absolute;inset:0;pointer-events:none;display:none;opacity:var(--night,0)}
+.dark .nightlife{display:block}
+.bat{position:absolute;left:0;top:0;width:7vh;fill:var(--ink);overflow:visible}
+.bat path{transform-box:fill-box;transform-origin:50% 40%;animation:batflap .11s linear infinite alternate}
+.bat.b1{animation:bat1 7s linear infinite}
+.bat.b2{width:5.5vh;animation:bat2 9s linear infinite -3s}
+.bat.b3{width:4.6vh;animation:bat1 11s linear infinite -6s reverse}
+@keyframes batflap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
+@keyframes bat1{0%{transform:translate3d(-8vh,34vh,0)}22%{transform:translate3d(24vw,22vh,0)}40%{transform:translate3d(42vw,40vh,0)}63%{transform:translate3d(66vw,24vh,0)}80%{transform:translate3d(84vw,36vh,0)}100%{transform:translate3d(108vw,20vh,0)}}
+@keyframes bat2{0%{transform:translate3d(106vw,44vh,0)}30%{transform:translate3d(70vw,30vh,0)}52%{transform:translate3d(50vw,46vh,0)}74%{transform:translate3d(22vw,32vh,0)}100%{transform:translate3d(-8vh,42vh,0)}}
+.nightlife i{position:absolute;width:.8vh;height:.8vh;border-radius:50%;background:var(--ink);animation:glow 2.6s ease-in-out infinite}
+@keyframes glow{0%{opacity:0;transform:translate3d(0,0,0)}40%,60%{opacity:1}100%{opacity:0;transform:translate3d(2.5vh,-3vh,0)}}
+/* the walker at rest: sitting against the tree, lying under it, tapping the cane in the stream */
+.walker.sit .flip{transform:translateY(64px) rotate(-7deg);transition:transform .5s}
+.walker.sit .leg.front{transform:rotate(-86deg);transition:transform .5s}
+.walker.sit .leg.back{transform:rotate(-78deg);transition:transform .5s}
+.walker.sit .cane{transform:rotate(-58deg);transition:transform .5s}
+.walker.lie .flip{transform:translate(4px,70px) rotate(-82deg);transition:transform .7s}
+.walker.lie .leg.front{transform:rotate(-24deg);transition:transform .7s}
+.walker.lie .leg.back{transform:rotate(4deg);transition:transform .7s}
+.walker.lie .cane{transform:rotate(3deg)}
+.walker.tapping .cane{animation:canetap 1.1s ease-in infinite}
+@keyframes canetap{0%,100%{transform:rotate(0)}26%{transform:rotate(-13deg)}40%{transform:rotate(0)}}
+
 /* ---------- words ---------- */
 .mast{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:16px;
   padding:calc(env(safe-area-inset-top,0px) + 14px) max(20px,env(safe-area-inset-right,0px)) 12px max(20px,env(safe-area-inset-left,0px));pointer-events:none}
@@ -213,13 +283,16 @@ h1,h2,p,ol,figure{margin:0}
 @media (hover:none) and (pointer:coarse){.title small .mouse{display:none}.title small .touch{display:inline}}
 .title small{display:block;margin-top:1.4em;font:500 clamp(11px,1.5vh,13px)/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
 .say{position:absolute;z-index:6;left:var(--gl);right:var(--gr);top:max(84px,12vh);list-style:none;padding:0;display:grid;pointer-events:none}
-.say li{grid-area:1/1;font:800 clamp(24px,5.6vh,64px)/1 var(--display);font-stretch:78%;letter-spacing:-.02em;max-width:17ch;text-wrap:balance;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.say li{grid-area:1/1;font:600 clamp(19px,4.3vh,46px)/1.12 var(--display);font-stretch:92%;letter-spacing:-.01em;max-width:24ch;text-wrap:balance;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .35s,transform .35s,visibility 0s .35s}
 .say li.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-.say li.long{font-size:clamp(20px,4.1vh,46px);max-width:25ch}
+/* one word in each line is the big one */
+.say li>span b{font-weight:800;font-stretch:76%;font-size:1.85em;line-height:.92;letter-spacing:-.03em;vertical-align:-.04em}
 /* each line sits on a strip of paper, so it reads over a photograph too */
 .say li>span{background:var(--paper);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:.02em .16em 0;margin-left:-.16em}
 .outro{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;max-width:min(92vw,560px)}
 .say li.on .outro{pointer-events:auto}
+.say li.links{grid-area:2/1;max-width:none}
+.say li.links .outro{margin-top:14px}
 .outro a.solid{background:var(--ink);color:var(--paper)}
 .outro a.solid:hover{background:var(--pencil);border-color:var(--pencil)}
 .outro b{font:500 13px/1 var(--mono);letter-spacing:.02em;background:var(--paper);padding:10px 4px 9px;user-select:all}
@@ -238,7 +311,7 @@ h1,h2,p,ol,figure{margin:0}
 .pad{position:fixed;z-index:41;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;justify-content:center;align-items:center;gap:14px;pointer-events:none}
 .pad button{pointer-events:auto;width:58px;height:58px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:700 22px/1 var(--display);cursor:pointer;touch-action:none;user-select:none}
 .pad button:active,.pad button.down,.pad .play[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.pad .play{width:auto;min-width:104px;padding:0 22px;border-radius:29px;font:500 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.pad .play{width:auto;min-width:158px;padding:0 22px;border-radius:29px;font:500 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .meter{position:fixed;z-index:41;left:0;bottom:0;height:5px;width:calc(var(--prog,0) * 100%);background:var(--ink)}
 
 /* ---------- without scripting: the story as plain text ---------- */
@@ -260,12 +333,12 @@ html:not(.js) .plain{display:block}
   .title p{max-width:34ch;text-wrap:balance}
   .title small{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + var(--po) + var(--pb) + 9px);margin:0;text-align:center;font-size:11px;letter-spacing:.08em}
   .title small b{background:var(--earth);padding:3px 8px}
+  .moon{right:4%;top:34vh}
   .say{top:76px}
-  .say li{max-width:14ch}
-  .say li.long{max-width:19ch}
+  .say li{max-width:21ch}
   .pad{gap:12px;bottom:calc(env(safe-area-inset-bottom,0px) + var(--po))}
   .pad button{width:var(--pb);height:var(--pb);font-size:20px}
-  .pad .play{min-width:98px;padding:0 18px;border-radius:99px}
+  .pad .play{min-width:138px;padding:0 16px;border-radius:99px}
   /* the caption sits just under the ground line, and climbs rather than run into the buttons below it:
      --room is the height between the two (--pb and --po are the size of the buttons and their gap to the edge),
      and the caption moves up by whatever it is taller than that */
@@ -277,7 +350,7 @@ html:not(.js) .plain{display:block}
 @media (max-width:760px) and (max-height:640px){
   :root{--pb:46px;--po:10px}
   .pad button{font-size:18px}
-  .pad .play{min-width:90px}
+  .pad .play{min-width:128px}
 }
 /* where the browser can measure the screen as it is now, no allowance for its address bar is needed */
 @supports (height:1svh){@media (max-width:760px){.title h1{font-size:clamp(32px,min(13vh,calc((80svh - 27vh - 178px) / 1.82)),170px)}}}
@@ -293,9 +366,9 @@ html:not(.js) .plain{display:block}
 /* in between a phone and a desk, the buttons move to the corner and leave the caption its side */
 @media (min-width:761px) and (max-width:1200px){
   .pad{justify-content:flex-end;padding-right:var(--gr)}
-  .tag{max-width:min(64ch,calc(100% - var(--gl) - var(--gr) - 262px))}
+  .tag{max-width:min(64ch,calc(100% - var(--gl) - var(--gr) - 318px))}
 }
-@media (prefers-reduced-motion:reduce){.bird.fly .wing,.rain,.coffee .steam,.walker.angry .upper,.walker.angry .fume,.walker.happy .shine{animation:none}.say li{transition:none}}
+@media (prefers-reduced-motion:reduce){.flock .wing,.bird.fly .wing,.rain,.coffee .steam,.walker.angry .upper,.walker.angry .fume,.walker.happy .shine{animation:none}.say li{transition:none}}
 </style>
 </head>
 <body>
@@ -356,8 +429,10 @@ html:not(.js) .plain{display:block}
 
 <main id="top">
 <div class="stage" id="stage">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
   <div class="layer far" aria-hidden="true"></div>
-  <div class="sun" aria-hidden="true"></div>
+  <svg class="sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#f4f1e8" stroke="#121212" stroke-width="5"/><circle cx="50" cy="50" r="37" fill="none" stroke="#121212" stroke-width="7" stroke-dasharray="2.4 16.973" transform="rotate(-91.9 50 50)"/><path class="hh" d="M50 53V29" fill="none" stroke="#121212" stroke-width="6" stroke-linecap="round"/><path class="mh" d="M50 53V16" fill="none" stroke="#121212" stroke-width="3.6" stroke-linecap="round"/><circle cx="50" cy="50" r="4.5" fill="#121212"/></svg>
   <div class="layer mid" aria-hidden="true"></div>
   <div class="layer scrub" aria-hidden="true"></div>
 
@@ -415,7 +490,6 @@ html:not(.js) .plain{display:block}
     <svg class="bird fly" style="--bx:358;--h:12" viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg>
 
     <!-- 2. the car, his hide: a small boxy four-by-four with the spare wheel on the back -->
-    <div class="clock" style="--x:462"><span id="clock">04:40</span><small>waiting</small></div>
     <svg class="obj car" style="--x:455" viewBox="0 0 430 200">
       <rect x="6" y="72" width="28" height="80" rx="11"/>
       <path d="M70 5H240" fill="none" stroke="#121212" stroke-width="5" stroke-linecap="round"/>
@@ -500,11 +574,52 @@ html:not(.js) .plain{display:block}
     <div class="obj sign" style="--x:2969"><a href="/work">My work</a><span>hello@caneandcamera.com</span></div>
   </div>
 
+  <!-- 8. after the last sign he walks on and the day goes round: a tree to sit under, a stream, a wolf, a tree to lie under, night -->
+  <div class="loop" aria-hidden="true">
+    <div class="lo bush" data-x="84"></div>
+    <div class="lo bigtree" data-x="172.4"></div>
+    <div class="lo bush" data-x="262"></div>
+    <svg class="lo stream" data-x="345" viewBox="0 0 130 100" preserveAspectRatio="none">
+      <path d="M34 0H98Q90 30 102 58T108 100H18Q34 72 28 44T34 0Z" fill="#f4f1e8"/>
+      <path d="M34 0Q22 16 28 44T18 100M98 0Q90 30 102 58T108 100" fill="none" stroke="#121212" stroke-width="2.4"/>
+      <path d="M44 30q5-4 10 0t10 0M70 52q5-4 10 0t10 0M40 76q5-4 10 0t10 0M62 12q4-3 8 0t8 0" fill="none" stroke="#121212" stroke-width="1.5" stroke-linecap="round"/>
+      <g class="ring"><ellipse cx="50" cy="22" rx="9" ry="5" fill="none" stroke="#121212" stroke-width="1.5"/></g>
+      <g class="fish" style="--fx:46px;--fy:34px"><path d="M56 18q7-6 16 0-9 6-16 0zM56 18l-7-5v10z"/></g>
+      <g class="fish" style="--fx:38px;--fy:52px;--fd:.08s"><path d="M64 34q7-6 16 0-9 6-16 0zM64 34l-7-5v10z"/></g>
+      <g class="fish" style="--fx:52px;--fy:40px;--fd:.16s"><path d="M42 44q6-5 14 0-8 5-14 0zM42 44l-6-4v8z"/></g>
+    </svg>
+    <div class="lo bush" data-x="452"></div>
+    <div class="lo mound" data-x="550" data-ahead="40">
+      <svg class="wolf" viewBox="0 0 200 130">
+        <path d="M58 50Q100 38 150 46 162 52 158 72 150 84 128 80L84 82Q62 84 56 70Z"/>
+        <path d="M58 66 57 126h10l7-48zM76 74l2 52h10l-1-50zM128 72l-8 28 4 26h10l-1-25 13-25zM144 68l6 30-6 28h10l7-30-1-32z"/>
+        <path d="M152 46Q180 56 184 98 176 112 168 98 168 74 148 62Z"/>
+        <g class="wolfhead"><path d="M68 44Q54 32 46 20L42 6 35 18 31 8 26 22Q14 28 4 40L6 47Q20 48 30 47 40 60 58 72Z"/><circle cx="27" cy="29" r="2.6" fill="#f4f1e8"/></g>
+      </svg>
+    </div>
+    <div class="lo bush" data-x="648"></div>
+    <div class="lo bigtree" data-x="713"></div>
+    <div class="lo bush" data-x="842"></div>
+    <div class="lo bush" data-x="930"></div>
+  </div>
+  <!-- birds and a hare that pass now and then, and the bats and fireflies of the night -->
+  <div class="flock a" style="--y:30" aria-hidden="true"><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg></div>
+  <div class="flock b rev" style="--y:22" aria-hidden="true"><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg><svg viewBox="0 0 120 100"><path class="wing" d="M50 56Q54 12 88 10 76 36 74 58z"/><use href="#b-fly"/></svg></div>
+  <div class="hare" aria-hidden="true"><svg viewBox="0 0 60 40"><ellipse cx="26" cy="26" rx="16" ry="9"/><circle cx="44" cy="18" r="7"/><path d="M42 13 39 0l7 11zM46 12 50 1l1 13zM36 30l6 9h5l-4-11zM14 28l-7 10h11l4-7z"/><circle cx="10" cy="22" r="3.2"/><circle cx="46" cy="16.5" r="1.3" fill="#f4f1e8"/></svg></div>
+  <div class="nightlife" aria-hidden="true">
+    <svg class="bat b1" viewBox="0 0 28 10"><path d="M0 5Q5 0 10 4L12 1 13 4H15L16 1 18 4Q23 0 28 5 24 5 22 9 19 6 14 10 9 6 6 9 4 5 0 5Z"/></svg>
+    <svg class="bat b2" viewBox="0 0 28 10"><path d="M0 5Q5 0 10 4L12 1 13 4H15L16 1 18 4Q23 0 28 5 24 5 22 9 19 6 14 10 9 6 6 9 4 5 0 5Z"/></svg>
+    <svg class="bat b3" viewBox="0 0 28 10"><path d="M0 5Q5 0 10 4L12 1 13 4H15L16 1 18 4Q23 0 28 5 24 5 22 9 19 6 14 10 9 6 6 9 4 5 0 5Z"/></svg>
+    <i style="left:12%;top:62%"></i><i style="left:27%;top:71%;animation-delay:-.7s"></i><i style="left:41%;top:58%;animation-delay:-1.6s"></i><i style="left:58%;top:68%;animation-delay:-.3s"></i><i style="left:69%;top:60%;animation-delay:-2.1s"></i><i style="left:83%;top:72%;animation-delay:-1.1s"></i><i style="left:92%;top:63%;animation-delay:-1.9s"></i>
+  </div>
+
   <svg class="walker" id="walker" viewBox="0 0 120 210" aria-hidden="true">
     <g class="flip">
       <g class="leg back"><rect x="52" y="126" width="15" height="72" rx="7"/><rect x="50" y="192" width="31" height="13" rx="6"/></g>
       <g class="leg front"><rect x="57" y="126" width="15" height="72" rx="7"/><rect x="55" y="192" width="31" height="13" rx="6"/></g>
-      <path d="M26 96q0-24 24-26h24q24 2 24 26v30q0 16-16 16H42q-16 0-16-16z"/>
+      <g transform="translate(82 84)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/></g></g></g></g>
+      <g transform="translate(82 84)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#f4f1e8"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#f4f1e8"/><g transform="translate(3 -44)"><g class="camturn"><use href="#lg-cam" transform="scale(0.089) translate(-1151 -162)"/></g></g></g></g></g></g>
+      <path class="chest" d="M32 97q0-24 21-26h18q21 2 21 26v29q0 16-15 16H47q-15 0-15-16z"/>
       <g class="cane">
         <g transform="translate(36 82) rotate(9)"><path d="M-8 0A8 8 0 0 1 8 0L5.5 38A5.5 5.5 0 0 1 -5.5 38z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/><path d="M-8 0A8 8 0 0 1 8 0L5.5 38A5.5 5.5 0 0 1 -5.5 38z" fill="#f4f1e8"/></g>
         <path d="M23 114q3-9 11-6M30 118l-3 87" fill="none" stroke="#121212" stroke-width="5" stroke-linecap="round"/>
@@ -528,8 +643,6 @@ html:not(.js) .plain{display:block}
         <g class="mood m-happy shine"><path d="M96 26l9-5M90 15l5-9M100 39l10-1" fill="none" stroke="#f4f1e8" stroke-width="8" stroke-linecap="round"/><path d="M96 26l9-5M90 15l5-9M100 39l10-1" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round"/></g>
         <g class="mood m-angry fume"><path d="M50 6q-5-5 0-10t0-10M62 3q-5-5 0-10t0-10M74 7q-5-5 0-10t0-10" fill="none" stroke="#f4f1e8" stroke-width="8" stroke-linecap="round"/><path d="M50 6q-5-5 0-10t0-10M62 3q-5-5 0-10t0-10M74 7q-5-5 0-10t0-10" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round"/></g>
       </g>
-      <g transform="translate(88 82)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#121212" stroke="#121212" stroke-width="4.4" stroke-linejoin="round"/></g></g></g></g>
-      <g transform="translate(88 82)"><g class="upper"><path d="M-8.5 0A8.5 8.5 0 0 1 8.5 0L7 26A7 7 0 0 1 -7 26z" fill="#f4f1e8"/><g transform="translate(0 26)"><g class="fore"><path d="M-7 0A7 7 0 0 0 7 0L5.5 -32A5.5 5.5 0 0 0 -5.5 -32z" fill="#f4f1e8"/><g transform="translate(3 -44)"><g class="camturn"><use href="#lg-cam" transform="scale(0.089) translate(-1151 -162)"/></g></g></g></g></g></g>
     </g>
   </svg>
 
@@ -551,35 +664,43 @@ html:not(.js) .plain{display:block}
   <div class="title">
     <h1>Cane <span>&amp;</span><br>Camera</h1>
     <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora. Walk with me.</p>
-    <small><b class="mouse">Scroll, tap either side, or press play</b><b class="touch">Swipe, tap either side, or press play</b></small>
+    <small><b class="mouse">Scroll, tap either side, or press Let&rsquo;s walk</b><b class="touch">Swipe, tap either side, or press Let&rsquo;s walk</b></small>
   </div>
   <ol class="say" id="say">
-    <li class="long"><span>I am disabled. My footprints come in threes: left, right, cane.</span></li>
-    <li><span>Tap. Tap. Tap. Every bird hears me long before I see it.</span></li>
-    <li><span>I have a fine collection of empty posts.</span></li>
-    <li><span>So I bring my own hiding place. It has four wheels.</span></li>
-    <li><span>I park, switch off and wait. The clock moves. I do not.</span></li>
-    <li><span>Sit still long enough and the birds forget the car.</span></li>
-    <li><span>And then, sometimes, this.</span></li>
-    <li><span>At home I go through hours of photos to find the one.</span></li>
-    <li><span>I edit it. I post it. I wait again.</span></li>
-    <li><span>3 likes. I know all three people.</span></li>
-    <li><span>I am better at waiting for birds than at chasing followers.</span></li>
-    <li class="long"><span>I knock on doors and ask for a chance. Mostly they stay doors.</span></li>
-    <li><span>But a few people bought me a coffee. I remember every cup.</span></li>
-    <li class="long"><span>Some days I carry more than two things: the jobs, the responsibilities.</span></li>
-    <li class="long"><span>They have made me older than I am. But slowly is still forward.</span></li>
-    <li class="long"><span>Why? For the sheer joy of it. Nothing beats a bird that stays.</span></li>
-    <li><span>Habitat first. Then the bird.</span></li>
-    <li class="long"><span>Pass through the forest 100 times and you may see a big cat once. They saw you the other 99.</span></li>
-    <li><span>This stone has eyes.</span></li>
-    <li><span>This is what the waiting pays.</span></li>
-    <li><span>Nobody put milestones on my road. So I made a few.</span></li>
-    <li class="long"><span>I have decided what the rest of this walk is for. Conservation.</span></li>
-    <li><span>I may never be famous. Fame was never the bird I was after.</span></li>
-    <li><span>The target is simple: to be of real use to the wild.</span></li>
-    <li><span>My day has not come yet. I am good at waiting.</span></li>
-    <li><span>And I keep going. Tap. Tap. Tap.</span>
+    <li><span>I am <b>disabled</b>. My footprints come in threes.</span></li>
+    <li><span>Left, right, cane. I try to keep the <b>carbon</b> one small.</span></li>
+    <li><span><b>Tap. Tap. Tap.</b> Every bird hears me first.</span></li>
+    <li><span>I collect <b>empty posts</b>.</span></li>
+    <li><span>So I bring a <b>hide</b>. It has four wheels.</span></li>
+    <li><span>I park and <b>wait</b>. The sun moves. I do not.</span></li>
+    <li><span>Sit <b>still</b> and the birds forget the car.</span></li>
+    <li><span>And then, sometimes, <b>this</b>.</span></li>
+    <li><span>At home, hours of photos to find <b>the one</b>.</span></li>
+    <li><span>I edit. I post. I <b>wait</b> again.</span></li>
+    <li><span><b>3 likes.</b> I know all three people.</span></li>
+    <li><span>Phone down. <b>Camera up.</b></span></li>
+    <li><span>I knock on <b>doors</b>. Mostly they stay doors.</span></li>
+    <li><span>A few people bought me a <b>coffee</b>. I remember every cup.</span></li>
+    <li><span>Some days I carry more than two things. Jobs. <b>Responsibilities.</b></span></li>
+    <li><span>They made me older. But slowly is still <b>forward</b>.</span></li>
+    <li><span>Why? <b>Joy.</b> Nothing beats a bird that stays.</span></li>
+    <li><span><b>Habitat</b> first. Then the bird.</span></li>
+    <li><span>Pass through the forest 100 times and you may see a big cat <b>once</b>. They saw you the other 99.</span></li>
+    <li><span>This stone has <b>eyes</b>.</span></li>
+    <li><span>This is what the <b>waiting</b> pays.</span></li>
+    <li><span>Nobody put <b>milestones</b> on my road. So I made a few.</span></li>
+    <li><span>What is the rest of this walk for? <b>Conservation.</b></span></li>
+    <li><span>The forest does not care about my species count or my <b>followers</b>.</span></li>
+    <li><span>That is why I like it here. No stress. <b>No pressure.</b></span></li>
+    <li><span>The target is simple: be of real <b>use</b> to the wild.</span></li>
+    <li><span>I am slow, I know. Birds taught me <b>patience</b>.</span></li>
+    <li><span>And I <b>keep going</b>. Tap. Tap. Tap.</span></li>
+    <li><span>Sometimes I just <b>sit</b>. The tree does not mind.</span></li>
+    <li><span>Tap. <b>Sorry, fish.</b></span></li>
+    <li><span>Hey, <b>Canis lupus</b>. I am Homo sapiens.</span></li>
+    <li><span>I lie down. The birds do the <b>flying</b>.</span></li>
+    <li><span>Birds go home. <b>Bats</b> clock in.</span></li>
+    <li class="links" id="links">
       <div class="outro"><a class="solid" href="/work">See my work</a><a href="https://www.youtube.com/@CaneAndCamera/videos" target="_blank" rel="noopener">Watch the films</a><a href="https://buymeacoffee.com/caneandcamera" target="_blank" rel="noopener">Buy me a coffee</a><button type="button" id="upi-open" aria-expanded="false" aria-controls="upi">Pay by UPI</button><b>hello@caneandcamera.com</b><div class="upi" id="upi" hidden><img src="/assets/img/walk/upi-qr.png" width="580" height="580" alt="QR code for paying Vinay Chittora by UPI"><div><p>Scan with any UPI app, or pay to</p><b id="upi-id">vinay.chittora-2@okaxis</b><button type="button" id="upi-copy">Copy the ID</button></div></div></div>
     </li>
   </ol>
@@ -588,19 +709,20 @@ html:not(.js) .plain{display:block}
 
 <div class="pad">
   <button type="button" id="back" aria-label="Walk back" title="Walk back (hold)">&#9664;</button>
-  <button type="button" id="play" class="play" aria-pressed="false">Play</button>
+  <button type="button" id="play" class="play" aria-pressed="false">Let&rsquo;s walk</button>
   <button type="button" id="fwd" aria-label="Walk on" title="Walk on (hold)">&#9654;</button>
 </div>
 <div class="meter" aria-hidden="true"></div>
+<div class="night" id="night" aria-hidden="true"></div>
 <div class="spacer" aria-hidden="true"></div>
 
 <div class="plain">
   <h1>Cane &amp; Camera</h1>
   <p>I carry two things. One holds me up. The other keeps me going. I am Vinay Chittora, a field naturalist in Kota, Rajasthan.</p>
-  <p>I am disabled. My footprints come in threes: left, right, cane. Tap, tap, tap: every bird hears me long before I see it, and I have a fine collection of empty posts. So I bring my own hiding place. It has four wheels. I park, switch off and wait. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
-  <p>At home I go through hours of photos to find the one. I edit it, I post it, I wait again. 3 likes. I know all three people. I am better at waiting for birds than at chasing followers. I knock on doors and ask for a chance. Mostly they stay doors. But a few people bought me a coffee, and I remember every cup. Some days I carry more than two things: the jobs, the responsibilities. They have made me older than I am. But slowly is still forward. Why? For the sheer joy of it. Nothing beats a bird that stays.</p>
+  <p>I am disabled. My footprints come in threes: left, right, cane. I try to keep the carbon one small. Tap, tap, tap: every bird hears me first, and I collect empty posts. So I bring a hide. It has four wheels. I park and wait. The sun moves. I do not. Sit still long enough and the birds forget the car. And then, sometimes, a shrike sits on a post in front of the rising sun.</p>
+  <p>At home, hours of photos to find the one. I edit. I post. I wait again. 3 likes. I know all three people. Phone down. Camera up. I knock on doors. Mostly they stay doors. A few people bought me a coffee, and I remember every cup. Some days I carry more than two things. Jobs. Responsibilities. They made me older. But slowly is still forward. Why? Joy. Nothing beats a bird that stays.</p>
   <p>Nobody put milestones on my road, so I made a few: a film, <a href="https://www.youtube.com/watch?v=vNTxghP-uhM">Season: Out of Tune</a>; a citizen science project, <a href="https://www.inaturalist.org/projects/biodiversity-of-mhtr">Biodiversity of MHTR</a>; open-source software, <a href="https://github.com/vinaychittora/FALCON">FALCON</a>; and a website, <a href="https://mhtr.in">mhtr.in</a>.</p>
-  <p>I have decided what the rest of this walk is for. Conservation. I may never be famous. Fame was never the bird I was after. The target is simple: to be of real use to the wild. My day has not come yet. I am good at waiting. And I keep going. <a href="/work">See my work</a>, or write to me at hello@caneandcamera.com. If you would like to support the work, you can <a href="https://buymeacoffee.com/caneandcamera">buy me a coffee</a> or pay by UPI to vinay.chittora-2@okaxis.</p>
+  <p>What is the rest of this walk for? Conservation. The forest does not care about my species count or my followers. That is why I like it here. No stress. No pressure. The target is simple: be of real use to the wild. I am slow, I know. Birds taught me patience. And I keep going. Sometimes I just sit under a tree, or lie down and let the birds do the flying. <a href="/work">See my work</a>, or write to me at hello@caneandcamera.com. If you would like to support the work, you can <a href="https://buymeacoffee.com/caneandcamera">buy me a coffee</a> or pay by UPI to vinay.chittora-2@okaxis.</p>
 </div>
 </main>
 
@@ -608,8 +730,8 @@ html:not(.js) .plain{display:block}
 (() => {
   const root = document.documentElement; root.classList.add('js');
   const $ = id => document.getElementById(id);
-  const stage = $('stage'), walker = $('walker'), sky = $('sky'), tag = $('tag'), clockEl = $('clock'), meter = document.querySelector('.meter');
-  const lines = [...document.querySelectorAll('#say li')], photos = [...sky.querySelectorAll('img')];
+  const stage = $('stage'), walker = $('walker'), sky = $('sky'), tag = $('tag'), meter = document.querySelector('.meter');
+  const lines = [...document.querySelectorAll('#say li:not(.links)')], links = $('links'), nightEl = $('night'), moonEl = document.querySelector('.moon'), photos = [...sky.querySelectorAll('img')];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), ease = t => t * t * (3 - 2 * t), mid = v => v > 0 && v < 1;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const set = (k, v) => stage.style.setProperty(k, v);
@@ -618,14 +740,36 @@ html:not(.js) .plain{display:block}
   // PAGE is how many screens of scrolling one unit of length below takes.
   const START = 60, END = 2957, SIGN = 2969, PAGE = .52;
   const SEG = [
-    { to: 384, len: 2.8 }, { wait: 'miss', len: .9 },
+    { to: 384, len: 3.8 }, { wait: 'miss', len: .9 },
     { to: 478, len: .8 }, { wait: 'car', len: 2.2 }, { wait: 'p1', len: 1.5 },
     { to: 770, len: 1.8 }, { wait: 'home', len: 1.9 },
     { to: 1550, len: 7.9 }, { wait: 'p2', len: 1.7 },
     { to: 1620, len: .6 }, { wait: 'p3', len: 1.6 },
     { to: 1690, len: .6 }, { wait: 'p4', len: 1.5 },
-    { to: 2517, len: 5.3 }, { to: END, len: 4.8 }
+    { to: 2517, len: 5.3 }, { to: END, len: 6 }
   ];
+  // After the last sign he keeps walking and the day goes round, for ever: a tree to sit under, a stream where his cane
+  // scares the fish, a wolf, a tree to lie under while night falls, a walk in the dark, and morning. Lengths are in the
+  // units he walks in; a wait lasts as long as walking that far would.
+  const AFT = [{ go: 180 }, { wait: 'sit', len: 70 }, { go: 180 }, { wait: 'tap', len: 55 }, { go: 190 }, { wait: 'wolf', len: 85 }, { go: 180 }, { wait: 'lie', len: 130 }, { go: 260 }];
+  const LAP = AFT.reduce((s, g) => s + (g.go || 0), 0), LAPT = AFT.reduce((s, g) => s + (g.go || g.len), 0);
+  // T is how long he has walked on, cap the stretch it takes the last sign to leave the screen. D is how far he has gone,
+  // L where he is on the round, tc the time on the round.
+  const after = (T, cap) => {
+    const o = { D: Math.min(T, cap), L: T - cap, tc: -1, sit: 0, tap: 0, wolf: 0, lie: 0 };
+    if (T <= cap) return o;
+    const n = Math.floor((T - cap) / LAPT);
+    let s = o.tc = T - cap - n * LAPT, L = 0;
+    for (const g of AFT) {
+      const len = g.go || g.len, t = clamp(s / len, 0, 1);
+      if (g.go) L += g.go * t; else o[g.wait] = t;
+      s -= len; if (s <= 0) break;
+    }
+    o.L = L; o.D = cap + n * LAP + L;
+    return o;
+  };
+  const endLine = t => t < 180 ? 27 : t < 290 ? 28 : t < 445 ? -1 : t < 525 ? 29 : t < 700 ? -1 : t < 800 ? 30 : t < 950 ? -1 : t < 1005 ? 31 : t < 1100 ? 32 : 27;
+  const los = [...document.querySelectorAll('.lo')].map(el => ({ el, x: +el.dataset.x, a: +el.dataset.ahead || 0 }));
   const TOTAL = SEG.reduce((s, g) => s + g.len, 0);
   root.style.setProperty('--pages', (TOTAL * PAGE + 1).toFixed(2));
   const at = p => {
@@ -639,22 +783,21 @@ html:not(.js) .plain{display:block}
     return { wx, w };
   };
   // which line he is saying
-  const line = (wx, w, going) => {
-    if (going) return 25;
-    if (mid(w.miss)) return 2;
-    if (mid(w.car)) return w.car < .34 ? 3 : w.car < .7 ? 4 : 5;
-    if (mid(w.p1)) return 6;
-    if (mid(w.home)) return w.home < .4 ? 7 : w.home < .7 ? 8 : 9;
-    if (mid(w.p2)) return 16;
-    if (mid(w.p3)) return 17;
-    if (mid(w.p4)) return 18;
-    if (w.miss < 1) return wx < 104 ? -1 : wx < 236 ? 0 : 1;
-    if (w.car < 1) return wx < 412 ? 2 : 3;
-    if (w.home < 1) return wx < 600 ? 6 : 7;
-    if (w.p2 < 1) return wx < 790 ? 9 : wx < 900 ? 10 : wx < 1045 ? 11 : wx < 1195 ? 12 : wx < 1325 ? 13 : wx < 1425 ? 14 : 15;
-    if (w.p3 < 1) return wx < 1582 ? 16 : 17;
-    if (w.p4 < 1) return wx < 1652 ? 17 : 18;
-    return wx < 1722 ? 18 : wx < 2257 ? 19 : wx < 2517 ? 20 : wx < 2625 ? 21 : wx < 2735 ? 22 : wx < 2845 ? 23 : 24;
+  const line = (wx, w) => {
+    if (mid(w.miss)) return 3;
+    if (mid(w.car)) return w.car < .34 ? 4 : w.car < .7 ? 5 : 6;
+    if (mid(w.p1)) return 7;
+    if (mid(w.home)) return w.home < .4 ? 8 : w.home < .7 ? 9 : 10;
+    if (mid(w.p2)) return 17;
+    if (mid(w.p3)) return 18;
+    if (mid(w.p4)) return 19;
+    if (w.miss < 1) return wx < 104 ? -1 : wx < 172 ? 0 : wx < 242 ? 1 : 2;
+    if (w.car < 1) return wx < 412 ? 3 : 4;
+    if (w.home < 1) return wx < 600 ? 7 : 8;
+    if (w.p2 < 1) return wx < 790 ? 10 : wx < 900 ? 11 : wx < 1045 ? 12 : wx < 1195 ? 13 : wx < 1325 ? 14 : wx < 1425 ? 15 : 16;
+    if (w.p3 < 1) return wx < 1582 ? 17 : 18;
+    if (w.p4 < 1) return wx < 1652 ? 18 : 19;
+    return wx < 1722 ? 19 : wx < 2257 ? 20 : wx < 2517 ? 21 : wx < 2605 ? 22 : wx < 2693 ? 23 : wx < 2781 ? 24 : wx < 2869 ? 25 : 26;
   };
 
   // The photographs that open in the sky. i is the picture, fx and fy the point it closes in on,
@@ -720,7 +863,7 @@ html:not(.js) .plain{display:block}
   } };
 
   const qs = new URLSearchParams(location.search), forced = qs.get('at'), forcedT = qs.get('t');   // test hooks: ?at=0..1 pins the walk, &t= the distance walked on after the end
-  let cur = 0, last = performance.now(), lastD = START, dir = 0, auto = false, burst = 0, carry = 0, pull = 0, glide = 0, shownLine = -2, lastClock = '', lastMood = '', T = 0;
+  let cur = 0, last = performance.now(), lastD = START, dir = 0, auto = false, burst = 0, carry = 0, pull = 0, glide = 0, shownLine = -2, lastClock = '', lastMood = '', T = 0, night = 0, lastNight = -1;
   const span = () => Math.max(1, root.scrollHeight - innerHeight);
   const render = (p, dt) => {
     const { wx, w } = at(p), rest = Math.min(vwu * .34, 62), CAP = vwu + 30, vh = H / 100;
@@ -728,8 +871,9 @@ html:not(.js) .plain{display:block}
     // At the end he does not stop. The walk goes on by itself, and scrolling back walks it back.
     if (forcedT !== null) T = +forcedT;
     else if (ended && !still) T += dt * .013;
-    else if (T > 0) { if (T > CAP + 168) T = CAP + (T - CAP) % 168; T = Math.max(0, T - dt * .7); }
-    const drift = Math.min(T, CAP), loop = T - drift;
+    else if (T > 0) { if (T > CAP + 168) T = CAP + (after(T, CAP).D - CAP) % 168; T = Math.max(0, T - dt * .7); }
+    const A = after(T, CAP), tc = A.tc, on = T > 0 && (ended || forcedT !== null);
+    const drift = Math.min(A.D, CAP), loop = A.D - drift;
 
     // The camera follows him. At home it glides over to the screen he is looking at, and at the end to the last sign.
     let cam = wx - rest;
@@ -751,7 +895,7 @@ html:not(.js) .plain{display:block}
     set('--car', w.car.toFixed(3));
     set('--home', w.home.toFixed(3));
     set('--miss', w.miss.toFixed(3));
-    set('--rise', ease(clamp((w.car - .45) / .55, 0, 1)).toFixed(3));
+    set('--rise', ease(clamp((w.car - .06) / .94, 0, 1)).toFixed(3));
     const rain = w.home >= 1 && w.p2 === 0 ? clamp((wx - 1200) / 40, 0, 1) * clamp((1365 - wx) / 45, 0, 1) : 0;
     set('--rain', rain.toFixed(2));
     stage.classList.toggle('raining', rain > 0);
@@ -760,6 +904,36 @@ html:not(.js) .plain{display:block}
     stage.classList.toggle('at-home', mid(w.home));
     stage.classList.toggle('left-home', w.home >= 1 && wx > 800);
 
+    // the round he walks after the end: each thing on it keeps its place ahead of him or behind, and comes round again
+    stage.classList.toggle('onward', T > 0);
+    if (T > 0) {
+      const far = vwu + 40;
+      for (const o of los) {
+        const x = o.x + (o.a ? Math.min(o.a, vwu - rest - 26) : 0);
+        let off = x - A.L;
+        if (A.L >= 0) { off = (off % LAP + LAP) % LAP; if (off >= far) off -= LAP; }
+        o.el.style.setProperty('--lx', (sx + Math.min(off, far)).toFixed(2));
+      }
+    }
+    stage.classList.toggle('scared', on && tc > 446 && tc < 640);
+    stage.classList.toggle('tapping-on', on && tc > 438 && tc < 474);
+    stage.classList.toggle('nod', on && tc > 716 && tc < 790);
+    // birds cross the sky now and then, a hare crosses the road, and night comes while he lies under the tree
+    stage.classList.toggle('fl-a', on ? tc > 262 && tc < 400 : (w.p1 >= 1 && w.home === 0 && wx > 540) || (w.p2 === 0 && wx > 1380));
+    stage.classList.toggle('fl-b', on ? tc > 940 && tc < 1012 : T === 0 && wx > 2255 && wx < 2500);
+    stage.classList.toggle('hop', T === 0 && wx > 2540 && wx < 2770);
+    const dark = on && tc >= 996 && tc < 1288 && $('upi').hidden;
+    night = dt ? night + ((dark ? 1 : 0) - night) * (1 - Math.exp(-dt / 600)) : dark ? 1 : 0;
+    if (night < .002) night = 0; else if (night > .998) night = 1;
+    if (night !== lastNight) {
+      lastNight = night;
+      root.style.setProperty('--night', night.toFixed(3));
+      stage.classList.toggle('dark', night > .05);
+      const mr = moonEl.getBoundingClientRect(), mx = mr.left + mr.width / 2, my = mr.top + mr.height / 2, reach = Math.hypot(Math.max(mx, W - mx), Math.max(my, H - my)) + 4;
+      nightEl.style.visibility = night ? 'visible' : 'hidden';
+      nightEl.style.clipPath = night >= 1 ? 'none' : 'circle(' + (ease(night) * reach).toFixed(1) + 'px at ' + mx.toFixed(1) + 'px ' + my.toFixed(1) + 'px)';
+    }
+
     // the photographs
     for (const k in SHOTS) if (wx > SHOTS[k].x - 560) load(k);
     if (!sheetFilled && wx > 540) fillSheet();
@@ -767,13 +941,13 @@ html:not(.js) .plain{display:block}
     if (key === 'p1') shoot(key, w.p1, (486.7 - cam) * vh, 62.8 * vh);   // from the camera at the car window
     else if (key) shoot(key, w[key], (sx + 4.1) * vh, 59.6 * vh);        // from the camera at his eye
     else unshoot();
-    const ft = key ? w[key] : w.miss;
+    const ft = key ? w[key] : on && mid(A.wolf) ? A.wolf - .34 : w.miss;
     set('--flash', (ft > 0 && ft < .06 ? 1 - Math.abs(ft - .03) / .03 : 0).toFixed(2));
 
     // He looks straight ahead, and up at a bird on a post, at a photograph in the sky and at the prints on the line.
     // The camera goes to his eye as he reaches the spot and comes down once the picture is taken.
     const st = key ? w[key] : w.miss, stop = [384, SHOTS.p2.x, SHOTS.p3.x, SHOTS.p4.x].some(x => wx > x - 9 && wx <= x);
-    const aim = (st > 0 && st < .17) || (stop && st === 0 && !inCar) ? 1 : 0;
+    let aim = (st > 0 && st < .17) || (stop && st === 0 && !inCar) ? 1 : 0;
     let up = key && st > .17 && st < .9 ? 1 : 0;
     if (!key) { if ([250, 306, 358].some(bx => wx > bx - 125 && wx < bx - 38)) up = .6; if (wx > PRINTS[0] - 20 && wx < PRINTS[1] + 10) up = .8; }
     // What he feels along the way, shown on the logo face: let down when the bird has gone and when nobody looks,
@@ -784,24 +958,36 @@ html:not(.js) .plain{display:block}
       if (w.miss < 1) mood = mid(w.miss) || [250, 306].some(bx => wx > bx - 40 && wx < bx - 6) ? 'sad' : wx > 318 && wx < 352 ? 'angry' : '';
       else if (w.car < 1) mood = wx < 412 ? 'sad' : '';
       else if (w.home < 1) mood = w.p1 >= 1 && wx < 570 ? 'happy' : '';
-      else if (w.p2 < 1) mood = wx < 800 ? 'sad' : wx > 912 && wx < 1046 ? 'angry' : wx >= 1046 && wx < 1195 ? 'happy' : wx >= 1195 && wx < 1325 ? 'sad' : wx > 1440 ? 'happy' : '';
+      else if (w.p2 < 1) mood = wx < 800 ? 'sad' : wx > 836 && wx < 900 ? 'happy' : wx > 912 && wx < 1046 ? 'angry' : wx >= 1046 && wx < 1195 ? 'happy' : wx >= 1195 && wx < 1325 ? 'sad' : wx > 1440 ? 'happy' : '';
       else if (w.p4 >= 1) mood = wx > PRINTS[0] - 30 && wx < PRINTS[1] + 10 ? 'happy' : '';
     }
+    // On the round after the end: he sits against the first tree, taps his cane in the stream, photographs the wolf
+    // and greets it, and lies down under the second tree.
+    let pose = '';
+    if (T > 0) {
+      mood = ''; up = 0; aim = 0;
+      if (mid(A.sit)) { up = .5; if (A.sit > .06 && A.sit < .93) pose = 'sit'; }
+      else if (mid(A.tap)) { if (A.tap > .14 && A.tap < .8) pose = 'tapping'; }
+      else if (mid(A.wolf)) { aim = A.wolf > .1 && A.wolf < .42 ? 1 : 0; if (A.wolf > .48 && A.wolf < .95) mood = 'happy'; }
+      else if (mid(A.lie)) { up = .4; if (A.lie > .04 && A.lie < .95) pose = 'lie'; }
+    }
     if (aim) mood = '';
-    if (mood !== lastMood) { lastMood = mood; walker.setAttribute('class', 'walker' + (mood ? ' ' + mood : '')); }
+    const cls = (mood ? ' ' + mood : '') + (pose ? ' ' + pose : '');
+    if (cls !== lastMood) { lastMood = cls; walker.setAttribute('class', 'walker' + cls); }
     walker.style.setProperty('--shoot', aim);
     walker.style.setProperty('--tilt', (mood === 'sad' ? -10 : mood === 'angry' ? -17 : Math.min(-22 - up * 18, mood === 'happy' ? -30 : 0)).toFixed(1));
 
     // legs swing with distance, so he only walks when the world moves
-    const d = wx + T, phase = d * .5;
+    const d = wx + A.D, phase = d * .5;
     if (Math.abs(d - lastD) > .01) set('--dir', d >= lastD ? 1 : -1);
     lastD = d;
     walker.style.setProperty('--a', (Math.sin(phase) * 23).toFixed(1));
     walker.style.setProperty('--bob', (Math.abs(Math.cos(phase)) * (mood === 'happy' ? 7 : 3)).toFixed(1));
-    const mins = 280 + Math.round(w.car * 125 / 5) * 5, c = String(Math.floor(mins / 60)).padStart(2, '0') + ':' + String(mins % 60).padStart(2, '0');
-    if (c !== lastClock) { lastClock = c; clockEl.textContent = c; }
-    const n = line(wx, w, ended || T > 0);
+    const mins = 280 + w.car * 125, c = mins.toFixed(1);   // the sun is the clock: 04:40 when he parks, 06:45 when the shrike comes
+    if (c !== lastClock) { lastClock = c; set('--hh', (mins / 2).toFixed(1)); set('--mh', (mins * 6).toFixed(1)); }
+    const going = ended || T > 0, n = going ? endLine(tc) : line(wx, w);
     if (n !== shownLine) { shownLine = n; lines.forEach((li, i) => li.classList.toggle('on', i === n)); }
+    links.classList.toggle('on', going);
     meter.style.setProperty('--prog', p.toFixed(4));
   };
   const tick = now => {
@@ -844,7 +1030,7 @@ html:not(.js) .plain{display:block}
 
   // Play walks him on by himself, at a pace for reading. Pause stops him, and so does scrolling by hand.
   const playBtn = $('play');
-  const setAuto = on => { auto = on; playBtn.textContent = on ? 'Pause' : 'Play'; playBtn.setAttribute('aria-pressed', String(on)); };
+  const setAuto = on => { auto = on; playBtn.textContent = on ? 'Wait' : 'Let\u2019s walk'; playBtn.setAttribute('aria-pressed', String(on)); };
   playBtn.addEventListener('click', () => {
     if (!auto && window.scrollY >= span() - 2) { window.scrollTo(0, 0); cur = 0; T = 0; }   // at the end, Play starts the walk again
     setAuto(!auto);
