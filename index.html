@@ -232,18 +232,20 @@ h1,h2,p,ol,figure{margin:0}
 .hop .hare svg{animation:hop .3s ease-out infinite alternate}
 @keyframes hare{from{transform:translate3d(calc(100vw + 4vh),0,0)}to{transform:translate3d(-12vh,0,0)}}
 @keyframes hop{from{transform:scaleX(-1) translateY(0)}to{transform:scaleX(-1) translateY(-2.6vh) rotate(8deg)}}
-/* night: one sheet over the whole page turns the ink to light and the paper to dark, opening out from the moon */
-.night{position:fixed;inset:0;z-index:60;pointer-events:none;background:#fff;mix-blend-mode:difference;visibility:hidden}
-html:not(.js) .night{display:none}
-.moon{position:absolute;right:14%;top:13vh;width:9vh;height:9vh;border-radius:50%;background:var(--ink);overflow:hidden;opacity:var(--night,0)}
+/* night: the whole page swaps ink and paper in one slow fade, and the moon, the stars, the bats and the fireflies come out */
+html{transition:filter 1.4s ease-in-out}
+html.night{filter:invert(1)}
+.moon,.stars,.nightlife{transition:opacity 1.4s ease-in-out}
+.moon{position:absolute;right:14%;top:13vh;width:9vh;height:9vh;border-radius:50%;background:var(--ink);overflow:hidden;opacity:0}
 .moon::after{content:"";position:absolute;left:-2.6vh;top:-1.2vh;width:8.6vh;height:8.6vh;border-radius:50%;background:var(--paper)}
-.stars{position:absolute;inset:0 0 36% 0;opacity:var(--night,0);
+.night .moon,.night .stars,.night .nightlife{opacity:1}
+.stars{position:absolute;inset:0 0 36% 0;opacity:0;
   background:radial-gradient(circle .3vh at 8% 30%,var(--ink) 96%,transparent),radial-gradient(circle .22vh at 17% 62%,var(--ink) 96%,transparent),radial-gradient(circle .3vh at 29% 44%,var(--ink) 96%,transparent),
     radial-gradient(circle .2vh at 38% 78%,var(--ink) 96%,transparent),radial-gradient(circle .34vh at 47% 22%,var(--ink) 96%,transparent),radial-gradient(circle .22vh at 55% 58%,var(--ink) 96%,transparent),
     radial-gradient(circle .3vh at 64% 36%,var(--ink) 96%,transparent),radial-gradient(circle .2vh at 72% 70%,var(--ink) 96%,transparent),radial-gradient(circle .26vh at 93% 52%,var(--ink) 96%,transparent),
     radial-gradient(circle .22vh at 97% 18%,var(--ink) 96%,transparent),radial-gradient(circle .2vh at 22% 14%,var(--ink) 96%,transparent),radial-gradient(circle .24vh at 60% 84%,var(--ink) 96%,transparent)}
-.nightlife{position:absolute;inset:0;pointer-events:none;display:none;opacity:var(--night,0)}
-.dark .nightlife{display:block}
+.nightlife{position:absolute;inset:0;pointer-events:none;opacity:0}
+html:not(.night) .nightlife *{animation-play-state:paused}
 .bat{position:absolute;left:0;top:0;width:7vh;fill:var(--ink);overflow:visible}
 .bat path{transform-box:fill-box;transform-origin:50% 40%;animation:batflap .11s linear infinite alternate}
 .bat.b1{animation:bat1 7s linear infinite}
@@ -291,6 +293,7 @@ html:not(.js) .night{display:none}
 .say li>span{background:var(--paper);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:.02em .16em 0;margin-left:-.16em}
 .outro{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;max-width:min(92vw,560px)}
 .say li.on .outro{pointer-events:auto}
+.say li:not(.on):not(.links){position:absolute;left:0;top:0}
 .say li.links{grid-area:2/1;max-width:none}
 .say li.links .outro{margin-top:14px}
 .outro a.solid{background:var(--ink);color:var(--paper)}
@@ -335,7 +338,11 @@ html:not(.js) .plain{display:block}
   .title small b{background:var(--earth);padding:3px 8px}
   .moon{right:4%;top:34vh}
   .say{top:76px}
-  .say li{max-width:21ch}
+  .say li{max-width:21ch;font-size:clamp(18px,2.9vh,23px)}
+  .say li>span b{font-size:1.7em}
+  .say li.links .outro{gap:7px;margin-top:10px}
+  .outro a,.outro button{padding:8px 10px 7px;font-size:11px;letter-spacing:.06em}
+  .outro b{padding:6px 2px;font-size:12px}
   .pad{gap:12px;bottom:calc(env(safe-area-inset-bottom,0px) + var(--po))}
   .pad button{width:var(--pb);height:var(--pb);font-size:20px}
   .pad .play{min-width:138px;padding:0 16px;border-radius:99px}
@@ -360,6 +367,9 @@ html:not(.js) .plain{display:block}
   .title h1{font-size:clamp(36px,11vh,60px)}
   .title p{font-size:15px;max-width:52ch;text-wrap:balance}
   .title small{position:fixed;left:calc(var(--gl) - 8px);top:calc(80% + 2.2vh);margin:0;font-size:11px}
+  .say li.links .outro{max-width:none;gap:7px;margin-top:8px}
+  .outro a,.outro button{padding:8px 10px 7px;font-size:11px;letter-spacing:.06em}
+  .outro b{padding:6px 2px;font-size:12px}
   .title small b{background:var(--earth);padding:3px 8px}
 }
 @supports (height:1dvh){@media (max-width:760px){.tag{--band:20dvh;--slack:0px}}}
@@ -713,7 +723,6 @@ html:not(.js) .plain{display:block}
   <button type="button" id="fwd" aria-label="Walk on" title="Walk on (hold)">&#9654;</button>
 </div>
 <div class="meter" aria-hidden="true"></div>
-<div class="night" id="night" aria-hidden="true"></div>
 <div class="spacer" aria-hidden="true"></div>
 
 <div class="plain">
@@ -731,7 +740,7 @@ html:not(.js) .plain{display:block}
   const root = document.documentElement; root.classList.add('js');
   const $ = id => document.getElementById(id);
   const stage = $('stage'), walker = $('walker'), sky = $('sky'), tag = $('tag'), meter = document.querySelector('.meter');
-  const lines = [...document.querySelectorAll('#say li:not(.links)')], links = $('links'), nightEl = $('night'), moonEl = document.querySelector('.moon'), photos = [...sky.querySelectorAll('img')];
+  const lines = [...document.querySelectorAll('#say li:not(.links)')], links = $('links'), photos = [...sky.querySelectorAll('img')];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v)), ease = t => t * t * (3 - 2 * t), mid = v => v > 0 && v < 1;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const set = (k, v) => stage.style.setProperty(k, v);
@@ -863,7 +872,7 @@ html:not(.js) .plain{display:block}
   } };
 
   const qs = new URLSearchParams(location.search), forced = qs.get('at'), forcedT = qs.get('t');   // test hooks: ?at=0..1 pins the walk, &t= the distance walked on after the end
-  let cur = 0, last = performance.now(), lastD = START, dir = 0, auto = false, burst = 0, carry = 0, pull = 0, glide = 0, shownLine = -2, lastClock = '', lastMood = '', T = 0, night = 0, lastNight = -1;
+  let cur = 0, last = performance.now(), lastD = START, dir = 0, auto = false, burst = 0, carry = 0, pull = 0, glide = 0, shownLine = -2, lastClock = '', lastMood = '', T = 0, lastNight = null;
   const span = () => Math.max(1, root.scrollHeight - innerHeight);
   const render = (p, dt) => {
     const { wx, w } = at(p), rest = Math.min(vwu * .34, 62), CAP = vwu + 30, vh = H / 100;
@@ -923,16 +932,7 @@ html:not(.js) .plain{display:block}
     stage.classList.toggle('fl-b', on ? tc > 940 && tc < 1012 : T === 0 && wx > 2255 && wx < 2500);
     stage.classList.toggle('hop', T === 0 && wx > 2540 && wx < 2770);
     const dark = on && tc >= 996 && tc < 1288 && $('upi').hidden;
-    night = dt ? night + ((dark ? 1 : 0) - night) * (1 - Math.exp(-dt / 600)) : dark ? 1 : 0;
-    if (night < .002) night = 0; else if (night > .998) night = 1;
-    if (night !== lastNight) {
-      lastNight = night;
-      root.style.setProperty('--night', night.toFixed(3));
-      stage.classList.toggle('dark', night > .05);
-      const mr = moonEl.getBoundingClientRect(), mx = mr.left + mr.width / 2, my = mr.top + mr.height / 2, reach = Math.hypot(Math.max(mx, W - mx), Math.max(my, H - my)) + 4;
-      nightEl.style.visibility = night ? 'visible' : 'hidden';
-      nightEl.style.clipPath = night >= 1 ? 'none' : 'circle(' + (ease(night) * reach).toFixed(1) + 'px at ' + mx.toFixed(1) + 'px ' + my.toFixed(1) + 'px)';
-    }
+    if (dark !== lastNight) { lastNight = dark; root.classList.toggle('night', dark); }   // the page itself fades between day and night
 
     // the photographs
     for (const k in SHOTS) if (wx > SHOTS[k].x - 560) load(k);
